@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:meals_app/category_item.dart';
-import 'package:meals_app/model_item.dart';
+import 'package:meals_app/widgets/category_item.dart';
+import 'package:meals_app/widgets/model_item.dart';
 import '../models/models.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 class BrandScreen extends StatelessWidget {
+  static const routeName = '/brands';
   const BrandScreen({Key? key}) : super(key: key);
 
   // final String categoryId;

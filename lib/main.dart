@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:meals_app/screens/brand_screen.dart';
 import 'package:meals_app/screens/category_screen.dart';
 
-import './category_item.dart';
-
 void main() {
   runApp(const MyApp());
 }
@@ -33,7 +31,7 @@ class MyApp extends StatelessWidget {
       ),
       home: CategoryScreen(key: key),
       routes: {
-        '/brands': (ctx) => BrandScreen(),
+        BrandScreen.routeName: (ctx) => const BrandScreen(),
       },
     );
   }
