@@ -8,6 +8,7 @@ class Model {
   final String hp;
   final String manufacturedDate;
   final Image photo;
+  final String infos;
 
   Model(
       {required this.id,
@@ -16,5 +17,6 @@ class Model {
       required this.name,
       required this.hp,
       required this.manufacturedDate,
-      required this.photo});
+      required this.photo,
+      required this.infos});
 }

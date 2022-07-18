@@ -27,7 +27,20 @@ class BrandScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).canvasColor,
       appBar: AppBar(
-        title: Text(routeArgs[0].brand),
+        title: LayoutBuilder(
+          builder: ((context, constraints) {
+            return Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text("${routeArgs[0].brand} "),
+                SizedBox(
+                  height: 40,
+                  child: routeArgs[0].brandLogo,
+                ),
+              ],
+            );
+          }),
+        ),
       ),
       body: ListView(
         children: routeArgs
@@ -39,6 +52,7 @@ class BrandScreen extends StatelessWidget {
                   manufacturedDate: modelData.manufacturedDate,
                   photo: modelData.photo,
                   brandLogo: modelData.brandLogo,
+                  infos: modelData.infos,
                 ))
             .toList(),
       ),

@@ -11,6 +11,8 @@ class CategoryScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text(
           'Brands',
+          style: TextStyle(
+              fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
         ),
       ),
       body: GridView(
@@ -22,12 +24,18 @@ class CategoryScreen extends StatelessWidget {
             mainAxisSpacing: 20,
           ),
           children: BRAND_CATEGORIES
-              .map((catData) => CategoryItem(
-                    id: catData.id,
-                    title: catData.title,
-                    image: catData.logo,
-                    color: catData.color,
-                    models: catData.models,
+              .map((catData) => Card(
+                    elevation: 10,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15)),
+                    shadowColor: Theme.of(context).primaryColor,
+                    child: CategoryItem(
+                      id: catData.id,
+                      title: catData.title,
+                      image: catData.logo,
+                      color: Colors.grey,
+                      models: catData.models,
+                    ),
                   ))
               .toList()),
     );
