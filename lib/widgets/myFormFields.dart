@@ -32,18 +32,22 @@ class _MyFomrFieldsState extends State<MyFomrFields> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        TextFormField(
-          decoration: const InputDecoration(
-            icon: Icon(Icons.branding_watermark),
-            hintText: 'Enter the Brand name',
+        Container(
+          padding: const EdgeInsets.all(20),
+          child: TextFormField(
+            decoration: const InputDecoration(
+              border: InputBorder.none,
+              icon: Icon(Icons.branding_watermark),
+              hintText: 'Name of the brand',
+            ),
+            // The validator receives the text that the user has entered.
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter some text';
+              }
+              return null;
+            },
           ),
-          // The validator receives the text that the user has entered.
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              return 'Please enter some text';
-            }
-            return null;
-          },
         ),
         (image == null)
             ? Container(
@@ -52,20 +56,23 @@ class _MyFomrFieldsState extends State<MyFomrFields> {
                 color: Theme.of(context).canvasColor,
               )
             : Image.file(image!),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            ElevatedButton.icon(
-              icon: const Icon(Icons.image_search),
-              label: const Text("Gallery"),
-              onPressed: () => pickImage(ImageSource.gallery),
-            ),
-            ElevatedButton.icon(
-              icon: const Icon(Icons.camera),
-              label: const Text("Camera"),
-              onPressed: () => pickImage(ImageSource.camera),
-            ),
-          ],
+        Container(
+          padding: const EdgeInsets.all(20),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              ElevatedButton.icon(
+                icon: const Icon(Icons.image_search),
+                label: const Text("Gallery"),
+                onPressed: () => pickImage(ImageSource.gallery),
+              ),
+              ElevatedButton.icon(
+                icon: const Icon(Icons.camera),
+                label: const Text("Camera"),
+                onPressed: () => pickImage(ImageSource.camera),
+              ),
+            ],
+          ),
         )
       ],
     );

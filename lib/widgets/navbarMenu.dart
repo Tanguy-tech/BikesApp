@@ -15,6 +15,12 @@ class NavBarMenu extends StatelessWidget {
     showDialog(
       context: context,
       builder: (_) => AlertDialog(
+        title: const Text(
+          "Add a brand",
+          style: TextStyle(fontWeight: FontWeight.bold),
+          textAlign: TextAlign.center,
+        ),
+        elevation: 10,
         content: AddBrandForm(key: key),
       ),
     );
