@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meals_app/screens/brand_screen.dart';
 import 'package:meals_app/screens/category_screen.dart';
+import 'package:meals_app/screens/myGarage_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,8 +16,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'MyMeals',
       theme: ThemeData(
-        colorScheme:
-            ColorScheme.fromSwatch().copyWith(secondary: Colors.amberAccent),
+        colorScheme: ColorScheme.fromSwatch().copyWith(
+            primary: Colors.indigo.shade900, secondary: Colors.amberAccent),
         canvasColor: const Color.fromARGB(255, 202, 202, 202),
         fontFamily: 'Raleway',
         textTheme: ThemeData.light().textTheme.copyWith(
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
       home: CategoryScreen(key: key),
       routes: {
         BrandScreen.routeName: (ctx) => const BrandScreen(),
+        MyGarageScreen.routeName: (ctx) => const MyGarageScreen(),
       },
     );
   }

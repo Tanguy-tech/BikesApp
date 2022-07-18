@@ -34,10 +34,10 @@ class CategoryItem extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(15),
         decoration: BoxDecoration(
-          gradient: LinearGradient(
+          gradient: const LinearGradient(
             colors: [
-              color.withOpacity(0.7),
-              color,
+              Color.fromARGB(255, 101, 101, 101),
+              Color.fromARGB(255, 186, 186, 186),
             ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,

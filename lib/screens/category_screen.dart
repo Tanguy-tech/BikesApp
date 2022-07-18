@@ -1,6 +1,9 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:meals_app/widgets/category_item.dart';
 import 'package:meals_app/data/brand_data.dart';
+import 'package:meals_app/widgets/navbarMenu.dart';
 
 class CategoryScreen extends StatelessWidget {
   const CategoryScreen({Key? key}) : super(key: key);
@@ -9,10 +12,16 @@ class CategoryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Brands',
-          style: TextStyle(
-              fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: const [
+            Text(
+              'Brands',
+              style: TextStyle(
+                  fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
+            ),
+            NavBarMenu()
+          ],
         ),
       ),
       body: GridView(
@@ -28,7 +37,7 @@ class CategoryScreen extends StatelessWidget {
                     elevation: 10,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15)),
-                    shadowColor: Theme.of(context).primaryColor,
+                    shadowColor: Theme.of(context).colorScheme.primary,
                     child: CategoryItem(
                       id: catData.id,
                       title: catData.title,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:meals_app/models/models.dart';
@@ -39,9 +40,7 @@ class ModelItem extends StatelessWidget {
         content: SingleChildScrollView(
           child: Column(
             children: [
-              Text(
-                '$hp horse power',
-              ),
+              Text('$hp horse power'),
               Text(manufacturedDate),
               const SizedBox(height: 20),
               Card(
@@ -55,7 +54,8 @@ class ModelItem extends StatelessWidget {
               const SizedBox(height: 20),
               Text(
                 infos,
-                textAlign: TextAlign.center,
+                textAlign: TextAlign.start,
+                style: Theme.of(ctx).textTheme.bodySmall,
               ),
             ],
           ),
@@ -64,6 +64,8 @@ class ModelItem extends StatelessWidget {
       barrierDismissible: true,
     );
   }
+
+  void _addToMyGarage() {}
 
   @override
   Widget build(BuildContext context) {
@@ -74,13 +76,66 @@ class ModelItem extends StatelessWidget {
               color: Theme.of(context).colorScheme.primary,
               borderRadius: BorderRadius.circular(10)),
           margin: const EdgeInsets.all(20),
-          child: Column(
-            children: [
-              Text(name),
-              Text('$hp horse power'),
-              Text(manufacturedDate),
-              photo,
-            ],
+          child: Container(
+            padding: const EdgeInsets.all(5),
+            child: LayoutBuilder(
+              builder: ((context, constraints) {
+                return Column(
+                  children: [
+                    Container(
+                        padding: const EdgeInsets.all(5),
+                        width: constraints.maxWidth,
+                        decoration: const BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [
+                                Color.fromARGB(255, 101, 101, 101),
+                                Color.fromARGB(255, 186, 186, 186),
+                              ],
+                            ),
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(10),
+                                topRight: Radius.circular(10))),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Column(
+                              children: [
+                                Text(name,
+                                    style:
+                                        const TextStyle(color: Colors.white)),
+                                Text('$hp horse power ',
+                                    style:
+                                        const TextStyle(color: Colors.white)),
+                                Text(manufacturedDate,
+                                    style:
+                                        const TextStyle(color: Colors.white)),
+                              ],
+                            ),
+                            SizedBox(
+                              child: SizedBox(
+                                height: 30,
+                                child: brandLogo,
+                              ),
+                            )
+                          ],
+                        )),
+                    ClipRRect(
+                        borderRadius: const BorderRadius.only(
+                            bottomLeft: Radius.circular(10),
+                            bottomRight: Radius.circular(10)),
+                        child: Stack(children: [
+                          photo,
+                          Positioned(
+                            left: constraints.maxWidth * 0.85,
+                            child: IconButton(
+                                onPressed: () => _addToMyGarage(),
+                                icon: const Icon(Icons.add)),
+                          )
+                        ])),
+                  ],
+                );
+              }),
+            ),
           ),
         ));
   }
