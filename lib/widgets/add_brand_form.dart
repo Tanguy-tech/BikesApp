@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:meals_app/widgets/myFormFields.dart';
+import 'package:meals_app/widgets/brand_form_fields.dart';
 
 class AddBrandForm extends StatefulWidget {
   const AddBrandForm({Key? key}) : super(key: key);
@@ -19,11 +19,12 @@ class _AddBrandFormState extends State<AddBrandForm> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            const MyFomrFields(),
+            const BrandFormFields(),
             ElevatedButton(
               onPressed: () {
                 // Validate returns true if the form is valid, or false otherwise.
                 if (_formKey.currentState!.validate()) {
+                  _formKey.currentState!.save();
                   // If the form is valid, display a snackbar. In the real world,
                   // you'd often call a server or save the information in a database.
                   ScaffoldMessenger.of(context).showSnackBar(

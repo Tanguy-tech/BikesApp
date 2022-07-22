@@ -3,6 +3,7 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:meals_app/screens/myGarage_screen.dart';
 import 'package:meals_app/widgets/add_brand_form.dart';
+import 'package:meals_app/widgets/add_model_form.dart';
 
 class NavBarMenu extends StatelessWidget {
   const NavBarMenu({Key? key}) : super(key: key);
@@ -22,6 +23,7 @@ class NavBarMenu extends StatelessWidget {
         ),
         elevation: 10,
         content: AddBrandForm(key: key),
+        // content: AddModelForm(key: key),
       ),
     );
   }

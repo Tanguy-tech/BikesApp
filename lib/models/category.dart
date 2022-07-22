@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:meals_app/data/brand_data.dart';
 import './models.dart';
 
 class Category {
-  final String id;
-  final String title;
-  final Color color;
-  final Image logo;
-  final List<Model> models;
+  late final String id;
+  late final String title;
+  late final Color color;
+  late final Image logo;
+  late final List<Model> models;
 
-  const Category(
+  Category(
       {required this.id,
       required this.title,
       required this.logo,

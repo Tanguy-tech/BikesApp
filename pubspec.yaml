@@ -30,6 +30,8 @@ dependencies:
   flutter:
     sdk: flutter
   image_picker:
+  reactive_forms:
+  reactive_forms_annotations:
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -39,6 +41,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  build_runner:
+  reactive_forms_generator:
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -90,6 +94,7 @@ flutter:
     - assets/bike_models/superDuke.png
     - assets/bike_models/t7.png
     - assets/bike_models/z1000.png
+    - placeHolder.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

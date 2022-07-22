@@ -5,6 +5,8 @@ import '../models/models.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
+import '../widgets/add_model_widget.dart';
+
 class BrandScreen extends StatelessWidget {
   static const routeName = '/brands';
   const BrandScreen({Key? key}) : super(key: key);
@@ -23,6 +25,10 @@ class BrandScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final routeArgs = ModalRoute.of(context)?.settings.arguments as List<Model>;
+    bool isEmpty = false;
+    if (routeArgs.isEmpty) {
+      isEmpty = true;
+    }
 
     return Scaffold(
       backgroundColor: Theme.of(context).canvasColor,
@@ -42,20 +48,25 @@ class BrandScreen extends StatelessWidget {
           }),
         ),
       ),
-      body: ListView(
-        children: routeArgs
-            .map((modelData) => ModelItem(
-                  id: modelData.id,
-                  brand: modelData.brand,
-                  name: modelData.name,
-                  hp: modelData.hp,
-                  manufacturedDate: modelData.manufacturedDate,
-                  photo: modelData.photo,
-                  brandLogo: modelData.brandLogo,
-                  infos: modelData.infos,
-                ))
-            .toList(),
-      ),
+      body: isEmpty == true
+          ? Container(
+              padding: const EdgeInsets.all(10),
+              child: const AddModel(),
+            )
+          : ListView(
+              children: routeArgs
+                  .map((modelData) => ModelItem(
+                        id: modelData.id,
+                        brand: modelData.brand,
+                        name: modelData.name,
+                        hp: modelData.hp,
+                        manufacturedDate: modelData.manufacturedDate,
+                        photo: modelData.photo,
+                        brandLogo: modelData.brandLogo,
+                        infos: modelData.infos,
+                      ))
+                  .toList(),
+            ),
     );
   }
 }
