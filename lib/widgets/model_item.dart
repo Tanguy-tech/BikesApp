@@ -82,48 +82,12 @@ class ModelItem extends StatelessWidget {
               builder: ((context, constraints) {
                 return Column(
                   children: [
-                    Container(
-                        padding: const EdgeInsets.all(5),
-                        width: constraints.maxWidth,
-                        decoration: const BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: [
-                                Color.fromARGB(255, 101, 101, 101),
-                                Color.fromARGB(255, 186, 186, 186),
-                              ],
-                            ),
-                            borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(10),
-                                topRight: Radius.circular(10))),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Column(
-                              children: [
-                                Text(name,
-                                    style:
-                                        const TextStyle(color: Colors.white)),
-                                Text('$hp horse power ',
-                                    style:
-                                        const TextStyle(color: Colors.white)),
-                                Text(manufacturedDate,
-                                    style:
-                                        const TextStyle(color: Colors.white)),
-                              ],
-                            ),
-                            SizedBox(
-                              child: SizedBox(
-                                height: 30,
-                                child: brandLogo,
-                              ),
-                            )
-                          ],
-                        )),
                     ClipRRect(
-                        borderRadius: const BorderRadius.only(
-                            bottomLeft: Radius.circular(10),
-                            bottomRight: Radius.circular(10)),
-                        child: Stack(children: [
+                      borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(10),
+                          topRight: Radius.circular(10)),
+                      child: Stack(
+                        children: [
                           photo,
                           Positioned(
                             left: constraints.maxWidth * 0.85,
@@ -131,7 +95,44 @@ class ModelItem extends StatelessWidget {
                                 onPressed: () => _addToMyGarage(),
                                 icon: const Icon(Icons.add)),
                           )
-                        ])),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.all(5),
+                      width: constraints.maxWidth,
+                      decoration: const BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [
+                              Color.fromARGB(255, 101, 101, 101),
+                              Color.fromARGB(255, 186, 186, 186),
+                            ],
+                          ),
+                          borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(10),
+                              bottomRight: Radius.circular(10))),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Column(
+                            children: [
+                              Text(name,
+                                  style: const TextStyle(color: Colors.white)),
+                              Text('$hp horse power ',
+                                  style: const TextStyle(color: Colors.white)),
+                              Text(manufacturedDate,
+                                  style: const TextStyle(color: Colors.white)),
+                            ],
+                          ),
+                          SizedBox(
+                            child: SizedBox(
+                              height: 30,
+                              child: brandLogo,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
                   ],
                 );
               }),

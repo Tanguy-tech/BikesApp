@@ -48,7 +48,7 @@ class BrandScreen extends StatelessWidget {
           }),
         ),
       ),
-      body: isEmpty == true
+      body: isEmpty
           ? Container(
               padding: const EdgeInsets.all(10),
               child: const AddModel(),

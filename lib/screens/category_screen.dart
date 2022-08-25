@@ -10,43 +10,28 @@ class CategoryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: const [
-            Text(
-              'Brands',
-              style: TextStyle(
-                  fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
-            ),
-            NavBarMenu()
-          ],
+    return GridView(
+        padding: const EdgeInsets.all(25),
+        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+          maxCrossAxisExtent: 200,
+          childAspectRatio: 3 / 2,
+          crossAxisSpacing: 20,
+          mainAxisSpacing: 20,
         ),
-      ),
-      body: GridView(
-          padding: const EdgeInsets.all(25),
-          gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-            maxCrossAxisExtent: 200,
-            childAspectRatio: 3 / 2,
-            crossAxisSpacing: 20,
-            mainAxisSpacing: 20,
-          ),
-          children: BRAND_CATEGORIES
-              .map((catData) => Card(
-                    elevation: 10,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15)),
-                    shadowColor: Theme.of(context).colorScheme.primary,
-                    child: CategoryItem(
-                      id: catData.id,
-                      title: catData.title,
-                      image: catData.logo,
-                      color: Colors.grey,
-                      models: catData.models,
-                    ),
-                  ))
-              .toList()),
-    );
+        children: BRAND_CATEGORIES
+            .map((catData) => Card(
+                  elevation: 10,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15)),
+                  shadowColor: Theme.of(context).colorScheme.primary,
+                  child: CategoryItem(
+                    id: catData.id,
+                    title: catData.title,
+                    image: catData.logo,
+                    color: Colors.grey,
+                    models: catData.models,
+                  ),
+                ))
+            .toList());
   }
 }

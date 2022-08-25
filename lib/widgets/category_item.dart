@@ -32,15 +32,15 @@ class CategoryItem extends StatelessWidget {
       splashColor: Theme.of(context).primaryColor,
       borderRadius: BorderRadius.circular(15),
       child: Container(
-        padding: const EdgeInsets.all(15),
+        padding: const EdgeInsets.all(12.5),
         decoration: BoxDecoration(
           gradient: const LinearGradient(
             colors: [
               Color.fromARGB(255, 101, 101, 101),
               Color.fromARGB(255, 186, 186, 186),
             ],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
           ),
           borderRadius: BorderRadius.circular(15),
         ),
@@ -48,17 +48,31 @@ class CategoryItem extends StatelessWidget {
           builder: ((context, constraints) {
             return ListView(
               children: <Widget>[
+                SizedBox(height: constraints.maxHeight * 0.6, child: image),
+                SizedBox(height: constraints.maxHeight * 0.1),
                 SizedBox(
                   height: constraints.maxHeight * 0.3,
                   child: Center(
-                      child: Text(
-                    title,
-                    style: Theme.of(context).textTheme.titleLarge,
-                    textScaleFactor: 0.65,
-                  )),
+                    child: Stack(
+                      children: [
+                        Container(
+                          width: constraints.maxWidth,
+                          decoration: const BoxDecoration(
+                            color: Colors.black12,
+                            borderRadius: BorderRadius.all(Radius.circular(15)),
+                          ),
+                        ),
+                        Center(
+                          child: Text(
+                            title,
+                            style: Theme.of(context).textTheme.titleLarge,
+                            textScaleFactor: 0.55,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-                SizedBox(height: constraints.maxHeight * 0.1),
-                SizedBox(height: constraints.maxHeight * 0.6, child: image)
               ],
             );
           }),

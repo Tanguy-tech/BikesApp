@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:meals_app/screens/brand_screen.dart';
 import 'package:meals_app/screens/category_screen.dart';
-import 'package:meals_app/screens/myGarage_screen.dart';
+import 'package:meals_app/screens/invoice_screen.dart';
+import 'package:meals_app/screens/fuel_consumption_screen.dart';
+import 'package:meals_app/screens/garage_screen.dart';
+import 'package:meals_app/screens/tab_screen.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 
@@ -18,10 +21,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'MyMeals',
+      title: 'BikesApp',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSwatch().copyWith(
-            primary: Colors.indigo.shade900, secondary: Colors.amberAccent),
+            primary: Colors.indigoAccent.shade700,
+            secondary: Colors.tealAccent.shade700),
         canvasColor: const Color.fromARGB(255, 202, 202, 202),
         fontFamily: 'Raleway',
         textTheme: ThemeData.light().textTheme.copyWith(
@@ -34,10 +38,13 @@ class MyApp extends StatelessWidget {
                 fontWeight: FontWeight.bold),
             titleSmall: const TextStyle(fontFamily: 'Raleway', fontSize: 15)),
       ),
-      home: CategoryScreen(key: key),
+      //home: CategoryScreen(key: key),
+      home: const TabScreen(),
       routes: {
         BrandScreen.routeName: (ctx) => const BrandScreen(),
         MyGarageScreen.routeName: (ctx) => const MyGarageScreen(),
+        InvoiceScreen.routeName: (ctx) => const InvoiceScreen(),
+        FuelConsumptionScreen.routeName: (ctx) => const FuelConsumptionScreen(),
       },
     );
   }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:meals_app/screens/myGarage_screen.dart';
+import 'package:meals_app/screens/garage_screen.dart';
 import 'package:meals_app/widgets/add_brand_form.dart';
 import 'package:meals_app/widgets/add_model_form.dart';
 
