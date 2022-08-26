@@ -95,6 +95,10 @@ flutter:
     - assets/bike_models/t7.png
     - assets/bike_models/z1000.png
     - placeHolder.png
+    - assets/invoices/00.png
+    - assets/invoices/01.png
+    - assets/invoices/02.png
+
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
