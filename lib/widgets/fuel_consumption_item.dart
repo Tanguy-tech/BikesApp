@@ -31,9 +31,9 @@ class FuelCosumptionItem extends StatelessWidget {
           Container(
             height: 70,
             width: constraints.maxWidth,
-            decoration: const BoxDecoration(
-              color: Colors.red,
-              borderRadius: BorderRadius.all(Radius.circular(10)),
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.secondary,
+              borderRadius: const BorderRadius.all(Radius.circular(10)),
             ),
             child: Column(
               children: [

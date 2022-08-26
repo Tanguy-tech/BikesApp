@@ -16,7 +16,8 @@ class ListHeader extends StatelessWidget {
               width: constraints.maxWidth,
               margin: const EdgeInsets.only(left: 10, right: 10),
               decoration: BoxDecoration(
-                  color: Colors.green, borderRadius: BorderRadius.circular(10)),
+                  color: const Color.fromRGBO(0, 156, 255, 100),
+                  borderRadius: BorderRadius.circular(10)),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: const [
