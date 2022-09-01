@@ -1,10 +1,7 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:meals_app/models/category.dart';
 import 'package:meals_app/widgets/category_item.dart';
 import 'package:meals_app/data/brand_data.dart';
-import 'package:meals_app/widgets/navbarMenu.dart';
 
 class CategoryScreen extends StatelessWidget {
   final List<Category> ci = BRAND_CATEGORIES;
