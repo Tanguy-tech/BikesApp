@@ -1,11 +1,7 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
-import 'package:meals_app/models/models.dart';
-
 import '../models/invoices.dart';
 
-List<Invoices> INVOICES = [
+List<Invoices> invoices = [
   Invoices(
       id: "00",
       title: "invoice 00 test",

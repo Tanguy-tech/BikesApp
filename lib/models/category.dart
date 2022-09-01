@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:meals_app/data/brand_data.dart';
 import './models.dart';
 
 class Category {

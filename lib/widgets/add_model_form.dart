@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:meals_app/widgets/model_form_fields.dart';
-
-import 'brand_form_fields.dart';
 
 class AddModelForm extends StatefulWidget {
   const AddModelForm({Key? key}) : super(key: key);
@@ -32,7 +28,6 @@ class _AddModelFormState extends State<AddModelForm> {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Processing Data')),
                   );
-                  print("****NEW CATEGORY AND MODEL GENERATED******");
                 }
               },
               child: const Text('Submit'),

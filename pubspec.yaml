@@ -29,9 +29,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  image_picker:
+  image_picker: ^0.8.1
   reactive_forms:
   reactive_forms_annotations:
+  adaptive_theme: ^3.1.1
+  provider: ^6.0.3
+  shared_preferences:
 
 
   # The following adds the Cupertino Icons font to your application.

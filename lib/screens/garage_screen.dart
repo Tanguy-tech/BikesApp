@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:meals_app/widgets/bike_main_info.dart';
 import 'package:meals_app/widgets/lists_header.dart';
 import 'package:meals_app/widgets/lists_infos.dart';

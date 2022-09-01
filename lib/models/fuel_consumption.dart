@@ -1,7 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:meals_app/data/brand_data.dart';
-import './fuel_consumption.dart';
-
 class FuelConsumption {
   late final String id;
   late final String fuelType;

@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/image.dart';
 
 class InvoiceItem extends StatelessWidget {
   final String id;
@@ -34,7 +31,7 @@ class InvoiceItem extends StatelessWidget {
             child: Column(
               children: [
                 Container(
-                  padding: const EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(9),
                   child: Row(
                     children: [
                       const Icon(Icons.receipt, color: Colors.white),

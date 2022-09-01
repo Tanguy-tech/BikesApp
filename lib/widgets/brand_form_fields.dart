@@ -1,11 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import '../data/brand_data.dart';
 import '../models/category.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../models/models.dart';
@@ -22,15 +19,11 @@ class _BrandFormFieldsState extends State<BrandFormFields> {
   late Category newBrand;
 
   Future pickImage(ImageSource src) async {
-    try {
-      final image = await ImagePicker().pickImage(source: src);
-      if (image == null) return;
+    final image = await ImagePicker().pickImage(source: src);
+    if (image == null) return;
 
-      final tmpImage = File(image.path);
-      setState(() => this.image = tmpImage);
-    } on PlatformException catch (e) {
-      print("Failed to pick image..");
-    }
+    final tmpImage = File(image.path);
+    setState(() => this.image = tmpImage);
   }
 
   saveNewBrand(String id, String title, Color color) {
@@ -38,9 +31,7 @@ class _BrandFormFieldsState extends State<BrandFormFields> {
     Image logo = Image.asset('placeHolder.png');
     Category newBRand =
         Category(id: id, title: title, logo: logo, models: models);
-    print("id = $id, title = $title");
-    BRAND_CATEGORIES.add(newBRand);
-    print("********** newBrand added to BRAND_CATEGORIES...!**********");
+    brandCategories.add(newBRand);
   }
 
   @override

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:meals_app/data/invoices.dart';
 import 'package:meals_app/widgets/invoice_item.dart';
 
@@ -11,7 +9,7 @@ class InvoicesList extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
         // padding: const EdgeInsets.all(10),
-        children: INVOICES
+        children: invoices
             .map((inv) => Card(
                   elevation: 5,
                   shape: RoundedRectangleBorder(

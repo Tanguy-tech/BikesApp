@@ -1,11 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:meals_app/data/brand_data.dart';
 import 'package:meals_app/models/category.dart';
 import 'package:meals_app/models/models.dart';
 
@@ -18,18 +14,14 @@ class ModelFormFields extends StatefulWidget {
 
 class _ModelFormFieldsState extends State<ModelFormFields> {
   File? image;
-  final _keyForm = GlobalKey<FormState>();
+  //final _keyForm = GlobalKey<FormState>();
 
   Future pickImage(ImageSource src) async {
-    try {
-      final image = await ImagePicker().pickImage(source: src);
-      if (image == null) return;
+    final image = await ImagePicker().pickImage(source: src);
+    if (image == null) return;
 
-      final tmpImage = File(image.path);
-      setState(() => this.image = tmpImage);
-    } on PlatformException catch (e) {
-      print("Failed to pick image..");
-    }
+    final tmpImage = File(image.path);
+    setState(() => this.image = tmpImage);
   }
 
   // saveNewModel() {

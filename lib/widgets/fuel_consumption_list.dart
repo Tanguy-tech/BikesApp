@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:meals_app/widgets/fuel_consumption_item.dart';
 import "package:meals_app/data/fuel_consumption.dart";
 
@@ -11,7 +9,7 @@ class FuelConsumptionList extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
         // padding: const EdgeInsets.all(10),
-        children: FUELCONSUMPTION
+        children: fuelConsumption
             .map((fc) => Card(
                   elevation: 5,
                   shape: RoundedRectangleBorder(

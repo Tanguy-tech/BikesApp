@@ -3,7 +3,7 @@ import 'package:meals_app/models/models.dart';
 
 import '../models/category.dart';
 
-List<Category> BRAND_CATEGORIES = [
+List<Category> brandCategories = [
   Category(
     id: 'c1',
     title: 'Suzuki',

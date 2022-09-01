@@ -1,12 +1,6 @@
-import 'dart:ffi';
-
-import 'package:flutter/material.dart';
 import 'package:meals_app/models/fuel_consumption.dart';
-import 'package:meals_app/models/models.dart';
 
-import '../models/invoices.dart';
-
-List<FuelConsumption> FUELCONSUMPTION = [
+List<FuelConsumption> fuelConsumption = [
   FuelConsumption(
       id: "f1",
       fuelType: "SP98",

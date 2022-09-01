@@ -1,12 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:meals_app/screens/brand_screen.dart';
-import 'package:meals_app/screens/category_screen.dart';
 import 'package:meals_app/screens/fuel_consumption_screen.dart';
 import 'package:meals_app/screens/invoice_screen.dart';
-import 'package:meals_app/screens/garage_screen.dart';
-import 'package:meals_app/screens/tab_screen.dart';
 
 class MainDrawer extends StatelessWidget {
   const MainDrawer({Key? key}) : super(key: key);
