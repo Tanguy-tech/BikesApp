@@ -14,7 +14,7 @@ class TabScreen extends StatefulWidget {
 
 class _TabScreenState extends State<TabScreen> {
   final List<Map<String, Object>> _pages = [
-    {"page": const CategoryScreen(), "title": "Brands"},
+    {"page": CategoryScreen(), "title": "Brands"},
     {"page": const MyGarageScreen(), "title": "My Garage"},
   ];
 
