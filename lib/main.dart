@@ -45,8 +45,46 @@ class _MyAppState extends State<MyApp> {
     return Consumer<AppTheme>(
       builder: (_, theme, __) => MaterialApp(
           title: 'BikesApp',
-          theme: ThemeData.light(), // Provide light theme.
-          darkTheme: ThemeData.dark(), // Provide dark theme.
+          // theme: ThemeData.light(), // Provide light theme.
+          // darkTheme: ThemeData.dark(), // Provide dark theme.
+          theme: ThemeData(
+              colorScheme: ColorScheme.fromSwatch().copyWith(
+                  primary: Colors.indigoAccent.shade700,
+                  secondary: Colors.tealAccent.shade700,
+                  brightness: Brightness.light),
+              canvasColor: const Color.fromARGB(255, 202, 202, 202),
+              textTheme: ThemeData.light().textTheme.copyWith(
+                  bodyLarge:
+                      const TextStyle(color: Color.fromRGBO(20, 51, 51, 1)),
+                  bodyMedium:
+                      const TextStyle(color: Color.fromRGBO(20, 51, 51, 1)),
+                  titleLarge:
+                      const TextStyle(fontFamily: 'Raleway', fontSize: 25),
+                  titleMedium: const TextStyle(
+                      fontFamily: 'Raleway',
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold),
+                  titleSmall:
+                      const TextStyle(fontFamily: 'Raleway', fontSize: 15))),
+          darkTheme: ThemeData(
+              colorScheme: ColorScheme.fromSwatch().copyWith(
+                  primary: Colors.indigoAccent.shade700,
+                  secondary: Colors.tealAccent.shade700,
+                  brightness: Brightness.dark),
+              canvasColor: Color.fromARGB(255, 75, 75, 75),
+              textTheme: ThemeData.light().textTheme.copyWith(
+                  bodyLarge:
+                      const TextStyle(color: Color.fromRGBO(20, 51, 51, 1)),
+                  bodyMedium:
+                      const TextStyle(color: Color.fromRGBO(20, 51, 51, 1)),
+                  titleLarge:
+                      const TextStyle(fontFamily: 'Raleway', fontSize: 25),
+                  titleMedium: const TextStyle(
+                      fontFamily: 'Raleway',
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold),
+                  titleSmall:
+                      const TextStyle(fontFamily: 'Raleway', fontSize: 15))),
           themeMode: theme.mode, // Decides which theme to show.
           //home: CategoryScreen(key: key),
           home: Scaffold(
