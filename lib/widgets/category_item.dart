@@ -27,57 +27,96 @@ class CategoryItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () => selectBrand(context),
-      splashColor: Theme.of(context).primaryColor,
+    return ClipRRect(
       borderRadius: BorderRadius.circular(15),
-      child: Container(
-        padding: const EdgeInsets.all(12.5),
-        decoration: BoxDecoration(
-          gradient: const LinearGradient(
-            colors: [
-              Color.fromARGB(255, 101, 101, 101),
-              Color.fromARGB(255, 186, 186, 186),
-            ],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          ),
-          borderRadius: BorderRadius.circular(15),
-        ),
-        child: LayoutBuilder(
-          builder: ((context, constraints) {
-            return ListView(
-              children: <Widget>[
-                SizedBox(height: constraints.maxHeight * 0.6, child: image),
-                SizedBox(height: constraints.maxHeight * 0.1),
-                SizedBox(
-                  height: constraints.maxHeight * 0.3,
-                  child: Center(
-                    child: Stack(
-                      children: [
-                        Container(
-                          width: constraints.maxWidth,
-                          decoration: const BoxDecoration(
-                            color: Colors.black12,
-                            borderRadius: BorderRadius.all(Radius.circular(15)),
-                          ),
-                        ),
-                        Center(
-                          child: Text(
-                            title,
-                            style: Theme.of(context).textTheme.titleLarge,
-                            textScaleFactor: 0.55,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+      child: GridTile(
+        // footer: GridTileBar(
+        //backgroundColor: Colors.grey,
+        // title: TextButton(
+        //   onPressed: () => selectBrand(context),
+        //   child: Text(title),
+        // ),
+        // trailing: IconButton(
+        //   icon: const Icon(Icons.arrow_forward),
+        //   onPressed: () => selectBrand(context),
+        //   padding: EdgeInsets.only(left: 90),
+        // ),
+        //),
+        child: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Color.fromARGB(255, 101, 101, 101),
+                Color.fromARGB(255, 186, 186, 186),
               ],
-            );
-          }),
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            ),
+          ),
+          child: TextButton(
+            onPressed: () => selectBrand(context),
+            child: image,
+          ),
         ),
       ),
     );
   }
 }
+
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return InkWell(
+//       onTap: () => selectBrand(context),
+//       splashColor: Theme.of(context).primaryColor,
+//       borderRadius: BorderRadius.circular(15),
+//       child: Container(
+//         padding: const EdgeInsets.all(12.5),
+//         decoration: BoxDecoration(
+//           gradient: const LinearGradient(
+//             colors: [
+//               Color.fromARGB(255, 101, 101, 101),
+//               Color.fromARGB(255, 186, 186, 186),
+//             ],
+//             begin: Alignment.topCenter,
+//             end: Alignment.bottomCenter,
+//           ),
+//           borderRadius: BorderRadius.circular(15),
+//         ),
+//         child: LayoutBuilder(
+//           builder: ((context, constraints) {
+//             return ListView(
+//               children: <Widget>[
+//                 SizedBox(height: constraints.maxHeight * 0.6, child: image),
+//                 SizedBox(height: constraints.maxHeight * 0.1),
+//                 SizedBox(
+//                   height: constraints.maxHeight * 0.3,
+//                   child: Center(
+//                     child: Stack(
+//                       children: [
+//                         Container(
+//                           width: constraints.maxWidth,
+//                           decoration: const BoxDecoration(
+//                             color: Colors.black12,
+//                             borderRadius: BorderRadius.all(Radius.circular(15)),
+//                           ),
+//                         ),
+//                         Center(
+//                           child: Text(
+//                             title,
+//                             style: Theme.of(context).textTheme.titleLarge,
+//                             textScaleFactor: 0.55,
+//                           ),
+//                         ),
+//                       ],
+//                     ),
+//                   ),
+//                 ),
+//               ],
+//             );
+//           }),
+//         ),
+//       ),
+//     );
+//   }
+// }
