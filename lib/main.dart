@@ -60,8 +60,10 @@ class _MyAppState extends State<MyApp> {
             drawer: const MainDrawer(),
             body: _pages[_selectedPagesIndex]["page"] as Widget,
             bottomNavigationBar: BottomNavigationBar(
-              selectedItemColor: Theme.of(context).canvasColor,
-              unselectedItemColor: Colors.black45,
+              selectedItemColor:
+                  theme.myTheme.bottomNavigationBarTheme.selectedItemColor,
+              unselectedItemColor:
+                  theme.myTheme.bottomNavigationBarTheme.unselectedItemColor,
               currentIndex: _selectedPagesIndex,
               type: BottomNavigationBarType.shifting,
               onTap: _selectPage,
@@ -69,12 +71,12 @@ class _MyAppState extends State<MyApp> {
                 BottomNavigationBarItem(
                   backgroundColor: theme.myTheme.appBarTheme.backgroundColor,
                   icon: const Icon(Icons.category),
-                  label: "Brands",
+                  label: _pages[_selectedPagesIndex]["title"] as String,
                 ),
                 BottomNavigationBarItem(
                   backgroundColor: theme.myTheme.appBarTheme.backgroundColor,
                   icon: const Icon(Icons.favorite),
-                  label: "My Garage",
+                  label: _pages[_selectedPagesIndex]["title"] as String,
                 ),
               ],
             ),

@@ -29,7 +29,7 @@ class MainDrawer extends StatelessWidget {
             width: double.infinity,
             padding: const EdgeInsets.all(20),
             alignment: Alignment.centerLeft,
-            color: Theme.of(context).colorScheme.primary,
+            color: Theme.of(context).appBarTheme.backgroundColor,
             child: const Text(
               "MotoBox's Drawer menu",
               style: TextStyle(

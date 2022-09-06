@@ -15,7 +15,9 @@ class AppTheme with ChangeNotifier {
         brightness: Brightness.light),
     appBarTheme: AppBarTheme(backgroundColor: Colors.indigoAccent.shade700),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
-        backgroundColor: Colors.indigoAccent.shade700),
+        backgroundColor: Colors.indigoAccent.shade700,
+        selectedItemColor: Colors.white,
+        unselectedItemColor: const Color.fromARGB(255, 23, 36, 109)),
     //Theme.of(navigatorKey.currentContext!).colorScheme.primary),
     canvasColor: const Color.fromARGB(255, 202, 202, 202),
     textTheme: ThemeData.light().textTheme.copyWith(
@@ -42,7 +44,9 @@ class AppTheme with ChangeNotifier {
                 Theme.of(navigatorKey.currentContext!).colorScheme.primary),
         bottomNavigationBarTheme: BottomNavigationBarThemeData(
             backgroundColor:
-                Theme.of(navigatorKey.currentContext!).colorScheme.primary),
+                Theme.of(navigatorKey.currentContext!).colorScheme.primary,
+            selectedItemColor: Colors.white,
+            unselectedItemColor: const Color.fromARGB(255, 23, 36, 109)),
         //Theme.of(navigatorKey.currentContext!).colorScheme.primary),
         canvasColor: const Color.fromARGB(255, 202, 202, 202),
         textTheme: ThemeData.light().textTheme.copyWith(
@@ -67,11 +71,13 @@ class AppTheme with ChangeNotifier {
             primary: Colors.indigoAccent.shade700,
             secondary: Colors.tealAccent.shade700,
             brightness: Brightness.dark),
-        appBarTheme: AppBarTheme(
-            backgroundColor: Colors.blue.shade900,
+        appBarTheme: const AppBarTheme(
+            backgroundColor: Color.fromARGB(255, 4, 18, 38),
             foregroundColor: Colors.white),
-        bottomNavigationBarTheme:
-            BottomNavigationBarThemeData(backgroundColor: Colors.blue.shade900),
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+            backgroundColor: Color.fromARGB(255, 4, 18, 38),
+            selectedItemColor: Colors.white,
+            unselectedItemColor: Color.fromARGB(255, 88, 88, 88)),
         canvasColor: const Color.fromARGB(255, 75, 75, 75),
         textTheme: ThemeData.dark().textTheme.copyWith(
               bodyLarge:
