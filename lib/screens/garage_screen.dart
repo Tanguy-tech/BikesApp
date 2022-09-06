@@ -24,8 +24,9 @@ class MyGarageScreen extends StatelessWidget {
           const ListHeader(),
           Stack(
             children: [
-              SizedBox(
-                height: constraints.maxHeight * 0.69,
+              Container(
+                padding: const EdgeInsets.only(top: 5),
+                height: constraints.maxHeight * 0.6927,
                 width: constraints.maxWidth,
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,

@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:meals_app/widgets/model_item.dart';
 import '../models/models.dart';
 
-import '../widgets/add_model_widget.dart';
-
 class BrandDetailsScreen extends StatelessWidget {
   static const routeName = '/brands';
   const BrandDetailsScreen({Key? key}) : super(key: key);
@@ -37,7 +35,7 @@ class BrandDetailsScreen extends StatelessWidget {
       body: isEmpty
           ? Container(
               padding: const EdgeInsets.all(10),
-              child: const AddModel(),
+              //child: const AddModel(),
             )
           : ListView(
               children: routeArgs
