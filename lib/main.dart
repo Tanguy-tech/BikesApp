@@ -43,62 +43,23 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return Consumer<AppTheme>(
-      builder: (_, theme, __) => MaterialApp(
+      builder: (context, theme, __) => MaterialApp(
+          navigatorKey: AppTheme.navigatorKey,
           title: 'BikesApp',
-          // theme: ThemeData.light(), // Provide light theme.
-          // darkTheme: ThemeData.dark(), // Provide dark theme.
-          theme: ThemeData(
-              colorScheme: ColorScheme.fromSwatch().copyWith(
-                  primary: Colors.indigoAccent.shade700,
-                  secondary: Colors.tealAccent.shade700,
-                  brightness: Brightness.light),
-              canvasColor: const Color.fromARGB(255, 202, 202, 202),
-              textTheme: ThemeData.light().textTheme.copyWith(
-                  bodyLarge:
-                      const TextStyle(color: Color.fromRGBO(20, 51, 51, 1)),
-                  bodyMedium:
-                      const TextStyle(color: Color.fromRGBO(20, 51, 51, 1)),
-                  titleLarge:
-                      const TextStyle(fontFamily: 'Raleway', fontSize: 25),
-                  titleMedium: const TextStyle(
-                      fontFamily: 'Raleway',
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold),
-                  titleSmall:
-                      const TextStyle(fontFamily: 'Raleway', fontSize: 15))),
-          darkTheme: ThemeData(
-              colorScheme: ColorScheme.fromSwatch().copyWith(
-                  primary: Colors.indigoAccent.shade700,
-                  secondary: Colors.tealAccent.shade700,
-                  brightness: Brightness.dark),
-              canvasColor: Color.fromARGB(255, 75, 75, 75),
-              textTheme: ThemeData.light().textTheme.copyWith(
-                  bodyLarge:
-                      const TextStyle(color: Color.fromRGBO(20, 51, 51, 1)),
-                  bodyMedium:
-                      const TextStyle(color: Color.fromRGBO(20, 51, 51, 1)),
-                  titleLarge:
-                      const TextStyle(fontFamily: 'Raleway', fontSize: 25),
-                  titleMedium: const TextStyle(
-                      fontFamily: 'Raleway',
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold),
-                  titleSmall:
-                      const TextStyle(fontFamily: 'Raleway', fontSize: 15))),
-          themeMode: theme.mode, // Decides which theme to show.
-          //home: CategoryScreen(key: key),
+          theme: theme.myTheme,
+          themeMode: theme.mode,
           home: Scaffold(
             appBar: AppBar(
               title: Text(_pages[_selectedPagesIndex]["title"] as String),
               actions: [
                 Switch(
-                    onChanged: (value) => theme.toogleTheme(), value: theme.sw)
+                    onChanged: (value) => theme.toogleTheme(context),
+                    value: theme.sw)
               ],
             ),
             drawer: const MainDrawer(),
             body: _pages[_selectedPagesIndex]["page"] as Widget,
             bottomNavigationBar: BottomNavigationBar(
-              backgroundColor: Theme.of(context).colorScheme.primary,
               selectedItemColor: Theme.of(context).canvasColor,
               unselectedItemColor: Colors.black45,
               currentIndex: _selectedPagesIndex,
@@ -106,12 +67,12 @@ class _MyAppState extends State<MyApp> {
               onTap: _selectPage,
               items: [
                 BottomNavigationBarItem(
-                  backgroundColor: Theme.of(context).colorScheme.primary,
+                  backgroundColor: theme.myTheme.appBarTheme.backgroundColor,
                   icon: const Icon(Icons.category),
                   label: "Brands",
                 ),
                 BottomNavigationBarItem(
-                  backgroundColor: Theme.of(context).colorScheme.primary,
+                  backgroundColor: theme.myTheme.appBarTheme.backgroundColor,
                   icon: const Icon(Icons.favorite),
                   label: "My Garage",
                 ),
