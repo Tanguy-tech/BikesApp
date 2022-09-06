@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meals_app/widgets/invoices_list.dart';
 import 'package:meals_app/widgets/main_drawer.dart';
 
 class InvoiceScreen extends StatefulWidget {
@@ -16,7 +17,7 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
     return Scaffold(
       appBar: AppBar(title: const Text("My invoices")),
       drawer: const MainDrawer(),
-      body: const Center(child: Text("This is my invoices screen")),
+      body: const Center(child: InvoicesList()),
     );
   }
 }

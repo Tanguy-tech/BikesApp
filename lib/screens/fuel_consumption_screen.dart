@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meals_app/widgets/fuel_consumption_list.dart';
 import '../widgets/main_drawer.dart';
 
 class FuelConsumptionScreen extends StatefulWidget {
@@ -16,7 +17,7 @@ class _FuelConsumptionScreenState extends State<FuelConsumptionScreen> {
     return Scaffold(
       appBar: AppBar(title: const Text("My fuel consumption")),
       drawer: const MainDrawer(),
-      body: const Center(child: Text("This is my fuel consumption screen")),
+      body: const Center(child: FuelConsumptionList()),
     );
   }
 }

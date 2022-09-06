@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_brace_in_string_interps
+
 import 'package:flutter/material.dart';
 
 class FuelCosumptionItem extends StatelessWidget {
@@ -43,34 +45,48 @@ class FuelCosumptionItem extends StatelessWidget {
                         padding: const EdgeInsets.only(left: 10),
                         child: Column(
                           children: [
+                            Row(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  SizedBox(
+                                    width: constraints.maxWidth * 0.35,
+                                    child: Text(
+                                      '${date.day}.${date.month}.${date.year}',
+                                      textAlign: TextAlign.left,
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: constraints.maxWidth * 0.35,
+                                    child: Text(
+                                      fuelType,
+                                      textAlign: TextAlign.left,
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                ]),
                             SizedBox(
                               width: constraints.maxWidth * 0.7,
-                              child: const Text(
-                                "Test first field",
+                              child: Text(
+                                '${pricePerLitter}€/L  ${volume}L',
                                 textAlign: TextAlign.left,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   color: Colors.white,
                                 ),
                               ),
                             ),
                             SizedBox(
                               width: constraints.maxWidth * 0.7,
-                              child: const Text(
-                                "Test second field",
+                              child: Text(
+                                'Total: ${price}€',
                                 textAlign: TextAlign.left,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              width: constraints.maxWidth * 0.7,
-                              child: const Text(
-                                "Test third field",
-                                textAlign: TextAlign.left,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                ),
+                                style: const TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold),
                               ),
                             ),
                           ],
