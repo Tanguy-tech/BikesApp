@@ -19,5 +19,23 @@ List<Invoices> invoices = [
       title: "invoice 02 test",
       date: DateTime(2022, 7, 8, 14, 15),
       price: 87.58,
+      photo: Image.asset('assets/invoices/02.png')),
+  Invoices(
+      id: "02",
+      title: "invoice 02 test",
+      date: DateTime(2022, 7, 8, 14, 15),
+      price: 87.58,
+      photo: Image.asset('assets/invoices/02.png')),
+  Invoices(
+      id: "02",
+      title: "invoice 02 test",
+      date: DateTime(2022, 7, 8, 14, 15),
+      price: 87.58,
+      photo: Image.asset('assets/invoices/02.png')),
+  Invoices(
+      id: "02",
+      title: "invoice 02 test",
+      date: DateTime(2022, 7, 8, 14, 15),
+      price: 87.58,
       photo: Image.asset('assets/invoices/02.png'))
 ];
