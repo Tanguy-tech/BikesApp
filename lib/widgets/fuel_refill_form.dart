@@ -1,8 +1,4 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:meals_app/models/fuel_consumption.dart';
 import 'package:meals_app/screens/garage_screen.dart';
 
@@ -15,6 +11,10 @@ class FuelRefillForm extends StatefulWidget {
 }
 
 class _FuelRefillFormState extends State<FuelRefillForm> {
+  final _dateFocusNode = FocusNode();
+  final _priceFocusNode = FocusNode();
+  final _volumeFocusNode = FocusNode();
+  final _dashFocusNode = FocusNode();
   FuelConsumption fc = FuelConsumption(
       id: 'id',
       fuelType: 'fuelType',
@@ -23,6 +23,16 @@ class _FuelRefillFormState extends State<FuelRefillForm> {
       pricePerLitter: 0.0,
       volume: 0.0,
       dashKm: 0.0);
+
+  @override
+  void dispose() {
+    _dateFocusNode.dispose();
+    _priceFocusNode.dispose();
+    _volumeFocusNode.dispose();
+    _dashFocusNode.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -44,6 +54,10 @@ class _FuelRefillFormState extends State<FuelRefillForm> {
               fc.fuelType = value!;
             },
             decoration: const InputDecoration(hintText: "Fuel type"),
+            textInputAction: TextInputAction.next,
+            onFieldSubmitted: (_) {
+              FocusScope.of(context).requestFocus(_dateFocusNode);
+            },
           ),
         ),
         Container(
@@ -63,6 +77,12 @@ class _FuelRefillFormState extends State<FuelRefillForm> {
               fc.date = value! as DateTime;
             },
             decoration: const InputDecoration(hintText: "Date"),
+            textInputAction: TextInputAction.next,
+            keyboardType: TextInputType.datetime,
+            focusNode: _dateFocusNode,
+            onFieldSubmitted: (_) {
+              FocusScope.of(context).requestFocus(_priceFocusNode);
+            },
           ),
         ),
         Container(
@@ -82,6 +102,13 @@ class _FuelRefillFormState extends State<FuelRefillForm> {
               fc.price = value! as double;
             },
             decoration: const InputDecoration(hintText: "Price"),
+            textInputAction: TextInputAction.next,
+            keyboardType: const TextInputType.numberWithOptions(
+                signed: true, decimal: true),
+            focusNode: _priceFocusNode,
+            onFieldSubmitted: (_) {
+              FocusScope.of(context).requestFocus(_volumeFocusNode);
+            },
           ),
         ),
         Container(
@@ -101,6 +128,13 @@ class _FuelRefillFormState extends State<FuelRefillForm> {
               fc.volume = value! as double;
             },
             decoration: const InputDecoration(hintText: "Volume"),
+            textInputAction: TextInputAction.next,
+            keyboardType: const TextInputType.numberWithOptions(
+                signed: true, decimal: true),
+            focusNode: _volumeFocusNode,
+            onFieldSubmitted: (_) {
+              FocusScope.of(context).requestFocus(_dashFocusNode);
+            },
           ),
         ),
         Container(
@@ -120,6 +154,10 @@ class _FuelRefillFormState extends State<FuelRefillForm> {
               fc.dashKm = value! as double;
             },
             decoration: const InputDecoration(hintText: "Dashboard km"),
+            textInputAction: TextInputAction.next,
+            keyboardType: const TextInputType.numberWithOptions(
+                signed: true, decimal: true),
+            focusNode: _dashFocusNode,
           ),
         ),
         ElevatedButton(

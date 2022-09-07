@@ -26,7 +26,7 @@ class _AddItemFormState extends State<AddItemForm> {
   Widget build(BuildContext context) {
     return Form(
         key: _formKey,
-        child: Column(
+        child: ListView(
           children: [
             Container(
               decoration: BoxDecoration(

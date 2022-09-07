@@ -15,7 +15,9 @@ class _InvoiceScreenState extends State<InvoiceScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("My invoices")),
+      appBar: AppBar(
+        title: const Text("My invoices"),
+      ),
       drawer: const MainDrawer(),
       body: const Center(child: InvoicesList()),
     );
