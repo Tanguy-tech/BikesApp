@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:motobox/providers/fuel_consumptions.dart';
+import 'package:motobox/providers/invoices.dart';
 import 'package:motobox/widgets/fuel_refill_form.dart';
 import 'package:motobox/widgets/invoice_form.dart';
+import 'package:provider/provider.dart';
 
 const List<String> types = <String>['Fuel refill', 'Invoice'];
 
@@ -58,8 +61,14 @@ class _AddItemFormState extends State<AddItemForm> {
                 }).toList(),
               ),
             ),
-            if (dropdownValue == types.first) FuelRefillForm(_formKey),
-            if (dropdownValue == types.last) InvoiceForm(_formKey),
+            if (dropdownValue == types.first)
+              ChangeNotifierProvider(
+                  create: (_) => FuelConsumptions(),
+                  builder: (context, child) => FuelRefillForm(_formKey)),
+            if (dropdownValue == types.last)
+              ChangeNotifierProvider(
+                  create: (_) => Invoices(),
+                  builder: (context, child) => InvoiceForm(_formKey)),
           ],
         ));
   }

@@ -23,22 +23,33 @@ class Invoices with ChangeNotifier {
         price: 87.58,
         photo: Image.asset('assets/invoices/02.png')),
     Invoice(
-        id: "02",
-        title: "invoice 02 test",
+        id: "03",
+        title: "invoice 03 test",
         date: DateTime(2022, 7, 8, 14, 15),
         price: 87.58,
         photo: Image.asset('assets/invoices/02.png')),
     Invoice(
-        id: "02",
-        title: "invoice 02 test",
+        id: "04",
+        title: "invoice 04 test",
         date: DateTime(2022, 7, 8, 14, 15),
         price: 87.58,
         photo: Image.asset('assets/invoices/02.png')),
     Invoice(
-        id: "02",
-        title: "invoice 02 test",
+        id: "05",
+        title: "invoice 05 test",
         date: DateTime(2022, 7, 8, 14, 15),
         price: 87.58,
         photo: Image.asset('assets/invoices/02.png'))
   ];
+
+  void addInvoice(Invoice inv) {
+    final newInv = Invoice(
+        id: inv.id,
+        title: inv.title,
+        date: inv.date,
+        price: inv.price,
+        photo: inv.photo);
+    invoices.add(newInv);
+    notifyListeners();
+  }
 }

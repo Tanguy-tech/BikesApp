@@ -15,48 +15,50 @@ class MyGarageScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (context, constraints) {
-      return Column(
-        children: [
-          Card(
-            elevation: 5,
-            margin: const EdgeInsets.all(10),
-            shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(20))),
-            child: ChangeNotifierProvider(
-              create: (_) => BikeDatas(),
-              builder: (context, child) => const BikeMainInfo(),
-            ),
-          ),
-          const ListHeader(),
-          Stack(
-            children: [
-              Container(
-                padding: const EdgeInsets.only(top: 5),
-                height: constraints.maxHeight * 0.6927,
-                width: constraints.maxWidth,
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Expanded(
-                        child: ChangeNotifierProvider(
-                      create: (_) => Invoices(),
-                      builder: (context, child) => const InvoicesList(),
-                    )),
-                    Expanded(
-                      child: ChangeNotifierProvider(
-                        create: (_) => FuelConsumptions(),
-                        builder: (context, child) =>
-                            const FuelConsumptionList(),
-                      ),
-                    )
-                  ],
-                ),
+    return Scaffold(
+      body: LayoutBuilder(builder: (context, constraints) {
+        return Column(
+          children: [
+            Card(
+              elevation: 5,
+              margin: const EdgeInsets.all(10),
+              shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(20))),
+              child: ChangeNotifierProvider(
+                create: (_) => BikeDatas(),
+                builder: (context, child) => const BikeMainInfo(),
               ),
-            ],
-          ),
-        ],
-      );
-    });
+            ),
+            const ListHeader(),
+            Stack(
+              children: [
+                Container(
+                  padding: const EdgeInsets.only(top: 5),
+                  height: constraints.maxHeight * 0.6927,
+                  width: constraints.maxWidth,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Expanded(
+                          child: ChangeNotifierProvider(
+                        create: (_) => Invoices(),
+                        builder: (context, child) => const InvoicesList(),
+                      )),
+                      Expanded(
+                        child: ChangeNotifierProvider(
+                          create: (_) => FuelConsumptions(),
+                          builder: (context, child) =>
+                              const FuelConsumptionList(),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ],
+        );
+      }),
+    );
   }
 }

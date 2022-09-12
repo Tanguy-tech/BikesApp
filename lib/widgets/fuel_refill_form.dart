@@ -22,6 +22,11 @@ class _FuelRefillFormState extends State<FuelRefillForm> {
   final _volumeFocusNode = FocusNode();
   final _dashFocusNode = FocusNode();
 
+  final _ftController = TextEditingController();
+  final _priceController = TextEditingController();
+  final _volController = TextEditingController();
+  final _dashController = TextEditingController();
+
   DateTime selectedDate = DateTime.now();
 
   DateTime _dateTime = DateTime.now();
@@ -34,6 +39,31 @@ class _FuelRefillFormState extends State<FuelRefillForm> {
       pricePerLitter: 0.0,
       volume: 0.0,
       dashKm: 0.0);
+
+  void _saveForm() {
+    final form = widget.formKey.currentState;
+    // FuelConsumption newFuelConsumption = FuelConsumption(
+    //     id: 'test',
+    //     fuelType: _ftController.text,
+    //     date: DateTime.now(),
+    //     price: 0,
+    //     pricePerLitter: 0,
+    //     volume: 0,
+    //     dashKm: 0);
+    //print(newFuelConsumption.fuelType);
+    // Validate returns true if the form is valid, or false otherwise.
+    if (form != null && !form.validate()) return;
+    form?.save();
+    Provider.of<FuelConsumptions>(context, listen: false)
+        .addFuelConsumption(fc);
+    Navigator.of(context).pop();
+    print('TYPE : ${fc.fuelType} - PRICE : ${fc.price} - VOL : ${fc.volume}');
+    // If the form is valid, display a snackbar. In the real world,
+    // you'd often call a server or save the information in a database.
+    // ScaffoldMessenger.of(context).showSnackBar(
+    //   const SnackBar(content: Text('Processing Data')),
+    // );
+  }
 
   @override
   void dispose() {
@@ -73,6 +103,7 @@ class _FuelRefillFormState extends State<FuelRefillForm> {
                     volume: fc.volume,
                     dashKm: fc.dashKm);
               },
+              controller: _ftController,
               decoration: const InputDecoration(
                 hintText: "Fuel type",
                 hintStyle: TextStyle(
@@ -147,6 +178,7 @@ class _FuelRefillFormState extends State<FuelRefillForm> {
                     volume: fc.volume,
                     dashKm: fc.dashKm);
               },
+              controller: _priceController,
               decoration: const InputDecoration(
                   hintText: "Price",
                   hintStyle: TextStyle(
@@ -189,6 +221,7 @@ class _FuelRefillFormState extends State<FuelRefillForm> {
                     volume: double.parse(value!),
                     dashKm: fc.dashKm);
               },
+              controller: _volController,
               decoration: const InputDecoration(
                   hintText: "Volume",
                   hintStyle: TextStyle(
@@ -231,6 +264,7 @@ class _FuelRefillFormState extends State<FuelRefillForm> {
                     volume: fc.volume,
                     dashKm: double.parse(value!));
               },
+              controller: _dashController,
               decoration: const InputDecoration(
                   hintText: "Dashboard km",
                   hintStyle: TextStyle(
@@ -238,6 +272,9 @@ class _FuelRefillFormState extends State<FuelRefillForm> {
                       fontSize: 15,
                       fontWeight: FontWeight.w600)),
               textInputAction: TextInputAction.next,
+              onFieldSubmitted: (_) {
+                _saveForm();
+              },
               keyboardType: const TextInputType.numberWithOptions(
                   signed: true, decimal: true),
               focusNode: _dashFocusNode,
@@ -250,20 +287,7 @@ class _FuelRefillFormState extends State<FuelRefillForm> {
                 shape: BoxShape.circle),
             child: IconButton(
               onPressed: () {
-                // Validate returns true if the form is valid, or false otherwise.
-                if (widget.formKey.currentState!.validate()) {
-                  widget.formKey.currentState?.save();
-                  Provider.of<FuelConsumptions>(context, listen: false)
-                      .addFuelConsumption(fc);
-                  Navigator.of(context).pop();
-                  // If the form is valid, display a snackbar. In the real world,
-                  // you'd often call a server or save the information in a database.
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Processing Data')),
-                  );
-                  Navigator.pushReplacementNamed(
-                      context, MyGarageScreen.routeName);
-                }
+                _saveForm();
               },
               iconSize: 40,
               icon: const Icon(Icons.check),

@@ -1,9 +1,13 @@
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 import '../providers/invoice.dart';
+import '../providers/invoices.dart';
 import '../screens/garage_screen.dart';
 
 class InvoiceForm extends StatefulWidget {
@@ -21,6 +25,10 @@ class _InvoiceFormState extends State<InvoiceForm> {
   final _imageViewerFocusNode = FocusNode();
 
   File? image;
+
+  DateTime selectedDate = DateTime.now();
+
+  DateTime _dateTime = DateTime.now();
 
   Future pickImage(ImageSource src) async {
     try {
@@ -50,6 +58,24 @@ class _InvoiceFormState extends State<InvoiceForm> {
     _docFocusNode.dispose();
     _imageViewerFocusNode.dispose();
     super.dispose();
+  }
+
+  void _saveForm() {
+    final form = widget.formKey.currentState;
+    // Validate returns true if the form is valid, or false otherwise.
+    if (form != null && !form.validate()) return;
+    form?.save();
+    Provider.of<Invoices>(context, listen: false).addInvoice(inv);
+    Navigator.of(context).pop();
+    print('New Invoice : ');
+    print(inv.title);
+    print(inv.price);
+    print(inv.date);
+    // If the form is valid, display a snackbar. In the real world,
+    // you'd often call a server or save the information in a database.
+    // ScaffoldMessenger.of(context).showSnackBar(
+    //    const SnackBar(content: Text('Processing Data')),
+    // );
   }
 
   @override
@@ -93,43 +119,35 @@ class _InvoiceFormState extends State<InvoiceForm> {
             ),
           ),
           Container(
+            width: constraints.maxWidth * 0.95,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
                 color: Theme.of(context).backgroundColor),
-            padding: const EdgeInsets.all(5),
-            margin: const EdgeInsets.all(10),
-            child: TextFormField(
-              // The validator receives the text that the user has entered.
-              validator: (value) {
-                if (value?.isEmpty == true) {
-                  return 'Please enter a date..';
-                }
-                if (DateTime.tryParse(value!) == null) {
-                  return 'Please enter a valide date';
-                }
-                return null;
+            child: CupertinoButton(
+              borderRadius: BorderRadius.circular(15),
+              color: Theme.of(context).backgroundColor,
+              // focusNode: _dateFocusNode,
+              // style: const ButtonStyle(alignment: Alignment.centerLeft),
+              onPressed: () {
+                showDatePicker(
+                        context: context,
+                        initialDate: DateTime.now(),
+                        firstDate: DateTime(2000),
+                        lastDate: DateTime.now())
+                    .then((date) {
+                  setState(() {
+                    _dateTime = date!;
+                  });
+                });
               },
-              onSaved: (value) {
-                inv = Invoice(
-                    id: inv.id,
-                    title: inv.title,
-                    date: DateTime.parse(value!),
-                    price: inv.price,
-                    photo: inv.photo);
-              },
-              decoration: const InputDecoration(
-                hintText: "Date as (dd/mm/yy)",
-                hintStyle: TextStyle(
+              child: Text(
+                _dateTime == null
+                    ? 'Select a date'
+                    : 'Select a date :   ${DateFormat('dd - MM - yy').format(_dateTime)}',
+                style: const TextStyle(
                     color: Color.fromARGB(255, 34, 34, 34),
-                    fontSize: 15,
-                    fontWeight: FontWeight.w600),
+                    fontWeight: FontWeight.w500),
               ),
-              textInputAction: TextInputAction.next,
-              keyboardType: TextInputType.datetime,
-              focusNode: _dateFocusNode,
-              onFieldSubmitted: (_) {
-                FocusScope.of(context).requestFocus(_priceFocusNode);
-              },
             ),
           ),
           Container(
@@ -223,25 +241,7 @@ class _InvoiceFormState extends State<InvoiceForm> {
                 color: Colors.green, shape: BoxShape.circle),
             child: IconButton(
               onPressed: () {
-                // Validate returns true if the form is valid, or false otherwise.
-                if (widget.formKey.currentState!.validate()) {
-                  final isValid = widget.formKey.currentState?.validate();
-                  if (isValid == false) {
-                    return;
-                  }
-                  widget.formKey.currentState?.save();
-                  print('New Invoice : ');
-                  print(inv.title);
-                  print(inv.price);
-                  print(inv.date);
-                  // If the form is valid, display a snackbar. In the real world,
-                  // you'd often call a server or save the information in a database.
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Processing Data')),
-                  );
-                  Navigator.pushReplacementNamed(
-                      context, MyGarageScreen.routeName);
-                }
+                _saveForm();
               },
               iconSize: 40,
               icon: const Icon(Icons.check),
