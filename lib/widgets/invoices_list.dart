@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:meals_app/data/invoices.dart';
-import 'package:meals_app/widgets/invoice_item.dart';
+import 'package:motobox/data/invoices.dart';
+import 'package:motobox/widgets/invoice_item.dart';
 
 class InvoicesList extends StatelessWidget {
   const InvoicesList({Key? key}) : super(key: key);

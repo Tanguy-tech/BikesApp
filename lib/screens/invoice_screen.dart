@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:meals_app/widgets/invoices_list.dart';
-import 'package:meals_app/widgets/main_drawer.dart';
+import 'package:motobox/widgets/invoices_list.dart';
+import 'package:motobox/widgets/main_drawer.dart';
 
 class InvoiceScreen extends StatefulWidget {
   const InvoiceScreen({Key? key}) : super(key: key);

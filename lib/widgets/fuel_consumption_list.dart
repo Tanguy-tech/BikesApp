@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:meals_app/widgets/fuel_consumption_item.dart';
-import "package:meals_app/data/fuel_consumption.dart";
+import 'package:motobox/widgets/fuel_consumption_item.dart';
+import 'package:motobox/providers/fuel_consumptions.dart';
+import 'package:provider/provider.dart';
 
 class FuelConsumptionList extends StatelessWidget {
   const FuelConsumptionList({Key? key}) : super(key: key);
@@ -9,7 +10,8 @@ class FuelConsumptionList extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
         // padding: const EdgeInsets.all(10),
-        children: fuelConsumption
+        children: Provider.of<FuelConsumptions>(context)
+            .fuelConsumptions
             .map((fc) => Card(
                   elevation: 5,
                   shape: RoundedRectangleBorder(

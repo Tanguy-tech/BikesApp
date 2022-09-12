@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:meals_app/widgets/bike_main_info.dart';
-import 'package:meals_app/widgets/lists_header.dart';
+import 'package:motobox/widgets/bike_main_info.dart';
+import 'package:motobox/widgets/lists_header.dart';
 
 import '../widgets/fuel_consumption_list.dart';
 import '../widgets/invoices_list.dart';

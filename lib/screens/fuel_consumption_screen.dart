@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:meals_app/widgets/fuel_consumption_list.dart';
+import 'package:motobox/widgets/fuel_consumption_list.dart';
 import '../widgets/main_drawer.dart';
 
 class FuelConsumptionScreen extends StatefulWidget {

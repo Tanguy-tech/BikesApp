@@ -13,6 +13,7 @@ class AppTheme with ChangeNotifier {
         primary: Colors.indigoAccent.shade700,
         secondary: Colors.tealAccent.shade700,
         brightness: Brightness.light),
+    backgroundColor: Colors.indigoAccent.shade700,
     appBarTheme: AppBarTheme(backgroundColor: Colors.indigoAccent.shade700),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
         backgroundColor: Colors.indigoAccent.shade700,
@@ -39,6 +40,7 @@ class AppTheme with ChangeNotifier {
             primary: Colors.indigoAccent.shade700,
             secondary: Colors.tealAccent.shade700,
             brightness: Brightness.light),
+        backgroundColor: Colors.indigoAccent.shade700,
         appBarTheme: AppBarTheme(
             backgroundColor:
                 Theme.of(navigatorKey.currentContext!).colorScheme.primary),
@@ -71,6 +73,7 @@ class AppTheme with ChangeNotifier {
             primary: Colors.indigoAccent.shade700,
             secondary: Colors.tealAccent.shade700,
             brightness: Brightness.dark),
+        backgroundColor: const Color.fromARGB(255, 4, 18, 38),
         appBarTheme: const AppBarTheme(
             backgroundColor: Color.fromARGB(255, 4, 18, 38),
             foregroundColor: Colors.white),

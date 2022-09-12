@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:meals_app/widgets/model_item.dart';
+import 'package:motobox/widgets/model_item.dart';
 import '../models/models.dart';
 
 class BrandDetailsScreen extends StatelessWidget {

@@ -1,4 +1,7 @@
-class FuelConsumption {
+import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
+
+class FuelConsumption with ChangeNotifier {
   late final String id;
   late final String fuelType;
   late final double price;

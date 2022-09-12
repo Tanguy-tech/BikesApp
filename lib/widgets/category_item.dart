@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/models.dart';
-import 'package:meals_app/screens/brand_details_screen.dart';
+import 'package:motobox/screens/brand_details_screen.dart';
 
 class CategoryItem extends StatelessWidget {
   final String id;

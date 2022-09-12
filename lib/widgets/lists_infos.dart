@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:meals_app/widgets/fuel_consumption_list.dart';
-import 'package:meals_app/widgets/invoices_list.dart';
+import 'package:motobox/widgets/fuel_consumption_list.dart';
+import 'package:motobox/widgets/invoices_list.dart';
 
 class ListInfos extends StatelessWidget {
   const ListInfos({Key? key}) : super(key: key);

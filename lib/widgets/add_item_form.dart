@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:meals_app/widgets/fuel_refill_form.dart';
-import 'package:meals_app/widgets/invoice_form.dart';
+import 'package:motobox/widgets/fuel_refill_form.dart';
+import 'package:motobox/widgets/invoice_form.dart';
 
 const List<String> types = <String>['Fuel refill', 'Invoice'];
 
@@ -30,12 +30,17 @@ class _AddItemFormState extends State<AddItemForm> {
           children: [
             Container(
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15), color: Colors.pink),
+                  borderRadius: BorderRadius.circular(15),
+                  color: Theme.of(context).backgroundColor),
               padding: const EdgeInsets.all(5),
               margin: const EdgeInsets.all(10),
               child: DropdownButton<String>(
+                dropdownColor: Theme.of(context).canvasColor,
+                iconSize: 20,
+                isExpanded: true,
                 value: dropdownValue,
-                icon: const Icon(Icons.arrow_downward),
+                icon: const Icon(Icons.arrow_downward,
+                    color: Color.fromARGB(255, 34, 34, 34)),
                 onChanged: (String? value) {
                   // This is called when the user selects an item.
                   setState(() {
@@ -45,7 +50,10 @@ class _AddItemFormState extends State<AddItemForm> {
                 items: types.map<DropdownMenuItem<String>>((String value) {
                   return DropdownMenuItem<String>(
                     value: value,
-                    child: Text(value),
+                    child: Text(value,
+                        style: const TextStyle(
+                            color: Color.fromARGB(255, 34, 34, 34),
+                            fontSize: 15)),
                   );
                 }).toList(),
               ),

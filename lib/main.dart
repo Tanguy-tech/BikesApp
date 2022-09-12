@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:meals_app/providers/theme_provider.dart';
-import 'package:meals_app/screens/add_item_screen.dart';
-import 'package:meals_app/screens/brand_details_screen.dart';
-import 'package:meals_app/screens/category_screen.dart';
-import 'package:meals_app/screens/invoice_screen.dart';
-import 'package:meals_app/screens/fuel_consumption_screen.dart';
-import 'package:meals_app/screens/garage_screen.dart';
+import 'package:motobox/providers/theme_provider.dart';
+import 'package:motobox/screens/add_item_screen.dart';
+import 'package:motobox/screens/brand_details_screen.dart';
+import 'package:motobox/screens/category_screen.dart';
+import 'package:motobox/screens/invoice_screen.dart';
+import 'package:motobox/screens/fuel_consumption_screen.dart';
+import 'package:motobox/screens/garage_screen.dart';
 import 'package:provider/provider.dart';
 
 import 'widgets/main_drawer.dart';
