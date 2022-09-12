@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:motobox/models/invoices.dart';
 
+import '../providers/invoice.dart';
 import '../screens/garage_screen.dart';
 
 class InvoiceForm extends StatefulWidget {
@@ -36,7 +36,7 @@ class _InvoiceFormState extends State<InvoiceForm> {
     }
   }
 
-  Invoices inv = Invoices(
+  Invoice inv = Invoice(
       id: 'id',
       date: DateTime.now(),
       price: 0.0,
@@ -72,7 +72,7 @@ class _InvoiceFormState extends State<InvoiceForm> {
                 return null;
               },
               onSaved: (value) {
-                inv = Invoices(
+                inv = Invoice(
                     id: inv.id,
                     title: value!,
                     date: inv.date,
@@ -110,7 +110,7 @@ class _InvoiceFormState extends State<InvoiceForm> {
                 return null;
               },
               onSaved: (value) {
-                inv = Invoices(
+                inv = Invoice(
                     id: inv.id,
                     title: inv.title,
                     date: DateTime.parse(value!),
@@ -150,7 +150,7 @@ class _InvoiceFormState extends State<InvoiceForm> {
                 return null;
               },
               onSaved: (value) {
-                inv = Invoices(
+                inv = Invoice(
                     id: inv.id,
                     title: inv.title,
                     date: inv.date,
@@ -192,7 +192,7 @@ class _InvoiceFormState extends State<InvoiceForm> {
               ],
             ),
             onSaved: (value) {
-              inv = Invoices(
+              inv = Invoice(
                   id: inv.id,
                   title: inv.title,
                   date: inv.date,

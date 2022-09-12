@@ -11,15 +11,9 @@ class FuelCosumptionItem extends StatelessWidget {
   final DateTime date;
   final double dashKM;
 
-  const FuelCosumptionItem(
-      {Key? key,
-      required this.id,
-      required this.fuelType,
-      required this.price,
-      required this.date,
-      required this.pricePerLitter,
-      required this.volume,
-      required this.dashKM})
+  const FuelCosumptionItem(this.id, this.fuelType, this.price, this.date,
+      this.pricePerLitter, this.volume, this.dashKM,
+      {Key? key})
       : super(key: key);
 
   @override

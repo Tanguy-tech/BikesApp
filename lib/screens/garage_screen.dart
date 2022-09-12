@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:motobox/providers/bike_datas.dart';
+import 'package:motobox/providers/invoices.dart';
 import 'package:motobox/widgets/bike_main_info.dart';
 import 'package:motobox/widgets/lists_header.dart';
+import 'package:provider/provider.dart';
 
+import '../providers/fuel_consumptions.dart';
 import '../widgets/fuel_consumption_list.dart';
 import '../widgets/invoices_list.dart';
 
@@ -14,12 +18,15 @@ class MyGarageScreen extends StatelessWidget {
     return LayoutBuilder(builder: (context, constraints) {
       return Column(
         children: [
-          const Card(
+          Card(
             elevation: 5,
-            margin: EdgeInsets.all(10),
-            shape: RoundedRectangleBorder(
+            margin: const EdgeInsets.all(10),
+            shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(20))),
-            child: BikeMainInfo(),
+            child: ChangeNotifierProvider(
+              create: (_) => BikeDatas(),
+              builder: (context, child) => const BikeMainInfo(),
+            ),
           ),
           const ListHeader(),
           Stack(
@@ -30,9 +37,19 @@ class MyGarageScreen extends StatelessWidget {
                 width: constraints.maxWidth,
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  children: const [
-                    Expanded(child: InvoicesList()),
-                    Expanded(child: FuelConsumptionList())
+                  children: [
+                    Expanded(
+                        child: ChangeNotifierProvider(
+                      create: (_) => Invoices(),
+                      builder: (context, child) => const InvoicesList(),
+                    )),
+                    Expanded(
+                      child: ChangeNotifierProvider(
+                        create: (_) => FuelConsumptions(),
+                        builder: (context, child) =>
+                            const FuelConsumptionList(),
+                      ),
+                    )
                   ],
                 ),
               ),

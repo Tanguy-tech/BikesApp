@@ -7,13 +7,8 @@ class InvoiceItem extends StatelessWidget {
   final DateTime date;
   final Image photo;
 
-  const InvoiceItem(
-      {Key? key,
-      required this.id,
-      required this.title,
-      required this.price,
-      required this.date,
-      required this.photo})
+  const InvoiceItem(this.id, this.title, this.price, this.date, this.photo,
+      {Key? key})
       : super(key: key);
 
   @override
@@ -41,30 +36,30 @@ class InvoiceItem extends StatelessWidget {
                           children: [
                             SizedBox(
                               width: constraints.maxWidth * 0.7,
-                              child: const Text(
-                                "Test first field",
+                              child: Text(
+                                '${date.day}.${date.month}.${date.year}',
                                 textAlign: TextAlign.left,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   color: Colors.white,
                                 ),
                               ),
                             ),
                             SizedBox(
                               width: constraints.maxWidth * 0.7,
-                              child: const Text(
-                                "Test second field",
+                              child: Text(
+                                title,
                                 textAlign: TextAlign.left,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   color: Colors.white,
                                 ),
                               ),
                             ),
                             SizedBox(
                               width: constraints.maxWidth * 0.7,
-                              child: const Text(
-                                "Test third field",
+                              child: Text(
+                                '$price€',
                                 textAlign: TextAlign.left,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   color: Colors.white,
                                 ),
                               ),

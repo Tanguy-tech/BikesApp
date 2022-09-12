@@ -8,24 +8,21 @@ class FuelConsumptionList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-        // padding: const EdgeInsets.all(10),
-        children: Provider.of<FuelConsumptions>(context)
-            .fuelConsumptions
-            .map((fc) => Card(
-                  elevation: 5,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15)),
-                  child: FuelCosumptionItem(
-                    id: fc.id,
-                    date: fc.date,
-                    pricePerLitter: fc.pricePerLitter,
-                    price: fc.price,
-                    volume: fc.volume,
-                    dashKM: fc.dashKm,
-                    fuelType: fc.fuelType,
-                  ),
-                ))
-            .toList());
+    final fcData = Provider.of<FuelConsumptions>(context);
+    return ListView.builder(
+      itemCount: fcData.fuelConsumptions.length,
+      itemBuilder: (context, i) => Card(
+        elevation: 5,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+        child: FuelCosumptionItem(
+            fcData.fuelConsumptions[i].id,
+            fcData.fuelConsumptions[i].fuelType,
+            fcData.fuelConsumptions[i].price,
+            fcData.fuelConsumptions[i].date,
+            fcData.fuelConsumptions[i].pricePerLitter,
+            fcData.fuelConsumptions[i].volume,
+            fcData.fuelConsumptions[i].dashKm),
+      ),
+    );
   }
 }

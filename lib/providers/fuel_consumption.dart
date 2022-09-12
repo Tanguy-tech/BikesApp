@@ -5,9 +5,9 @@ class FuelConsumption with ChangeNotifier {
   late final String id;
   late final String fuelType;
   late final double price;
+  late final DateTime date;
   late final double pricePerLitter;
   late final double volume;
-  late final DateTime date;
   late final double dashKm;
 
   FuelConsumption(

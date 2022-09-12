@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:motobox/providers/bike_datas.dart';
+import 'package:provider/provider.dart';
 
 class BikeMainInfo extends StatelessWidget {
   const BikeMainInfo({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final bikeData = Provider.of<BikeDatas>(context).myBikeData;
     return LayoutBuilder(builder: ((context, constraints) {
       return Stack(
         children: [
@@ -20,40 +23,40 @@ class BikeMainInfo extends StatelessWidget {
               children: [
                 Container(
                   padding: const EdgeInsets.only(left: 15, top: 25),
-                  child: const Text(
-                    "Total costs : BIKE TOTAL COSTS IN EUR",
+                  child: Text(
+                    "Total costs : ${bikeData.costs}€",
                     textAlign: TextAlign.left,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.white,
                     ),
                   ),
                 ),
                 Container(
                   padding: const EdgeInsets.only(left: 15, top: 10),
-                  child: const Text(
-                    "Total KM ridden : BIKE TOTAL KM ridden in KM",
+                  child: Text(
+                    "Total KM ridden : ${bikeData.totalKmRidden} km",
                     textAlign: TextAlign.left,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.white,
                     ),
                   ),
                 ),
                 Container(
                   padding: const EdgeInsets.only(left: 15, top: 10),
-                  child: const Text(
-                    "Ridden since Purchased : Ridden in KM",
+                  child: Text(
+                    "Ridden since Purchased : ${bikeData.riddenSincePurchased} km",
                     textAlign: TextAlign.left,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.white,
                     ),
                   ),
                 ),
                 Container(
                   padding: const EdgeInsets.only(left: 15, top: 10),
-                  child: const Text(
-                    "Ridden with last refuel : Ridden in KM",
+                  child: Text(
+                    "Ridden with last refuel : ${bikeData.riddenWithLastRefill} km",
                     textAlign: TextAlign.left,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.white,
                     ),
                   ),

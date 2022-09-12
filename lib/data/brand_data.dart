@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:meals_app/models/models.dart';
+import 'package:motobox/models/models.dart';
 
 import '../models/category.dart';
 
