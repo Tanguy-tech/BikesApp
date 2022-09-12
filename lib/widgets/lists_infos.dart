@@ -15,7 +15,7 @@ class ListInfos extends StatelessWidget {
             width: constraints.maxWidth,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
-              children: const [
+              children: [
                 Expanded(child: InvoicesList()),
                 Expanded(child: FuelConsumptionList())
               ],

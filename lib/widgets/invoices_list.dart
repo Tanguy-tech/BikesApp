@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:motobox/widgets/invoice_item.dart';
 import 'package:provider/provider.dart';
-
 import '../providers/invoices.dart';
 
 class InvoicesList extends StatefulWidget {
-  const InvoicesList({Key? key}) : super(key: key);
+  InvoicesList({Key? key}) : super(key: key);
 
   @override
   State<InvoicesList> createState() => _InvoicesListState();
@@ -14,22 +13,21 @@ class InvoicesList extends StatefulWidget {
 class _InvoicesListState extends State<InvoicesList> {
   @override
   Widget build(BuildContext context) {
-    return Consumer<Invoices>(builder: (__, model, _) {
-      return ListView.builder(
-        itemCount: model.invoices.length,
-        itemBuilder: (context, i) => Card(
-          elevation: 5,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-          child: InvoiceItem(
-            model.invoices[i].id,
-            model.invoices[i].title,
-            model.invoices[i].price,
-            model.invoices[i].date,
-            model.invoices[i].photo,
-          ),
+    final invData = Provider.of<Invoices>(context, listen: false);
+    final invoices = invData.invoices;
+    return ListView.builder(
+      itemCount: invoices.length,
+      itemBuilder: (context, i) => Card(
+        elevation: 5,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+        child: InvoiceItem(
+          invoices[i].id,
+          invoices[i].title,
+          invoices[i].price,
+          invoices[i].date,
+          invoices[i].photo,
         ),
-      );
-    });
+      ),
+    );
   }
 }

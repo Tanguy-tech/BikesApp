@@ -52,8 +52,8 @@ class _MyAppState extends State<MyApp> {
     return Consumer<AppTheme>(
       builder: (context, theme, __) => MultiProvider(
         providers: [
-          ChangeNotifierProvider.value(value: FuelConsumptions()),
-          ChangeNotifierProvider.value(value: Invoices()),
+          ChangeNotifierProvider(create: (context) => FuelConsumptions()),
+          ChangeNotifierProvider(create: (context) => Invoices()),
         ],
         child: MaterialApp(
             navigatorKey: AppTheme.navigatorKey,

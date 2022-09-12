@@ -285,13 +285,15 @@ class _FuelRefillFormState extends State<FuelRefillForm> {
             decoration: const BoxDecoration(
                 color: Color.fromARGB(255, 50, 167, 53),
                 shape: BoxShape.circle),
-            child: IconButton(
-              onPressed: () {
-                _saveForm();
-              },
-              iconSize: 40,
-              icon: const Icon(Icons.check),
-            ),
+            child: Builder(builder: (context) {
+              return IconButton(
+                onPressed: () {
+                  _saveForm();
+                },
+                iconSize: 40,
+                icon: const Icon(Icons.check),
+              );
+            }),
           ),
         ],
       ),

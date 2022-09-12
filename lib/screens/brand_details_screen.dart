@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:motobox/providers/theme_provider.dart';
 import 'package:motobox/widgets/model_item.dart';
+import 'package:provider/provider.dart';
 import '../models/models.dart';
 
 class BrandDetailsScreen extends StatelessWidget {
@@ -13,6 +15,7 @@ class BrandDetailsScreen extends StatelessWidget {
     if (routeArgs.isEmpty) {
       isEmpty = true;
     }
+    final theme = Provider.of<AppTheme>(context);
 
     return Scaffold(
       backgroundColor: Theme.of(context).canvasColor,
@@ -31,6 +34,10 @@ class BrandDetailsScreen extends StatelessWidget {
             );
           }),
         ),
+        actions: [
+          Switch(
+              onChanged: (value) => theme.toogleTheme(context), value: theme.sw)
+        ],
       ),
       body: isEmpty
           ? Container(

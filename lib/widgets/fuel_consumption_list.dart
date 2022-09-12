@@ -4,7 +4,7 @@ import 'package:motobox/providers/fuel_consumptions.dart';
 import 'package:provider/provider.dart';
 
 class FuelConsumptionList extends StatefulWidget {
-  const FuelConsumptionList({Key? key}) : super(key: key);
+  FuelConsumptionList({Key? key}) : super(key: key);
 
   @override
   State<FuelConsumptionList> createState() => _FuelConsumptionListState();
@@ -13,24 +13,23 @@ class FuelConsumptionList extends StatefulWidget {
 class _FuelConsumptionListState extends State<FuelConsumptionList> {
   @override
   Widget build(BuildContext context) {
-    final fcData = Provider.of<FuelConsumptions>(context);
-    return Consumer<FuelConsumptions>(builder: (__, model, _) {
-      return ListView.builder(
-        itemCount: fcData.fuelConsumptions.length,
-        itemBuilder: (context, i) => Card(
-          elevation: 5,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-          child: FuelCosumptionItem(
-              model.fuelConsumptions[i].id,
-              model.fuelConsumptions[i].fuelType,
-              model.fuelConsumptions[i].price,
-              model.fuelConsumptions[i].date,
-              model.fuelConsumptions[i].pricePerLitter,
-              model.fuelConsumptions[i].volume,
-              model.fuelConsumptions[i].dashKm),
+    final fcData = Provider.of<FuelConsumptions>(context, listen: false);
+    final fuelConsumptions = fcData.fuelConsumptions;
+    return ListView.builder(
+      itemCount: fuelConsumptions.length,
+      itemBuilder: (context, i) => Card(
+        elevation: 5,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+        child: FuelCosumptionItem(
+          fuelConsumptions[i].id,
+          fuelConsumptions[i].fuelType,
+          fuelConsumptions[i].price,
+          fuelConsumptions[i].date,
+          fuelConsumptions[i].pricePerLitter,
+          fuelConsumptions[i].volume,
+          fuelConsumptions[i].dashKm,
         ),
-      );
-    });
+      ),
+    );
   }
 }

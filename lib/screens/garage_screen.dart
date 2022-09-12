@@ -15,8 +15,8 @@ class MyGarageScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: LayoutBuilder(builder: (context, constraints) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
         return Column(
           children: [
             Card(
@@ -39,18 +39,8 @@ class MyGarageScreen extends StatelessWidget {
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Expanded(
-                          child: ChangeNotifierProvider(
-                        create: (_) => Invoices(),
-                        builder: (context, child) => const InvoicesList(),
-                      )),
-                      Expanded(
-                        child: ChangeNotifierProvider(
-                          create: (_) => FuelConsumptions(),
-                          builder: (context, child) =>
-                              const FuelConsumptionList(),
-                        ),
-                      )
+                      Expanded(child: InvoicesList()),
+                      Expanded(child: FuelConsumptionList()),
                     ],
                   ),
                 ),
@@ -58,7 +48,7 @@ class MyGarageScreen extends StatelessWidget {
             ),
           ],
         );
-      }),
+      },
     );
   }
 }
