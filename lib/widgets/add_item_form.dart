@@ -43,8 +43,8 @@ class _AddItemFormState extends State<AddItemForm> {
                   iconSize: 20,
                   isExpanded: true,
                   value: dropdownValue,
-                  icon: const Icon(Icons.arrow_downward,
-                      color: Color.fromARGB(255, 34, 34, 34)),
+                  icon: Icon(Icons.arrow_downward,
+                      color: Theme.of(context).textTheme.labelSmall?.color),
                   onChanged: (String? value) {
                     // This is called when the user selects an item.
                     setState(() {
@@ -55,8 +55,9 @@ class _AddItemFormState extends State<AddItemForm> {
                     return DropdownMenuItem<String>(
                       value: value,
                       child: Text(value,
-                          style: const TextStyle(
-                              color: Color.fromARGB(255, 34, 34, 34),
+                          style: TextStyle(
+                              color:
+                                  Theme.of(context).textTheme.labelSmall?.color,
                               fontSize: 15)),
                     );
                   }).toList(),

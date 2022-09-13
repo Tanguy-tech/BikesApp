@@ -42,22 +42,11 @@ class _FuelRefillFormState extends State<FuelRefillForm> {
 
   void _saveForm() {
     final form = widget.formKey.currentState;
-    // FuelConsumption newFuelConsumption = FuelConsumption(
-    //     id: 'test',
-    //     fuelType: _ftController.text,
-    //     date: DateTime.now(),
-    //     price: 0,
-    //     pricePerLitter: 0,
-    //     volume: 0,
-    //     dashKm: 0);
-    //print(newFuelConsumption.fuelType);
-    // Validate returns true if the form is valid, or false otherwise.
     if (form != null && !form.validate()) return;
     form?.save();
     Provider.of<FuelConsumptions>(context, listen: false)
         .addFuelConsumption(fc);
     Navigator.of(context).pop();
-    print('TYPE : ${fc.fuelType} - PRICE : ${fc.price} - VOL : ${fc.volume}');
     // If the form is valid, display a snackbar. In the real world,
     // you'd often call a server or save the information in a database.
     // ScaffoldMessenger.of(context).showSnackBar(
@@ -104,10 +93,10 @@ class _FuelRefillFormState extends State<FuelRefillForm> {
                     dashKm: fc.dashKm);
               },
               controller: _ftController,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 hintText: "Fuel type",
                 hintStyle: TextStyle(
-                    color: Color.fromARGB(255, 34, 34, 34),
+                    color: Theme.of(context).textTheme.labelSmall?.color,
                     fontSize: 15,
                     fontWeight: FontWeight.w600),
               ),
@@ -144,8 +133,8 @@ class _FuelRefillFormState extends State<FuelRefillForm> {
                 _dateTime == null
                     ? 'Select a date'
                     : 'Select a date :   ${DateFormat('dd - MM - yy').format(_dateTime)}',
-                style: const TextStyle(
-                    color: Color.fromARGB(255, 34, 34, 34),
+                style: TextStyle(
+                    color: Theme.of(context).textTheme.labelSmall?.color,
                     fontWeight: FontWeight.w500),
               ),
             ),
@@ -179,10 +168,10 @@ class _FuelRefillFormState extends State<FuelRefillForm> {
                     dashKm: fc.dashKm);
               },
               controller: _priceController,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                   hintText: "Price",
                   hintStyle: TextStyle(
-                      color: Color.fromARGB(255, 34, 34, 34),
+                      color: Theme.of(context).textTheme.labelSmall?.color,
                       fontSize: 15,
                       fontWeight: FontWeight.w600)),
               textInputAction: TextInputAction.next,
@@ -222,10 +211,10 @@ class _FuelRefillFormState extends State<FuelRefillForm> {
                     dashKm: fc.dashKm);
               },
               controller: _volController,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                   hintText: "Volume",
                   hintStyle: TextStyle(
-                      color: Color.fromARGB(255, 34, 34, 34),
+                      color: Theme.of(context).textTheme.labelSmall?.color,
                       fontSize: 15,
                       fontWeight: FontWeight.w600)),
               textInputAction: TextInputAction.next,
@@ -265,10 +254,10 @@ class _FuelRefillFormState extends State<FuelRefillForm> {
                     dashKm: double.parse(value!));
               },
               controller: _dashController,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                   hintText: "Dashboard km",
                   hintStyle: TextStyle(
-                      color: Color.fromARGB(255, 34, 34, 34),
+                      color: Theme.of(context).textTheme.labelSmall?.color,
                       fontSize: 15,
                       fontWeight: FontWeight.w600)),
               textInputAction: TextInputAction.next,

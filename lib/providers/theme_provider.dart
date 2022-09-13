@@ -28,6 +28,8 @@ class AppTheme with ChangeNotifier {
           titleMedium: const TextStyle(
               fontFamily: 'Raleway', fontSize: 20, fontWeight: FontWeight.bold),
           titleSmall: const TextStyle(fontFamily: 'Raleway', fontSize: 15),
+          labelSmall:
+              const TextStyle(color: Color.fromARGB(255, 178, 178, 178)),
         ),
   );
 
@@ -52,19 +54,17 @@ class AppTheme with ChangeNotifier {
         //Theme.of(navigatorKey.currentContext!).colorScheme.primary),
         canvasColor: const Color.fromARGB(255, 202, 202, 202),
         textTheme: ThemeData.light().textTheme.copyWith(
-              bodyLarge:
-                  const TextStyle(color: Color.fromARGB(255, 79, 79, 79)),
-              bodyMedium:
-                  const TextStyle(color: Color.fromARGB(255, 79, 79, 79)),
-              bodySmall:
-                  const TextStyle(color: Color.fromARGB(255, 79, 79, 79)),
-              titleLarge: const TextStyle(fontFamily: 'Raleway', fontSize: 25),
-              titleMedium: const TextStyle(
-                  fontFamily: 'Raleway',
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold),
-              titleSmall: const TextStyle(fontFamily: 'Raleway', fontSize: 15),
-            ),
+            bodyLarge: const TextStyle(color: Color.fromARGB(255, 79, 79, 79)),
+            bodyMedium: const TextStyle(color: Color.fromARGB(255, 79, 79, 79)),
+            bodySmall: const TextStyle(color: Color.fromARGB(255, 79, 79, 79)),
+            titleLarge: const TextStyle(fontFamily: 'Raleway', fontSize: 25),
+            titleMedium: const TextStyle(
+                fontFamily: 'Raleway',
+                fontSize: 20,
+                fontWeight: FontWeight.bold),
+            titleSmall: const TextStyle(fontFamily: 'Raleway', fontSize: 15),
+            labelSmall:
+                const TextStyle(color: Color.fromARGB(255, 178, 178, 178))),
       );
     } else {
       sw = true; // DARK MODE
@@ -83,19 +83,20 @@ class AppTheme with ChangeNotifier {
             unselectedItemColor: Color.fromARGB(255, 88, 88, 88)),
         canvasColor: const Color.fromARGB(255, 75, 75, 75),
         textTheme: ThemeData.dark().textTheme.copyWith(
-              bodyLarge:
-                  const TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
-              bodyMedium:
-                  const TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
-              bodySmall:
-                  const TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
-              titleLarge: const TextStyle(fontFamily: 'Raleway', fontSize: 25),
-              titleMedium: const TextStyle(
-                  fontFamily: 'Raleway',
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold),
-              titleSmall: const TextStyle(fontFamily: 'Raleway', fontSize: 15),
-            ),
+            bodyLarge:
+                const TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
+            bodyMedium:
+                const TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
+            bodySmall:
+                const TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
+            titleLarge: const TextStyle(fontFamily: 'Raleway', fontSize: 25),
+            titleMedium: const TextStyle(
+                fontFamily: 'Raleway',
+                fontSize: 20,
+                fontWeight: FontWeight.bold),
+            titleSmall: const TextStyle(fontFamily: 'Raleway', fontSize: 15),
+            labelSmall:
+                const TextStyle(color: Color.fromARGB(255, 141, 141, 141))),
       );
     }
     notifyListeners();
