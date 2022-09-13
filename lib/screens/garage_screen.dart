@@ -38,7 +38,7 @@ class MyGarageScreen extends StatelessWidget {
                   width: constraints.maxWidth,
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
+                    children: const [
                       Expanded(child: InvoicesList()),
                       Expanded(child: FuelConsumptionList()),
                     ],

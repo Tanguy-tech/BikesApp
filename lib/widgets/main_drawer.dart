@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:motobox/screens/fuel_consumption_screen.dart';
-import 'package:motobox/screens/invoice_screen.dart';
+import 'package:motobox/screens/my_fuel_consumption_screen.dart';
+import 'package:motobox/screens/my_invoice_screen.dart';
 
 class MainDrawer extends StatelessWidget {
   const MainDrawer({Key? key}) : super(key: key);

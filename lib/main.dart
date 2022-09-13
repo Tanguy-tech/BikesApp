@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:motobox/providers/fuel_consumptions.dart';
 import 'package:motobox/providers/invoices.dart';
 import 'package:motobox/providers/theme_provider.dart';
-import 'package:motobox/screens/add_item_screen.dart';
 import 'package:motobox/screens/brand_details_screen.dart';
 import 'package:motobox/screens/category_screen.dart';
-import 'package:motobox/screens/invoice_screen.dart';
-import 'package:motobox/screens/fuel_consumption_screen.dart';
+import 'package:motobox/screens/fuel_consumption_form_screen.dart';
+import 'package:motobox/screens/invoice_form_screen.dart';
+import 'package:motobox/screens/my_invoice_screen.dart';
+import 'package:motobox/screens/my_fuel_consumption_screen.dart';
 import 'package:motobox/screens/garage_screen.dart';
+import 'package:motobox/widgets/dropup_button.dart';
 import 'package:provider/provider.dart';
 
 import 'widgets/main_drawer.dart';
@@ -42,10 +44,6 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
-  void addItem(BuildContext ctx) {
-    Navigator.of(ctx).pushNamed(AddItemScreen.routeName);
-  }
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -76,11 +74,7 @@ class _MyAppState extends State<MyApp> {
                 extendBody: true,
                 floatingActionButtonLocation:
                     FloatingActionButtonLocation.centerDocked,
-                floatingActionButton: FloatingActionButton(
-                  onPressed: () => addItem(context),
-                  backgroundColor: Colors.purpleAccent.shade400,
-                  child: const Icon(Icons.add),
-                ),
+                floatingActionButton: DropUpButton(context),
                 bottomNavigationBar: BottomAppBar(
                   notchMargin: 5,
                   color: theme.myTheme.bottomNavigationBarTheme.backgroundColor,
@@ -121,7 +115,9 @@ class _MyAppState extends State<MyApp> {
               InvoiceScreen.routeName: (ctx) => const InvoiceScreen(),
               FuelConsumptionScreen.routeName: (ctx) =>
                   const FuelConsumptionScreen(),
-              AddItemScreen.routeName: (ctx) => const AddItemScreen(),
+              FuelConsrumptionFormScreen.routeName: (ctx) =>
+                  const FuelConsrumptionFormScreen(),
+              InvoiceFormScreen.routeName: (ctx) => const InvoiceFormScreen(),
             }),
       ),
     );

@@ -3,14 +3,9 @@ import 'package:motobox/widgets/fuel_consumption_item.dart';
 import 'package:motobox/providers/fuel_consumptions.dart';
 import 'package:provider/provider.dart';
 
-class FuelConsumptionList extends StatefulWidget {
+class FuelConsumptionList extends StatelessWidget {
   const FuelConsumptionList({Key? key}) : super(key: key);
 
-  @override
-  State<FuelConsumptionList> createState() => _FuelConsumptionListState();
-}
-
-class _FuelConsumptionListState extends State<FuelConsumptionList> {
   @override
   Widget build(BuildContext context) {
     final fcData = Provider.of<FuelConsumptions>(context);

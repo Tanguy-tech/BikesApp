@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -8,17 +7,17 @@ import 'package:provider/provider.dart';
 
 import '../providers/invoice.dart';
 import '../providers/invoices.dart';
-import '../screens/garage_screen.dart';
 
 class InvoiceForm extends StatefulWidget {
-  final GlobalKey<FormState> formKey;
-  const InvoiceForm(this.formKey, {Key? key}) : super(key: key);
+  const InvoiceForm({Key? key}) : super(key: key);
 
   @override
   State<InvoiceForm> createState() => _InvoiceFormState();
 }
 
 class _InvoiceFormState extends State<InvoiceForm> {
+  final _formKey = GlobalKey<FormState>();
+
   final _dateFocusNode = FocusNode();
   final _priceFocusNode = FocusNode();
   final _docFocusNode = FocusNode();
@@ -44,7 +43,7 @@ class _InvoiceFormState extends State<InvoiceForm> {
     }
   }
 
-  Invoice inv = Invoice(
+  var _inv = Invoice(
       id: 'id',
       date: DateTime.now(),
       price: 0.0,
@@ -61,16 +60,14 @@ class _InvoiceFormState extends State<InvoiceForm> {
   }
 
   void _saveForm() {
-    final form = widget.formKey.currentState;
-    // Validate returns true if the form is valid, or false otherwise.
-    if (form != null && !form.validate()) return;
-    form?.save();
-    Provider.of<Invoices>(context, listen: false).addInvoice(inv);
+    final form = _formKey.currentState;
+    final isValid = form!.validate();
+    if (!isValid) {
+      return;
+    }
+    form.save();
+    Provider.of<Invoices>(context, listen: false).addInvoice(_inv);
     Navigator.of(context).pop();
-    print('New Invoice : ');
-    print(inv.title);
-    print(inv.price);
-    print(inv.date);
     // If the form is valid, display a snackbar. In the real world,
     // you'd often call a server or save the information in a database.
     // ScaffoldMessenger.of(context).showSnackBar(
@@ -80,9 +77,11 @@ class _InvoiceFormState extends State<InvoiceForm> {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) => Column(
-        children: [
+    return Form(
+      key: _formKey,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: ListView(children: [
           Container(
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
@@ -98,12 +97,12 @@ class _InvoiceFormState extends State<InvoiceForm> {
                 return null;
               },
               onSaved: (value) {
-                inv = Invoice(
-                    id: inv.id,
+                _inv = Invoice(
+                    id: _inv.id,
                     title: value!,
-                    date: inv.date,
-                    price: inv.price,
-                    photo: inv.photo);
+                    date: _inv.date,
+                    price: _inv.price,
+                    photo: _inv.photo);
               },
               decoration: const InputDecoration(
                 hintText: "Title",
@@ -119,7 +118,6 @@ class _InvoiceFormState extends State<InvoiceForm> {
             ),
           ),
           Container(
-            width: constraints.maxWidth * 0.95,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
                 color: Theme.of(context).backgroundColor),
@@ -168,12 +166,12 @@ class _InvoiceFormState extends State<InvoiceForm> {
                 return null;
               },
               onSaved: (value) {
-                inv = Invoice(
-                    id: inv.id,
-                    title: inv.title,
-                    date: inv.date,
+                _inv = Invoice(
+                    id: _inv.id,
+                    title: _inv.title,
+                    date: _inv.date,
                     price: double.parse(value!),
-                    photo: inv.photo);
+                    photo: _inv.photo);
               },
               decoration: const InputDecoration(
                 hintText: "Price",
@@ -210,12 +208,12 @@ class _InvoiceFormState extends State<InvoiceForm> {
               ],
             ),
             onSaved: (value) {
-              inv = Invoice(
-                  id: inv.id,
-                  title: inv.title,
-                  date: inv.date,
-                  price: inv.price,
-                  photo: inv.photo);
+              _inv = Invoice(
+                  id: _inv.id,
+                  title: _inv.title,
+                  date: _inv.date,
+                  price: _inv.price,
+                  photo: _inv.photo);
             },
           ),
           Container(
@@ -227,12 +225,12 @@ class _InvoiceFormState extends State<InvoiceForm> {
             child: image != null
                 ? Image.file(
                     image!,
-                    width: constraints.maxWidth,
+                    //  width: constraints.maxWidth,
                     height: 200,
                   )
                 : Image.asset(
                     'placeHolder.png',
-                    width: constraints.maxWidth,
+                    // width: constraints.maxWidth,
                     height: 200,
                   ),
           ),
@@ -247,7 +245,7 @@ class _InvoiceFormState extends State<InvoiceForm> {
               icon: const Icon(Icons.check),
             ),
           ),
-        ],
+        ]),
       ),
     );
   }
