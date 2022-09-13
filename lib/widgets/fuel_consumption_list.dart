@@ -14,7 +14,7 @@ class _FuelConsumptionListState extends State<FuelConsumptionList> {
   @override
   Widget build(BuildContext context) {
     final fcData = Provider.of<FuelConsumptions>(context);
-    final fuelConsumptions = fcData.consumption;
+    final fuelConsumptions = fcData.consumptions;
     return ListView.builder(
       itemCount: fuelConsumptions.length,
       itemBuilder: (context, i) => ChangeNotifierProvider.value(

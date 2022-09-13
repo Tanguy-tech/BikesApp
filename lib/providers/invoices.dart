@@ -1,9 +1,11 @@
+// ignore_for_file: prefer_final_fields
+
 import 'package:flutter/material.dart';
 
 import 'invoice.dart';
 
 class Invoices with ChangeNotifier {
-  List<Invoice> invoices = [
+  List<Invoice> _invoices = [
     Invoice(
         id: "00",
         title: "invoice 00 test",
@@ -42,6 +44,10 @@ class Invoices with ChangeNotifier {
         photo: Image.asset('assets/invoices/02.png'))
   ];
 
+  List<Invoice> get invoices {
+    return [..._invoices];
+  }
+
   void addInvoice(Invoice inv) {
     final newInv = Invoice(
         id: inv.id,
@@ -49,7 +55,8 @@ class Invoices with ChangeNotifier {
         date: inv.date,
         price: inv.price,
         photo: inv.photo);
-    invoices.add(newInv);
+    //_invoices.add(newInv);
+    _invoices.insert(0, newInv);
     notifyListeners();
   }
 }

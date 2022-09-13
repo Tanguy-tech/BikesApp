@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+// ignore_for_file: prefer_final_fields
 
+import 'package:flutter/material.dart';
 import 'fuel_consumption.dart';
 
 class FuelConsumptions with ChangeNotifier {
@@ -55,7 +55,7 @@ class FuelConsumptions with ChangeNotifier {
         dashKm: 28080),
   ];
 
-  List<FuelConsumption> get consumption {
+  List<FuelConsumption> get consumptions {
     return [..._fuelConsumptions];
   }
 
