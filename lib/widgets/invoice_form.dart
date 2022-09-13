@@ -61,12 +61,11 @@ class _InvoiceFormState extends State<InvoiceForm> {
   }
 
   void _saveForm() {
-    final form = _formKey.currentState;
-    final isValid = form!.validate();
+    final isValid = _formKey.currentState!.validate();
     if (!isValid) {
       return;
     }
-    form.save();
+    _formKey.currentState!.save();
     Provider.of<Invoices>(context, listen: false).addInvoice(_inv);
     Navigator.of(context).pop();
     // If the form is valid, display a snackbar. In the real world,
@@ -214,7 +213,7 @@ class _InvoiceFormState extends State<InvoiceForm> {
                   title: _inv.title,
                   date: _inv.date,
                   price: _inv.price,
-                  photo: _inv.photo);
+                  photo: value as Image);
             },
           ),
           Container(

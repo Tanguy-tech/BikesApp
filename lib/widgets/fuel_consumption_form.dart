@@ -22,11 +22,6 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
   final _volumeFocusNode = FocusNode();
   final _dashFocusNode = FocusNode();
 
-  final _ftController = TextEditingController();
-  final _priceController = TextEditingController();
-  final _volController = TextEditingController();
-  final _dashController = TextEditingController();
-
   DateTime selectedDate = DateTime.now();
 
   DateTime _dateTime = DateTime.now();
@@ -41,12 +36,11 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
       dashKm: 0.0);
 
   void _saveForm() {
-    final form = _formKey.currentState;
-    final isValid = form!.validate();
+    final isValid = _formKey.currentState!.validate();
     if (!isValid) {
       return;
     }
-    form.save();
+    _formKey.currentState!.save();
     //print('TYPE : _fc.fuelType - PRICE : ${_fc.price} - VOL : ${_fc.volume}');
     Provider.of<FuelConsumptions>(context, listen: false)
         .addFuelConsumption(_fc);
@@ -99,7 +93,6 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
                       volume: _fc.volume,
                       dashKm: _fc.dashKm);
                 },
-                controller: _ftController,
                 decoration: InputDecoration(
                   hintText: "Fuel type",
                   hintStyle: TextStyle(
@@ -173,7 +166,6 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
                       volume: _fc.volume,
                       dashKm: _fc.dashKm);
                 },
-                controller: _priceController,
                 decoration: InputDecoration(
                     hintText: "Price",
                     hintStyle: TextStyle(
@@ -216,7 +208,6 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
                       volume: double.parse(value!),
                       dashKm: _fc.dashKm);
                 },
-                controller: _volController,
                 decoration: InputDecoration(
                     hintText: "Volume",
                     hintStyle: TextStyle(
@@ -259,7 +250,6 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
                       volume: _fc.volume,
                       dashKm: double.parse(value!));
                 },
-                controller: _dashController,
                 decoration: InputDecoration(
                     hintText: "Dashboard km",
                     hintStyle: TextStyle(

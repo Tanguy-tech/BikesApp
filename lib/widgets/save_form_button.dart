@@ -19,9 +19,7 @@ class SaveFormButton extends StatelessWidget {
                     color: Theme.of(context)
                         .bottomNavigationBarTheme
                         .selectedItemColor),
-                onPressed: () {
-                  saveForm;
-                })
+                onPressed: () => saveForm())
             : IconButton(
                 onPressed: () {
                   saveForm;
