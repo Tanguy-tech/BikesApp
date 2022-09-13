@@ -17,7 +17,7 @@ class AddItemScreen extends StatelessWidget {
     final theme = Provider.of<AppTheme>(context);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Add fuel refill or invoice'),
+        title: const Text('Add an expense'),
         actions: [
           Switch(
               onChanged: (value) => theme.toogleTheme(context), value: theme.sw)

@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 import 'package:motobox/providers/fuel_consumptions.dart';
 import 'package:motobox/providers/fuel_consumption.dart';
 import 'package:motobox/screens/garage_screen.dart';
+import 'package:motobox/widgets/save_form_button.dart';
 import 'package:provider/provider.dart';
 
 class FuelRefillForm extends StatefulWidget {
@@ -31,7 +32,7 @@ class _FuelRefillFormState extends State<FuelRefillForm> {
 
   DateTime _dateTime = DateTime.now();
 
-  FuelConsumption fc = FuelConsumption(
+  var _fc = FuelConsumption(
       id: 'id',
       fuelType: 'fuelType',
       date: DateTime.now(),
@@ -42,10 +43,14 @@ class _FuelRefillFormState extends State<FuelRefillForm> {
 
   void _saveForm() {
     final form = widget.formKey.currentState;
-    if (form != null && !form.validate()) return;
-    form?.save();
+    final isValid = form!.validate();
+    if (!isValid) {
+      return;
+    }
+    form.save();
+    //print('TYPE : _fc.fuelType - PRICE : ${_fc.price} - VOL : ${_fc.volume}');
     Provider.of<FuelConsumptions>(context, listen: false)
-        .addFuelConsumption(fc);
+        .addFuelConsumption(_fc);
     Navigator.of(context).pop();
     // If the form is valid, display a snackbar. In the real world,
     // you'd often call a server or save the information in a database.
@@ -83,14 +88,14 @@ class _FuelRefillFormState extends State<FuelRefillForm> {
                 return null;
               },
               onSaved: (value) {
-                fc = FuelConsumption(
-                    id: fc.id,
+                _fc = FuelConsumption(
+                    id: _fc.id,
                     fuelType: value!,
-                    date: fc.date,
-                    price: fc.price,
-                    pricePerLitter: fc.pricePerLitter,
-                    volume: fc.volume,
-                    dashKm: fc.dashKm);
+                    date: _fc.date,
+                    price: _fc.price,
+                    pricePerLitter: _fc.pricePerLitter,
+                    volume: _fc.volume,
+                    dashKm: _fc.dashKm);
               },
               controller: _ftController,
               decoration: InputDecoration(
@@ -158,14 +163,14 @@ class _FuelRefillFormState extends State<FuelRefillForm> {
                 return null;
               },
               onSaved: (value) {
-                fc = FuelConsumption(
-                    id: fc.id,
-                    fuelType: fc.fuelType,
-                    date: fc.date,
+                _fc = FuelConsumption(
+                    id: _fc.id,
+                    fuelType: _fc.fuelType,
+                    date: _fc.date,
                     price: double.parse(value!),
-                    pricePerLitter: fc.pricePerLitter,
-                    volume: fc.volume,
-                    dashKm: fc.dashKm);
+                    pricePerLitter: _fc.pricePerLitter,
+                    volume: _fc.volume,
+                    dashKm: _fc.dashKm);
               },
               controller: _priceController,
               decoration: InputDecoration(
@@ -201,14 +206,14 @@ class _FuelRefillFormState extends State<FuelRefillForm> {
                 return null;
               },
               onSaved: (value) {
-                fc = FuelConsumption(
-                    id: fc.id,
-                    fuelType: fc.fuelType,
-                    date: fc.date,
-                    price: fc.price,
-                    pricePerLitter: fc.pricePerLitter,
+                _fc = FuelConsumption(
+                    id: _fc.id,
+                    fuelType: _fc.fuelType,
+                    date: _fc.date,
+                    price: _fc.price,
+                    pricePerLitter: _fc.pricePerLitter,
                     volume: double.parse(value!),
-                    dashKm: fc.dashKm);
+                    dashKm: _fc.dashKm);
               },
               controller: _volController,
               decoration: InputDecoration(
@@ -244,13 +249,13 @@ class _FuelRefillFormState extends State<FuelRefillForm> {
                 return null;
               },
               onSaved: (value) {
-                fc = FuelConsumption(
-                    id: fc.id,
-                    fuelType: fc.fuelType,
-                    date: fc.date,
-                    price: fc.price,
-                    pricePerLitter: fc.pricePerLitter,
-                    volume: fc.volume,
+                _fc = FuelConsumption(
+                    id: _fc.id,
+                    fuelType: _fc.fuelType,
+                    date: _fc.date,
+                    price: _fc.price,
+                    pricePerLitter: _fc.pricePerLitter,
+                    volume: _fc.volume,
                     dashKm: double.parse(value!));
               },
               controller: _dashController,
@@ -269,21 +274,7 @@ class _FuelRefillFormState extends State<FuelRefillForm> {
               focusNode: _dashFocusNode,
             ),
           ),
-          Container(
-            margin: const EdgeInsets.all(10),
-            decoration: const BoxDecoration(
-                color: Color.fromARGB(255, 50, 167, 53),
-                shape: BoxShape.circle),
-            child: Builder(builder: (context) {
-              return IconButton(
-                onPressed: () {
-                  _saveForm();
-                },
-                iconSize: 40,
-                icon: const Icon(Icons.check),
-              );
-            }),
-          ),
+          SaveFormButton(_saveForm)
         ],
       ),
     );

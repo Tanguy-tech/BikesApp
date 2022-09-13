@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'fuel_consumption.dart';
 
 class FuelConsumptions with ChangeNotifier {
-  List<FuelConsumption> fuelConsumptions = [
+  List<FuelConsumption> _fuelConsumptions = [
     FuelConsumption(
         id: "f1",
         fuelType: "SP98",
@@ -56,7 +56,7 @@ class FuelConsumptions with ChangeNotifier {
   ];
 
   List<FuelConsumption> get consumption {
-    return [...fuelConsumptions];
+    return [..._fuelConsumptions];
   }
 
   void addFuelConsumption(FuelConsumption fc) {
@@ -68,9 +68,9 @@ class FuelConsumptions with ChangeNotifier {
         pricePerLitter: fc.pricePerLitter,
         volume: fc.volume,
         dashKm: fc.dashKm);
-    //fuelConsumptions.add(newFc);
-    fuelConsumptions.insert(0, newFc);
-    print('adding new fuel consumption...');
+    //fuelConsumptions.add(newFc); // at the end of list
+    _fuelConsumptions.insert(0, newFc); // at the begining of list
+    //print('Adding a new fuel consumption...');
     notifyListeners();
   }
 }
