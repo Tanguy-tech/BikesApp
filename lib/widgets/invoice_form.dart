@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:motobox/widgets/save_form_button.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/invoice.dart';
@@ -234,17 +235,7 @@ class _InvoiceFormState extends State<InvoiceForm> {
                     height: 200,
                   ),
           ),
-          Container(
-            decoration: const BoxDecoration(
-                color: Colors.green, shape: BoxShape.circle),
-            child: IconButton(
-              onPressed: () {
-                _saveForm();
-              },
-              iconSize: 40,
-              icon: const Icon(Icons.check),
-            ),
-          ),
+          SaveFormButton(_saveForm)
         ]),
       ),
     );
