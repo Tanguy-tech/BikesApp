@@ -22,7 +22,7 @@ class FuelCosumptionItem extends StatelessWidget {
             height: double.infinity,
             child: Icon(Icons.oil_barrel, color: Colors.white)),
         title: Text(
-          '${DateFormat('dd.MM.yy').format(fuelConsumption.date)}       ${fuelConsumption.fuelType}',
+          '${DateFormat('dd.MM.yy').format(fuelConsumption.date)}     ${fuelConsumption.fuelType}',
           textAlign: TextAlign.left,
           style: const TextStyle(fontSize: 14),
         ),
