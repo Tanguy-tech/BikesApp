@@ -37,15 +37,15 @@ class _FuelConsumptionListState extends State<FuelConsumptionList> {
         .fetchAndSetFuelConsumptions();
   }
 
-  Future<void> _deleteItem(BuildContext ctx, String id) async {
-    await Provider.of<FuelConsumptions>(ctx, listen: false)
-        .deleteFuelConsumption(id);
-  }
+  // Future<void> _deleteItem(BuildContext ctx, String id) async {
+  //   await
+  // }
 
   @override
   Widget build(BuildContext context) {
     final fcData = Provider.of<FuelConsumptions>(context);
     final fuelConsumptions = fcData.consumptions;
+    final scaffold = ScaffoldMessenger.of(context);
     return RefreshIndicator(
       onRefresh: () => _refreshData(context),
       child: ListView.builder(
@@ -62,10 +62,19 @@ class _FuelConsumptionListState extends State<FuelConsumptionList> {
                     ),
                   ),
                   key: UniqueKey(),
-                  onDismissed: (direction) {
-                    setState(() {
-                      _deleteItem(context, fuelConsumptions[i].id.toString());
-                    });
+                  onDismissed: (direction) async {
+                    try {
+                      await Provider.of<FuelConsumptions>(context,
+                              listen: false)
+                          .deleteFuelConsumption(fuelConsumptions[i].id);
+                    } catch (error) {
+                      scaffold.showSnackBar(const SnackBar(
+                        content: Text(
+                          'Deleting Failed...',
+                          textAlign: TextAlign.center,
+                        ),
+                      ));
+                    }
                   },
                   child: const FuelCosumptionItem()),
         ),

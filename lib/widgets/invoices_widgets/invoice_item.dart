@@ -26,7 +26,8 @@ class InvoiceItem extends StatelessWidget {
           textAlign: TextAlign.left,
           style: const TextStyle(fontSize: 14),
         ),
-        subtitle: Text('Total: ${invoice.price.toString()}€  ${invoice.title}'),
+        subtitle:
+            Text('${invoice.title}   Total: ${invoice.price.toString()}€'),
         //trailing: Icon(Icons.more_vert),
         isThreeLine: true,
       ),
