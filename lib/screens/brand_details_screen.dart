@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:motobox/providers/theme_provider.dart';
-import 'package:motobox/widgets/model_item.dart';
+import 'package:motobox/widgets/bike_widgets/model_item.dart';
 import 'package:provider/provider.dart';
 import '../models/models.dart';
 

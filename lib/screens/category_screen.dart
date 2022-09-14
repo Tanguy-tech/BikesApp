@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:motobox/models/category.dart';
-import 'package:motobox/widgets/category_item.dart';
+import 'package:motobox/widgets/bike_widgets/category_item.dart';
 import 'package:motobox/data/brand_data.dart';
 
 class CategoryScreen extends StatelessWidget {

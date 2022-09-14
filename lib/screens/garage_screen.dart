@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:motobox/providers/bike_datas.dart';
-import 'package:motobox/providers/invoices.dart';
-import 'package:motobox/widgets/bike_main_info.dart';
-import 'package:motobox/widgets/lists_header.dart';
+import 'package:motobox/widgets/bike_widgets/bike_main_info.dart';
+import 'package:motobox/widgets/twin_lists_header.dart';
 import 'package:provider/provider.dart';
-
-import '../providers/fuel_consumptions.dart';
-import '../widgets/fuel_consumption_list.dart';
-import '../widgets/invoices_list.dart';
+import '../widgets/fuel_consumptions_widgets/fuel_consumption_list.dart';
+import '../widgets/invoices_widgets/invoices_list.dart';
 
 class MyGarageScreen extends StatelessWidget {
   static const routeName = '/garage';
@@ -29,7 +26,7 @@ class MyGarageScreen extends StatelessWidget {
                 builder: (context, child) => const BikeMainInfo(),
               ),
             ),
-            const ListHeader(),
+            const TwinListsHeader(),
             Stack(
               children: [
                 Container(

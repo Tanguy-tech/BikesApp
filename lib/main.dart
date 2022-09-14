@@ -4,12 +4,14 @@ import 'package:motobox/providers/invoices.dart';
 import 'package:motobox/providers/theme_provider.dart';
 import 'package:motobox/screens/category_screen.dart';
 import 'package:motobox/screens/garage_screen.dart';
-import 'package:motobox/widgets/dropup_button.dart';
-import 'package:motobox/widgets/my_bottom_app_bar.dart';
+import 'package:motobox/widgets/app_widgets/dropup_button.dart';
+import 'package:motobox/widgets/app_widgets/my_bottom_app_bar.dart';
 import 'package:motobox/widgets/routes.dart';
 import 'package:provider/provider.dart';
-
-import 'widgets/main_drawer.dart';
+import 'widgets/app_widgets/dropup_button.dart';
+import 'widgets/app_widgets/main_drawer.dart';
+import 'widgets/app_widgets/my_bottom_app_bar.dart';
+import 'widgets/app_widgets/main_drawer.dart';
 
 //part 'my_file.gform.dart';
 
