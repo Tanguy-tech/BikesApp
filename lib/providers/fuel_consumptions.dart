@@ -2,6 +2,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import '../models/http_exception.dart';
 import 'fuel_consumption.dart';
 import 'package:http/http.dart' as http;
 
@@ -123,13 +124,14 @@ class FuelConsumptions with ChangeNotifier {
     final existingFcIndex = _fuelConsumptions.indexWhere((fc) => fc.id == id);
     FuelConsumption? existingFc = _fuelConsumptions[existingFcIndex];
     _fuelConsumptions.removeAt(existingFcIndex);
-    http.delete(url).then((response) {
-      if (response.statusCode >= 400) {}
-      existingFc = null;
-    }).catchError((_) {
-      _fuelConsumptions.insert(existingFcIndex,
-          existingFc!); // ensure to re-insert the instance if deleting fail
-    });
-    notifyListeners();
+    final response = await http.delete(url);
+    if (response.statusCode >= 400) {
+      _fuelConsumptions.insert(
+          existingFcIndex, // ensure to re-insert the instance if deleting fail
+          existingFc);
+      notifyListeners();
+      throw HttpException('Could not delete FuelConsumption item..');
+    }
+    existingFc = null;
   }
 }
