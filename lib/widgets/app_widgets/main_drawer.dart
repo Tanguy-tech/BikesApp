@@ -30,16 +30,16 @@ class MainDrawer extends StatelessWidget {
             padding: const EdgeInsets.all(20),
             alignment: Alignment.centerLeft,
             color: Theme.of(context).appBarTheme.backgroundColor,
-            child: const Text(
-              "MotoBox's Drawer menu",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w900,
-                  fontSize: 20),
+            child: const Padding(
+              padding: EdgeInsets.only(top: 30),
+              child: Text(
+                "MotoBox's Drawer menu",
+                style: TextStyle(fontWeight: FontWeight.w900, fontSize: 20),
+              ),
             ),
           ),
           const SizedBox(height: 20),
-          buildListTile("Home", Icons.receipt, () {
+          buildListTile("Home", Icons.home, () {
             Navigator.of(context).pushReplacementNamed("/");
           }),
           buildListTile("My invoices", Icons.receipt, () {

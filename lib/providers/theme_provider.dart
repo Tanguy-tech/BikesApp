@@ -19,15 +19,26 @@ class AppTheme with ChangeNotifier {
         backgroundColor: Colors.indigoAccent.shade700,
         selectedItemColor: Colors.white,
         unselectedItemColor: const Color.fromARGB(255, 23, 36, 109)),
-    //Theme.of(navigatorKey.currentContext!).colorScheme.primary),
     canvasColor: const Color.fromARGB(255, 202, 202, 202),
     textTheme: ThemeData.light().textTheme.copyWith(
           bodyLarge: const TextStyle(color: Color.fromARGB(255, 79, 79, 79)),
           bodyMedium: const TextStyle(color: Color.fromARGB(255, 79, 79, 79)),
-          titleLarge: const TextStyle(fontFamily: 'Raleway', fontSize: 25),
+          bodySmall: const TextStyle(color: Color.fromARGB(255, 79, 79, 79)),
+          titleLarge: const TextStyle(
+              fontFamily: 'Raleway',
+              fontSize: 25,
+              fontWeight: FontWeight.bold,
+              color: Colors.white),
           titleMedium: const TextStyle(
-              fontFamily: 'Raleway', fontSize: 20, fontWeight: FontWeight.bold),
-          titleSmall: const TextStyle(fontFamily: 'Raleway', fontSize: 15),
+              fontFamily: 'Raleway',
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: Colors.white),
+          titleSmall: const TextStyle(
+              fontFamily: 'Raleway',
+              fontSize: 15,
+              fontWeight: FontWeight.bold,
+              color: Colors.white),
           labelSmall:
               const TextStyle(color: Color.fromARGB(255, 178, 178, 178)),
         ),
@@ -51,24 +62,33 @@ class AppTheme with ChangeNotifier {
                 Theme.of(navigatorKey.currentContext!).colorScheme.primary,
             selectedItemColor: Colors.white,
             unselectedItemColor: const Color.fromARGB(255, 23, 36, 109)),
-        //Theme.of(navigatorKey.currentContext!).colorScheme.primary),
         canvasColor: const Color.fromARGB(255, 202, 202, 202),
         textTheme: ThemeData.light().textTheme.copyWith(
             bodyLarge: const TextStyle(color: Color.fromARGB(255, 79, 79, 79)),
             bodyMedium: const TextStyle(color: Color.fromARGB(255, 79, 79, 79)),
             bodySmall: const TextStyle(color: Color.fromARGB(255, 79, 79, 79)),
-            titleLarge: const TextStyle(fontFamily: 'Raleway', fontSize: 25),
+            titleLarge: const TextStyle(
+                fontFamily: 'Raleway',
+                fontSize: 25,
+                fontWeight: FontWeight.bold,
+                color: Colors.white),
             titleMedium: const TextStyle(
                 fontFamily: 'Raleway',
                 fontSize: 20,
-                fontWeight: FontWeight.bold),
-            titleSmall: const TextStyle(fontFamily: 'Raleway', fontSize: 15),
+                fontWeight: FontWeight.bold,
+                color: Colors.white),
+            titleSmall: const TextStyle(
+                fontFamily: 'Raleway',
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+                color: Colors.white),
             labelSmall:
                 const TextStyle(color: Color.fromARGB(255, 178, 178, 178))),
       );
     } else {
       sw = true; // DARK MODE
       myTheme = ThemeData(
+        cardTheme: const CardTheme(color: Colors.pink),
         colorScheme: ColorScheme.fromSwatch().copyWith(
             primary: Colors.indigoAccent.shade700,
             secondary: Colors.tealAccent.shade700,
@@ -79,22 +99,37 @@ class AppTheme with ChangeNotifier {
             foregroundColor: Colors.white),
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(
             backgroundColor: Color.fromARGB(255, 4, 18, 38),
-            selectedItemColor: Colors.white,
+            selectedItemColor: Color.fromARGB(255, 202, 202, 202),
             unselectedItemColor: Color.fromARGB(255, 88, 88, 88)),
         canvasColor: const Color.fromARGB(255, 75, 75, 75),
         textTheme: ThemeData.dark().textTheme.copyWith(
-            bodyLarge:
-                const TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
-            bodyMedium:
-                const TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
-            bodySmall:
-                const TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
-            titleLarge: const TextStyle(fontFamily: 'Raleway', fontSize: 25),
+            bodyLarge: const TextStyle(
+              color: Color.fromARGB(255, 202, 202, 202),
+            ),
+            bodyMedium: const TextStyle(
+              color: Color.fromARGB(255, 202, 202, 202),
+            ),
+            bodySmall: const TextStyle(
+              color: Color.fromARGB(255, 202, 202, 202),
+            ),
+            titleLarge: const TextStyle(
+              fontFamily: 'Raleway',
+              fontSize: 25,
+              fontWeight: FontWeight.bold,
+              color: Color.fromARGB(255, 202, 202, 202),
+            ),
             titleMedium: const TextStyle(
-                fontFamily: 'Raleway',
-                fontSize: 20,
-                fontWeight: FontWeight.bold),
-            titleSmall: const TextStyle(fontFamily: 'Raleway', fontSize: 15),
+              fontFamily: 'Raleway',
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: Color.fromARGB(255, 202, 202, 202),
+            ),
+            titleSmall: const TextStyle(
+              fontFamily: 'Raleway',
+              fontSize: 15,
+              fontWeight: FontWeight.bold,
+              color: Color.fromARGB(255, 202, 202, 202),
+            ),
             labelSmall:
                 const TextStyle(color: Color.fromARGB(255, 141, 141, 141))),
       );

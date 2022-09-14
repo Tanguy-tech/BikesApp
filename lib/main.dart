@@ -60,7 +60,10 @@ class _MyAppState extends State<MyApp> {
               return Scaffold(
                 appBar: AppBar(
                   elevation: 5,
-                  title: Text(_pages[_index]["title"] as String),
+                  title: Text(
+                    _pages[_index]["title"] as String,
+                    style: theme.myTheme.textTheme.titleLarge,
+                  ),
                   actions: [
                     Switch(
                         onChanged: (value) => theme.toogleTheme(context),
