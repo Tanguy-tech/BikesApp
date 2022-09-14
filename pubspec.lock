@@ -162,13 +162,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.2"
-  cool_dropdown:
-    dependency: "direct main"
-    description:
-      name: cool_dropdown
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.4.2"
   cross_file:
     dependency: transitive
     description:

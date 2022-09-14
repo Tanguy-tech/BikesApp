@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
@@ -40,7 +41,10 @@ class _InvoiceFormState extends State<InvoiceForm> {
         this.image = tmpImage;
       });
     } on Exception catch (e) {
-      print('Failed to pick Image form gallery...');
+      if (kDebugMode) {
+        print(e.toString());
+      }
+      //print('Failed to pick Image form gallery...');
     }
   }
 
@@ -139,9 +143,7 @@ class _InvoiceFormState extends State<InvoiceForm> {
                 });
               },
               child: Text(
-                _dateTime == null
-                    ? 'Select a date'
-                    : 'Select a date :   ${DateFormat('dd - MM - yy').format(_dateTime)}',
+                'Select a date :   ${DateFormat('dd - MM - yy').format(_dateTime)}',
                 style: const TextStyle(
                     color: Color.fromARGB(255, 34, 34, 34),
                     fontWeight: FontWeight.w500),

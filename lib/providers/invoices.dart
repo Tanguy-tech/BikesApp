@@ -1,8 +1,9 @@
 // ignore_for_file: prefer_final_fields
-
+import 'dart:convert';
 import 'package:flutter/material.dart';
-
+import 'package:intl/intl.dart';
 import 'invoice.dart';
+import 'package:http/http.dart' as http;
 
 class Invoices with ChangeNotifier {
   List<Invoice> _invoices = [
@@ -49,14 +50,26 @@ class Invoices with ChangeNotifier {
   }
 
   void addInvoice(Invoice inv) {
-    final newInv = Invoice(
-        id: inv.id,
-        title: inv.title,
-        date: inv.date,
-        price: inv.price,
-        photo: inv.photo);
-    //_invoices.add(newInv);
-    _invoices.insert(0, newInv);
-    notifyListeners();
+    final url = Uri.parse(
+        'https://motobox-eedda-default-rtdb.europe-west1.firebasedatabase.app/invoices.json');
+    http
+        .post(url,
+            body: json.encode({
+              'title': inv.title,
+              'date': DateFormat('dd.MM.yy').format(inv.date),
+              'price': inv.price,
+              'photo': inv.photo,
+            }))
+        .then((response) {
+      final newInv = Invoice(
+          id: inv.id,
+          title: inv.title,
+          date: inv.date,
+          price: inv.price,
+          photo: inv.photo);
+      //_invoices.add(newInv);
+      _invoices.insert(0, newInv);
+      notifyListeners();
+    });
   }
 }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:motobox/widgets/fuel_consumptions_widgets/fuel_consumption_form.dart';
 import 'package:provider/provider.dart';
 
-import '../../providers/theme_provider.dart';
+import '../../../providers/theme_provider.dart';
 
 class FuelConsrumptionFormScreen extends StatelessWidget {
   const FuelConsrumptionFormScreen({Key? key}) : super(key: key);
