@@ -37,6 +37,11 @@ class _FuelConsumptionListState extends State<FuelConsumptionList> {
         .fetchAndSetFuelConsumptions();
   }
 
+  Future<void> _deleteItem(BuildContext ctx, String id) async {
+    await Provider.of<FuelConsumptions>(ctx, listen: false)
+        .deleteFuelConsumption(id);
+  }
+
   @override
   Widget build(BuildContext context) {
     final fcData = Provider.of<FuelConsumptions>(context);
@@ -49,7 +54,20 @@ class _FuelConsumptionListState extends State<FuelConsumptionList> {
           value: fuelConsumptions[i],
           child: _isLoading
               ? const Center(child: CircularProgressIndicator())
-              : const FuelCosumptionItem(),
+              : Dismissible(
+                  background: Container(
+                    decoration: const BoxDecoration(
+                      color: Color.fromARGB(255, 223, 30, 16),
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                    ),
+                  ),
+                  key: UniqueKey(),
+                  onDismissed: (direction) {
+                    setState(() {
+                      _deleteItem(context, fuelConsumptions[i].id.toString());
+                    });
+                  },
+                  child: const FuelCosumptionItem()),
         ),
       ),
     );

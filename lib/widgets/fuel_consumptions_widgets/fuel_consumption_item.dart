@@ -2,8 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:motobox/providers/fuel_consumption.dart';
 import 'package:provider/provider.dart';
+
+import '../../providers/fuel_consumption.dart';
 
 class FuelCosumptionItem extends StatelessWidget {
   const FuelCosumptionItem({Key? key}) : super(key: key);

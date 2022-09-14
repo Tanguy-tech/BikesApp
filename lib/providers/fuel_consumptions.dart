@@ -116,4 +116,20 @@ class FuelConsumptions with ChangeNotifier {
       rethrow;
     }
   }
+
+  Future<void> deleteFuelConsumption(String id) async {
+    final url = Uri.parse(
+        'https://motobox-eedda-default-rtdb.europe-west1.firebasedatabase.app/fuel_consumptions/$id.json');
+    final existingFcIndex = _fuelConsumptions.indexWhere((fc) => fc.id == id);
+    FuelConsumption? existingFc = _fuelConsumptions[existingFcIndex];
+    _fuelConsumptions.removeAt(existingFcIndex);
+    http.delete(url).then((response) {
+      if (response.statusCode >= 400) {}
+      existingFc = null;
+    }).catchError((_) {
+      _fuelConsumptions.insert(existingFcIndex,
+          existingFc!); // ensure to re-insert the instance if deleting fail
+    });
+    notifyListeners();
+  }
 }
