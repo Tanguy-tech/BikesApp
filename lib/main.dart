@@ -2,14 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:motobox/providers/fuel_consumptions.dart';
 import 'package:motobox/providers/invoices.dart';
 import 'package:motobox/providers/theme_provider.dart';
-import 'package:motobox/screens/brand_details_screen.dart';
 import 'package:motobox/screens/category_screen.dart';
-import 'package:motobox/screens/fuel_consumption_form_screen.dart';
-import 'package:motobox/screens/invoice_form_screen.dart';
-import 'package:motobox/screens/my_invoice_screen.dart';
-import 'package:motobox/screens/my_fuel_consumption_screen.dart';
 import 'package:motobox/screens/garage_screen.dart';
 import 'package:motobox/widgets/dropup_button.dart';
+import 'package:motobox/widgets/my_bottom_app_bar.dart';
+import 'package:motobox/widgets/routes.dart';
 import 'package:provider/provider.dart';
 
 import 'widgets/main_drawer.dart';
@@ -36,11 +33,11 @@ class _MyAppState extends State<MyApp> {
     {"page": const MyGarageScreen(), "title": "My Garage"},
   ];
 
-  int _selectedPagesIndex = 1;
+  int _index = 1;
 
   void _selectPage(int index) {
     setState(() {
-      _selectedPagesIndex = index;
+      _index = index;
     });
   }
 
@@ -62,7 +59,7 @@ class _MyAppState extends State<MyApp> {
               return Scaffold(
                 appBar: AppBar(
                   elevation: 5,
-                  title: Text(_pages[_selectedPagesIndex]["title"] as String),
+                  title: Text(_pages[_index]["title"] as String),
                   actions: [
                     Switch(
                         onChanged: (value) => theme.toogleTheme(context),
@@ -70,55 +67,16 @@ class _MyAppState extends State<MyApp> {
                   ],
                 ),
                 drawer: const MainDrawer(),
-                body: _pages[_selectedPagesIndex]["page"] as Widget,
+                body: _pages[_index]["page"] as Widget,
                 extendBody: true,
                 floatingActionButtonLocation:
                     FloatingActionButtonLocation.centerDocked,
                 floatingActionButton: DropUpButton(context),
-                bottomNavigationBar: BottomAppBar(
-                  notchMargin: 5,
-                  color: theme.myTheme.bottomNavigationBarTheme.backgroundColor,
-                  shape: const CircularNotchedRectangle(),
-                  elevation: 0,
-                  child: BottomNavigationBar(
-                      backgroundColor: theme
-                          .myTheme.bottomNavigationBarTheme.backgroundColor
-                          ?.withAlpha(0),
-                      elevation: 0,
-                      selectedItemColor: theme
-                          .myTheme.bottomNavigationBarTheme.selectedItemColor,
-                      unselectedItemColor: theme
-                          .myTheme.bottomNavigationBarTheme.unselectedItemColor,
-                      currentIndex: _selectedPagesIndex,
-                      //type: BottomNavigationBarType.shifting,
-                      onTap: _selectPage,
-                      items: [
-                        BottomNavigationBarItem(
-                            backgroundColor:
-                                theme.myTheme.appBarTheme.backgroundColor,
-                            icon: const Icon(Icons.border_all_rounded),
-                            label:
-                                _pages[_selectedPagesIndex]["title"] as String),
-                        BottomNavigationBarItem(
-                            backgroundColor:
-                                theme.myTheme.appBarTheme.backgroundColor,
-                            icon: const Icon(Icons.favorite),
-                            label:
-                                _pages[_selectedPagesIndex]["title"] as String)
-                      ]),
-                ),
+                bottomNavigationBar:
+                    MyBottomAppBar(_index, _selectPage, _pages),
               );
             }),
-            routes: {
-              BrandDetailsScreen.routeName: (ctx) => const BrandDetailsScreen(),
-              MyGarageScreen.routeName: (ctx) => const MyGarageScreen(),
-              InvoiceScreen.routeName: (ctx) => const InvoiceScreen(),
-              FuelConsumptionScreen.routeName: (ctx) =>
-                  const FuelConsumptionScreen(),
-              FuelConsrumptionFormScreen.routeName: (ctx) =>
-                  const FuelConsrumptionFormScreen(),
-              InvoiceFormScreen.routeName: (ctx) => const InvoiceFormScreen(),
-            }),
+            routes: Routes().myAppRoutes),
       ),
     );
   }
