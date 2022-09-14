@@ -32,17 +32,25 @@ class _FuelConsumptionListState extends State<FuelConsumptionList> {
     super.didChangeDependencies();
   }
 
+  Future<void> _refreshData(BuildContext ctx) async {
+    await Provider.of<FuelConsumptions>(ctx, listen: false)
+        .fetchAndSetFuelConsumptions();
+  }
+
   @override
   Widget build(BuildContext context) {
     final fcData = Provider.of<FuelConsumptions>(context);
     final fuelConsumptions = fcData.consumptions;
-    return ListView.builder(
-      itemCount: fuelConsumptions.length,
-      itemBuilder: (context, i) => ChangeNotifierProvider.value(
-        value: fuelConsumptions[i],
-        child: _isLoading
-            ? const Center(child: CircularProgressIndicator())
-            : const FuelCosumptionItem(),
+    return RefreshIndicator(
+      onRefresh: () => _refreshData(context),
+      child: ListView.builder(
+        itemCount: fuelConsumptions.length,
+        itemBuilder: (context, i) => ChangeNotifierProvider.value(
+          value: fuelConsumptions[i],
+          child: _isLoading
+              ? const Center(child: CircularProgressIndicator())
+              : const FuelCosumptionItem(),
+        ),
       ),
     );
   }
