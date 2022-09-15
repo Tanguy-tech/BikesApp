@@ -113,7 +113,6 @@ class FuelConsumptions with ChangeNotifier {
       //_fuelConsumptions.insert(0, newFc); // at the begining of list
       notifyListeners();
     } catch (error) {
-      print(error);
       rethrow;
     }
   }

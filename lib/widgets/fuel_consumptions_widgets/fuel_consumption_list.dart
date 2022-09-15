@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:motobox/providers/fuel_consumptions.dart';
+import 'package:motobox/widgets/app_widgets/dismissible_card.dart';
 import 'package:motobox/widgets/fuel_consumptions_widgets/fuel_consumption_item.dart';
 import 'package:provider/provider.dart';
 
@@ -37,15 +38,10 @@ class _FuelConsumptionListState extends State<FuelConsumptionList> {
         .fetchAndSetFuelConsumptions();
   }
 
-  // Future<void> _deleteItem(BuildContext ctx, String id) async {
-  //   await
-  // }
-
   @override
   Widget build(BuildContext context) {
     final fcData = Provider.of<FuelConsumptions>(context);
     final fuelConsumptions = fcData.consumptions;
-    final scaffold = ScaffoldMessenger.of(context);
     return RefreshIndicator(
       onRefresh: () => _refreshData(context),
       child: ListView.builder(
@@ -54,29 +50,8 @@ class _FuelConsumptionListState extends State<FuelConsumptionList> {
           value: fuelConsumptions[i],
           child: _isLoading
               ? const Center(child: CircularProgressIndicator())
-              : Dismissible(
-                  background: Container(
-                    decoration: const BoxDecoration(
-                      color: Color.fromARGB(255, 223, 30, 16),
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                    ),
-                  ),
-                  key: UniqueKey(),
-                  onDismissed: (direction) async {
-                    try {
-                      await Provider.of<FuelConsumptions>(context,
-                              listen: false)
-                          .deleteFuelConsumption(fuelConsumptions[i].id);
-                    } catch (error) {
-                      scaffold.showSnackBar(const SnackBar(
-                        content: Text(
-                          'Deleting Failed...',
-                          textAlign: TextAlign.center,
-                        ),
-                      ));
-                    }
-                  },
-                  child: const FuelCosumptionItem()),
+              : MyDismissibleCard(
+                  const FuelCosumptionItem(), fuelConsumptions[i].id),
         ),
       ),
     );

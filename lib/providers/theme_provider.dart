@@ -9,6 +9,9 @@ class AppTheme with ChangeNotifier {
   static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
   late ThemeData myTheme = ThemeData(
+    drawerTheme: const DrawerThemeData(
+      backgroundColor: Color.fromARGB(255, 202, 202, 202),
+    ),
     colorScheme: ColorScheme.fromSwatch().copyWith(
         primary: Colors.indigoAccent.shade700,
         secondary: Colors.tealAccent.shade700,
@@ -49,6 +52,7 @@ class AppTheme with ChangeNotifier {
     if (sw == true) {
       sw = false; // LIDHT MODE
       myTheme = ThemeData(
+        drawerTheme: const DrawerThemeData(backgroundColor: Colors.yellow),
         colorScheme: ColorScheme.fromSwatch().copyWith(
             primary: Colors.indigoAccent.shade700,
             secondary: Colors.tealAccent.shade700,
@@ -62,6 +66,7 @@ class AppTheme with ChangeNotifier {
                 Theme.of(navigatorKey.currentContext!).colorScheme.primary,
             selectedItemColor: Colors.white,
             unselectedItemColor: const Color.fromARGB(255, 23, 36, 109)),
+        //Theme.of(navigatorKey.currentContext!).colorScheme.primary),
         canvasColor: const Color.fromARGB(255, 202, 202, 202),
         textTheme: ThemeData.light().textTheme.copyWith(
             bodyLarge: const TextStyle(color: Color.fromARGB(255, 79, 79, 79)),
@@ -88,7 +93,7 @@ class AppTheme with ChangeNotifier {
     } else {
       sw = true; // DARK MODE
       myTheme = ThemeData(
-        cardTheme: const CardTheme(color: Colors.pink),
+        drawerTheme: const DrawerThemeData(backgroundColor: Colors.pink),
         colorScheme: ColorScheme.fromSwatch().copyWith(
             primary: Colors.indigoAccent.shade700,
             secondary: Colors.tealAccent.shade700,
