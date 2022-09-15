@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:motobox/providers/fuel_consumptions.dart';
-import 'package:motobox/widgets/app_widgets/dismissible_card.dart';
+import 'package:motobox/widgets/fuel_consumptions_widgets/dismissible_fuelConsumption_card.dart';
 import 'package:motobox/widgets/fuel_consumptions_widgets/fuel_consumption_item.dart';
 import 'package:provider/provider.dart';
 
@@ -50,8 +50,8 @@ class _FuelConsumptionListState extends State<FuelConsumptionList> {
           value: fuelConsumptions[i],
           child: _isLoading
               ? const Center(child: CircularProgressIndicator())
-              : MyDismissibleCard(
-                  const FuelCosumptionItem(), fuelConsumptions[i].id),
+              : DismissibleFuelComsumptionCard(
+                  const FuelCosumptionItem(), fuelConsumptions[i].id, true),
         ),
       ),
     );

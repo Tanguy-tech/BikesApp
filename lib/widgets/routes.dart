@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:motobox/screens/fuel_consumptions_screens/edit_fuel_cosumption_screen.dart';
 import 'package:motobox/screens/invoices_screens/invoice_form_screen.dart';
 import '../screens/brand_details_screen.dart';
 import '../screens/fuel_consumptions_screens/fuel_consumption_form_screen.dart';
@@ -15,5 +16,7 @@ class Routes {
     FuelConsrumptionFormScreen.routeName: (ctx) =>
         const FuelConsrumptionFormScreen(),
     InvoiceFormScreen.routeName: (ctx) => const InvoiceFormScreen(),
+    EditFuelConsumptionScreen.routeName: (ctx) =>
+        const EditFuelConsumptionScreen(),
   };
 }
