@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:motobox/widgets/app_widgets/save_form_button.dart';
 import 'package:provider/provider.dart';
 import '../../providers/fuel_consumption.dart';
 import '../../providers/fuel_consumptions.dart';
@@ -287,7 +286,7 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
                       focusNode: _dashFocusNode,
                     ),
                   ),
-                  SaveFormButton(_saveForm)
+                  FloatingActionButton(onPressed: _saveForm)
                 ],
               ),
             ),

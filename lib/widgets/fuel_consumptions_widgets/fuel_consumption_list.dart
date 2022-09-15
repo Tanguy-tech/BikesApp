@@ -51,7 +51,7 @@ class _FuelConsumptionListState extends State<FuelConsumptionList> {
           child: _isLoading
               ? const Center(child: CircularProgressIndicator())
               : DismissibleFuelComsumptionCard(
-                  const FuelCosumptionItem(), fuelConsumptions[i].id, true),
+                  const FuelCosumptionItem(), fuelConsumptions[i].id),
         ),
       ),
     );

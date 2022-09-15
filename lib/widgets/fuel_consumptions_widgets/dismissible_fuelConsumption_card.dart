@@ -1,4 +1,3 @@
-// ignore_for_file: must_be_immutable
 import 'package:flutter/material.dart';
 import 'package:motobox/screens/fuel_consumptions_screens/edit_fuel_cosumption_screen.dart';
 import 'package:provider/provider.dart';
@@ -6,11 +5,11 @@ import 'package:provider/provider.dart';
 import '../../providers/fuel_consumption.dart';
 import '../../providers/fuel_consumptions.dart';
 
+// ignore: must_be_immutable
 class DismissibleFuelComsumptionCard extends StatelessWidget {
   Widget? children;
   String id;
-  final bool _isFc;
-  DismissibleFuelComsumptionCard(this.children, this.id, this._isFc, {Key? key})
+  DismissibleFuelComsumptionCard(this.children, this.id, {Key? key})
       : super(key: key);
 
   @override
@@ -56,19 +55,10 @@ class DismissibleFuelComsumptionCard extends StatelessWidget {
                   right: .0,
                   child: Center(
                     child: CircleAvatar(
-                      backgroundColor: _isFc
-                          ? Theme.of(context).colorScheme.secondary
-                          : Theme.of(context).colorScheme.primary,
+                      backgroundColor: Theme.of(context).colorScheme.secondary,
                       radius: 45.0,
-                      child: _isFc
-                          ? Icon(Icons.oil_barrel,
-                              color:
-                                  Theme.of(context).textTheme.titleLarge?.color)
-                          : Icon(Icons.receipt,
-                              color: Theme.of(context)
-                                  .textTheme
-                                  .titleLarge
-                                  ?.color),
+                      child: Icon(Icons.oil_barrel,
+                          color: Theme.of(context).textTheme.titleLarge?.color),
                     ),
                   ),
                 )

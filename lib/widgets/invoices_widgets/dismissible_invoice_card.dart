@@ -5,12 +5,11 @@ import '../../providers/invoice.dart';
 import '../../providers/invoices.dart';
 import '../../screens/invoices_screens/edit_invoice_screen.dart';
 
+// ignore: must_be_immutable
 class DismissibleInvoiceCard extends StatelessWidget {
   Widget? children;
   String id;
-  final bool _isFc;
-  DismissibleInvoiceCard(this.children, this.id, this._isFc, {Key? key})
-      : super(key: key);
+  DismissibleInvoiceCard(this.children, this.id, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -55,19 +54,10 @@ class DismissibleInvoiceCard extends StatelessWidget {
                   right: .0,
                   child: Center(
                     child: CircleAvatar(
-                      backgroundColor: _isFc
-                          ? Theme.of(context).colorScheme.secondary
-                          : Theme.of(context).colorScheme.primary,
+                      backgroundColor: Theme.of(context).colorScheme.primary,
                       radius: 45.0,
-                      child: _isFc
-                          ? Icon(Icons.oil_barrel,
-                              color:
-                                  Theme.of(context).textTheme.titleLarge?.color)
-                          : Icon(Icons.receipt,
-                              color: Theme.of(context)
-                                  .textTheme
-                                  .titleLarge
-                                  ?.color),
+                      child: Icon(Icons.receipt,
+                          color: Theme.of(context).textTheme.titleLarge?.color),
                     ),
                   ),
                 )
@@ -79,12 +69,12 @@ class DismissibleInvoiceCard extends StatelessWidget {
       child: Card(
         elevation: 5,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-        color: Theme.of(context).colorScheme.secondary,
+        color: Theme.of(context).colorScheme.primary,
         child: Dismissible(
           onDismissed: (direction) async {
             try {
-              // await Provider.of<Invoices>(context, listen: false)
-              //     .deleteInvoice(id);
+              await Provider.of<Invoices>(context, listen: false)
+                  .deleteInvoice(id);
             } catch (error) {
               scaffold.showSnackBar(const SnackBar(
                 content: Text(
@@ -133,7 +123,7 @@ class DismissibleInvoiceCard extends StatelessWidget {
           ),
           child: Container(
             decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.secondary,
+                color: Theme.of(context).colorScheme.primary,
                 borderRadius: const BorderRadius.all(Radius.circular(15))),
             child: children,
           ),
