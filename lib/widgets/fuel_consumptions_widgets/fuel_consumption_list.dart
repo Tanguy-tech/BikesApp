@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:motobox/providers/fuel_consumptions.dart';
+import 'package:motobox/widgets/app_widgets/lists_skeleton_cards.dart';
 import 'package:motobox/widgets/fuel_consumptions_widgets/dismissible_fuelConsumption_card.dart';
 import 'package:motobox/widgets/fuel_consumptions_widgets/fuel_consumption_item.dart';
 import 'package:provider/provider.dart';
@@ -16,17 +17,6 @@ class _FuelConsumptionListState extends State<FuelConsumptionList> {
   var _isLoading = false;
 
   @override
-  void initState() {
-    _isLoading = true;
-    Future.delayed(const Duration(seconds: 5), () {
-      setState(() {
-        _isLoading = false;
-      });
-    });
-    super.initState();
-  }
-
-  @override
   void didChangeDependencies() {
     if (_isInit) {
       setState(() {
@@ -35,8 +25,10 @@ class _FuelConsumptionListState extends State<FuelConsumptionList> {
       Provider.of<FuelConsumptions>(context)
           .fetchAndSetFuelConsumptions()
           .then((_) {
-        setState(() {
-          _isLoading = false;
+        Future.delayed(const Duration(milliseconds: 50), () {
+          setState(() {
+            _isLoading = false;
+          });
         });
       });
     }
@@ -53,18 +45,20 @@ class _FuelConsumptionListState extends State<FuelConsumptionList> {
   Widget build(BuildContext context) {
     final fcData = Provider.of<FuelConsumptions>(context);
     final fuelConsumptions = fcData.consumptions;
-    return RefreshIndicator(
-      onRefresh: () => _refreshData(context),
-      child: ListView.builder(
-        itemCount: fuelConsumptions.length,
-        itemBuilder: (context, i) => ChangeNotifierProvider.value(
-          value: fuelConsumptions[i],
-          child: _isLoading
-              ? const Center(child: CircularProgressIndicator())
-              : DismissibleFuelComsumptionCard(
-                  const FuelCosumptionItem(), fuelConsumptions[i].id),
-        ),
-      ),
-    );
+    return _isLoading
+        ? const Center(
+            child: ListSkeletonCards(),
+          )
+        : RefreshIndicator(
+            onRefresh: () => _refreshData(context),
+            child: ListView.builder(
+              itemCount: fuelConsumptions.length,
+              itemBuilder: (context, i) => ChangeNotifierProvider.value(
+                value: fuelConsumptions[i],
+                child: DismissibleFuelComsumptionCard(
+                    const FuelCosumptionItem(), fuelConsumptions[i].id),
+              ),
+            ),
+          );
   }
 }

@@ -85,11 +85,13 @@ class _MyAppState extends State<MyApp> {
                   ],
                 ),
                 drawer: const MainDrawer(),
-                body: _isLoading
-                    ? const Center(
-                        child: HomeSkeletonCards(),
-                      )
-                    : _pages[_index]["page"] as Widget,
+                body:
+                    // _isLoading
+                    //     ? const Center(
+                    //         child: HomeSkeletonCards(),
+                    //       )
+                    //     :
+                    _pages[_index]["page"] as Widget,
                 extendBody: true,
                 floatingActionButtonLocation:
                     FloatingActionButtonLocation.centerDocked,

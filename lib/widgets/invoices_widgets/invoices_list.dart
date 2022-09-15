@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:motobox/widgets/app_widgets/lists_skeleton_cards.dart';
 import 'package:motobox/widgets/invoices_widgets/dismissible_invoice_card.dart';
 import 'package:provider/provider.dart';
 import '../../providers/invoices.dart';
@@ -27,8 +28,10 @@ class _InvoicesListState extends State<InvoicesList> {
         _isLoading = true;
       });
       Provider.of<Invoices>(context).fetchAndSetInvoices().then((_) {
-        setState(() {
-          _isLoading = false;
+        Future.delayed(const Duration(milliseconds: 50), () {
+          setState(() {
+            _isLoading = false;
+          });
         });
       });
     }
@@ -44,19 +47,20 @@ class _InvoicesListState extends State<InvoicesList> {
   Widget build(BuildContext context) {
     final invData = Provider.of<Invoices>(context);
     final invoices = invData.invoices;
-    return RefreshIndicator(
-      onRefresh: () => _refreshData(context),
-      child: ListView.builder(
-        itemCount: invoices.length,
-        itemBuilder: (context, i) => ChangeNotifierProvider.value(
-          value: invoices[i],
-          child: _isLoading
-              ? const Center(
-                  child: CircularProgressIndicator(),
-                )
-              : DismissibleInvoiceCard(const InvoiceItem(), invoices[i].id),
-        ),
-      ),
-    );
+    return _isLoading
+        ? const Center(
+            child: ListSkeletonCards(),
+          )
+        : RefreshIndicator(
+            onRefresh: () => _refreshData(context),
+            child: ListView.builder(
+              itemCount: invoices.length,
+              itemBuilder: (context, i) => ChangeNotifierProvider.value(
+                value: invoices[i],
+                child:
+                    DismissibleInvoiceCard(const InvoiceItem(), invoices[i].id),
+              ),
+            ),
+          );
   }
 }
