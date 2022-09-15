@@ -6,7 +6,9 @@ import 'package:motobox/widgets/fuel_consumptions_widgets/fuel_consumption_item.
 import 'package:provider/provider.dart';
 
 class FuelConsumptionList extends StatefulWidget {
-  const FuelConsumptionList({Key? key}) : super(key: key);
+  final bool isPreview;
+  const FuelConsumptionList({Key? key, required this.isPreview})
+      : super(key: key);
 
   @override
   State<FuelConsumptionList> createState() => _FuelConsumptionListState();
@@ -56,7 +58,9 @@ class _FuelConsumptionListState extends State<FuelConsumptionList> {
               itemBuilder: (context, i) => ChangeNotifierProvider.value(
                 value: fuelConsumptions[i],
                 child: DismissibleFuelComsumptionCard(
-                    const FuelCosumptionItem(), fuelConsumptions[i].id),
+                    const FuelCosumptionItem(),
+                    fuelConsumptions[i].id,
+                    widget.isPreview),
               ),
             ),
           );

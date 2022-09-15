@@ -21,7 +21,7 @@ class FuelConsumptionScreen extends StatelessWidget {
         ],
       ),
       drawer: const MainDrawer(),
-      body: const FuelConsumptionList(),
+      body: const FuelConsumptionList(isPreview: false),
     );
   }
 }
