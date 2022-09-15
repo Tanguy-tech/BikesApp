@@ -124,7 +124,7 @@ class DismissibleInvoiceCard extends StatelessWidget {
           child: Container(
             decoration: BoxDecoration(
                 color: Theme.of(context).colorScheme.primary,
-                borderRadius: const BorderRadius.all(Radius.circular(15))),
+                borderRadius: const BorderRadius.all(Radius.circular(10))),
             child: children,
           ),
         ),

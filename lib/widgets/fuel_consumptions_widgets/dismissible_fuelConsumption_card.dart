@@ -125,7 +125,7 @@ class DismissibleFuelComsumptionCard extends StatelessWidget {
           child: Container(
             decoration: BoxDecoration(
                 color: Theme.of(context).colorScheme.secondary,
-                borderRadius: const BorderRadius.all(Radius.circular(15))),
+                borderRadius: const BorderRadius.all(Radius.circular(10))),
             child: children,
           ),
         ),

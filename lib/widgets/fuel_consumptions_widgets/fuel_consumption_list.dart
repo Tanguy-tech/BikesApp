@@ -16,6 +16,17 @@ class _FuelConsumptionListState extends State<FuelConsumptionList> {
   var _isLoading = false;
 
   @override
+  void initState() {
+    _isLoading = true;
+    Future.delayed(const Duration(seconds: 5), () {
+      setState(() {
+        _isLoading = false;
+      });
+    });
+    super.initState();
+  }
+
+  @override
   void didChangeDependencies() {
     if (_isInit) {
       setState(() {

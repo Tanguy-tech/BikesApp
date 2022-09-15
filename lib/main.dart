@@ -4,6 +4,7 @@ import 'package:motobox/providers/invoices.dart';
 import 'package:motobox/providers/theme_provider.dart';
 import 'package:motobox/screens/category_screen.dart';
 import 'package:motobox/screens/garage_screen.dart';
+import 'package:motobox/widgets/app_widgets/home_skeleton_cards.dart';
 import 'package:motobox/widgets/app_widgets/dropup_button.dart';
 import 'package:motobox/widgets/app_widgets/my_bottom_app_bar.dart';
 import 'package:motobox/widgets/routes.dart';
@@ -42,6 +43,19 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
+  late bool _isLoading;
+
+  @override
+  void initState() {
+    _isLoading = true;
+    Future.delayed(const Duration(seconds: 2), () {
+      setState(() {
+        _isLoading = false;
+      });
+    });
+    super.initState();
+  }
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -71,7 +85,11 @@ class _MyAppState extends State<MyApp> {
                   ],
                 ),
                 drawer: const MainDrawer(),
-                body: _pages[_index]["page"] as Widget,
+                body: _isLoading
+                    ? const Center(
+                        child: HomeSkeletonCards(),
+                      )
+                    : _pages[_index]["page"] as Widget,
                 extendBody: true,
                 floatingActionButtonLocation:
                     FloatingActionButtonLocation.centerDocked,

@@ -16,6 +16,11 @@ class _InvoicesListState extends State<InvoicesList> {
   var _isLoading = false;
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   void didChangeDependencies() {
     if (_isInit) {
       setState(() {
