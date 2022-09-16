@@ -52,7 +52,8 @@ class AppTheme with ChangeNotifier {
     if (sw == true) {
       sw = false; // LIDHT MODE
       myTheme = ThemeData(
-        drawerTheme: const DrawerThemeData(backgroundColor: Colors.yellow),
+        drawerTheme: const DrawerThemeData(
+            backgroundColor: Color.fromARGB(255, 202, 202, 202)),
         colorScheme: ColorScheme.fromSwatch().copyWith(
             primary: Colors.indigoAccent.shade700,
             secondary: Colors.tealAccent.shade700,
@@ -93,7 +94,8 @@ class AppTheme with ChangeNotifier {
     } else {
       sw = true; // DARK MODE
       myTheme = ThemeData(
-        drawerTheme: const DrawerThemeData(backgroundColor: Colors.pink),
+        drawerTheme: const DrawerThemeData(
+            backgroundColor: Color.fromARGB(255, 75, 75, 75)),
         colorScheme: ColorScheme.fromSwatch().copyWith(
             primary: Colors.indigoAccent.shade700,
             secondary: Colors.tealAccent.shade700,

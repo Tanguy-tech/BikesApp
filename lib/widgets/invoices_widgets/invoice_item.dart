@@ -22,7 +22,10 @@ class InvoiceItem extends StatelessWidget {
         textAlign: TextAlign.left,
         style: const TextStyle(fontSize: 14),
       ),
-      subtitle: Text('${invoice.title}   Total: ${invoice.price.toString()}€'),
+      subtitle: Text(
+        '${invoice.title}   Total: ${invoice.price.toString()}€',
+        style: TextStyle(color: Theme.of(context).textTheme.labelSmall?.color),
+      ),
       //trailing: Icon(Icons.more_vert),
       isThreeLine: true,
     );
