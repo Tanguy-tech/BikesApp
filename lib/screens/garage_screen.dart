@@ -18,15 +18,21 @@ class MyGarageScreen extends StatelessWidget {
           children: [
             Card(
               elevation: 5,
-              margin: const EdgeInsets.all(10),
+              margin:
+                  const EdgeInsets.only(bottom: 8, top: 8, left: 4, right: 4),
               shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(20))),
+                  borderRadius: BorderRadius.all(Radius.circular(10))),
               child: ChangeNotifierProvider(
                 create: (_) => BikeDatas(),
                 builder: (context, child) => const BikeMainInfo(),
               ),
             ),
-            const TwinListsHeader(),
+            const Card(
+              elevation: 5,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(10))),
+              child: TwinListsHeader(),
+            ),
             Stack(
               children: [
                 Container(

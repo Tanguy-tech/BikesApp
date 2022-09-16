@@ -12,7 +12,7 @@ class TwinListsHeader extends StatelessWidget {
             Container(
               height: 30,
               width: constraints.maxWidth,
-              margin: const EdgeInsets.only(left: 10, right: 10),
+              //margin: const EdgeInsets.only(left: 10, right: 10),
               decoration: BoxDecoration(
                   color: const Color.fromRGBO(0, 156, 255, 100),
                   borderRadius: BorderRadius.circular(10)),

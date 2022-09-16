@@ -109,8 +109,8 @@ class FuelConsumptions with ChangeNotifier {
           pricePerLitter: fc.pricePerLitter,
           volume: fc.volume,
           dashKm: fc.dashKm);
-      _fuelConsumptions.add(newFc); // at the end of list
-      //_fuelConsumptions.insert(0, newFc); // at the begining of list
+      //_fuelConsumptions.add(newFc); // at the end of list
+      _fuelConsumptions.insert(0, newFc); // at the begining of list
       notifyListeners();
     } catch (error) {
       rethrow;

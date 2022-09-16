@@ -96,8 +96,8 @@ class Invoices with ChangeNotifier {
           date: inv.date,
           price: inv.price);
       //photo: inv.photo);
-      _invoices.add(newInv);
-      //_invoices.insert(0, newInv);
+      //_invoices.add(newInv);
+      _invoices.insert(0, newInv);
       notifyListeners();
     } catch (error) {
       rethrow;

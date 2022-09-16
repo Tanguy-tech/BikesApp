@@ -11,23 +11,23 @@ class ListSkeletonCards extends StatelessWidget {
       return Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 10.0, right: 10, bottom: 10),
+            padding: const EdgeInsets.only(left: 4.0, right: 4.0, bottom: 10),
             child: Skeleton(85, constraints.maxWidth),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 10.0, right: 10, bottom: 10),
+            padding: const EdgeInsets.only(left: 4.0, right: 4.0, bottom: 10),
             child: Skeleton(85, constraints.maxWidth),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 10.0, right: 10, bottom: 10),
+            padding: const EdgeInsets.only(left: 4.0, right: 4.0, bottom: 10),
             child: Skeleton(85, constraints.maxWidth),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 10.0, right: 10, bottom: 10),
+            padding: const EdgeInsets.only(left: 4.0, right: 4.0, bottom: 10),
             child: Skeleton(85, constraints.maxWidth),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 10.0, right: 10, bottom: 10),
+            padding: const EdgeInsets.only(left: 4.0, right: 4.0, bottom: 10),
             child: Skeleton(85, constraints.maxWidth),
           ),
         ],
