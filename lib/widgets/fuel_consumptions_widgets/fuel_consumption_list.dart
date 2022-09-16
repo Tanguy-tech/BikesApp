@@ -3,6 +3,7 @@ import 'package:motobox/providers/fuel_consumptions.dart';
 import 'package:motobox/widgets/app_widgets/lists_skeleton_cards.dart';
 import 'package:motobox/widgets/fuel_consumptions_widgets/dismissible_fuelConsumption_card.dart';
 import 'package:motobox/widgets/fuel_consumptions_widgets/fuel_consumption_item.dart';
+import 'package:motobox/widgets/fuel_consumptions_widgets/fuel_consumption_summary.dart';
 import 'package:provider/provider.dart';
 
 class FuelConsumptionList extends StatefulWidget {
@@ -53,16 +54,31 @@ class _FuelConsumptionListState extends State<FuelConsumptionList> {
           )
         : RefreshIndicator(
             onRefresh: () => _refreshData(context),
-            child: ListView.builder(
-              itemCount: fuelConsumptions.length,
-              itemBuilder: (context, i) => ChangeNotifierProvider.value(
-                value: fuelConsumptions[i],
-                child: DismissibleFuelComsumptionCard(
-                    const FuelCosumptionItem(),
-                    fuelConsumptions[i].id,
-                    widget.isPreview),
-              ),
-            ),
-          );
+            child: widget.isPreview
+                ? ListView.builder(
+                    itemCount: fuelConsumptions.length,
+                    itemBuilder: (context, i) => ChangeNotifierProvider.value(
+                        value: fuelConsumptions[i],
+                        child: DismissibleFuelComsumptionCard(
+                            const FuelCosumptionItem(),
+                            fuelConsumptions[i].id,
+                            widget.isPreview)),
+                  )
+                : Column(
+                    children: [
+                      const FuelConsumptionSummary(),
+                      ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: fuelConsumptions.length,
+                        itemBuilder: (context, i) =>
+                            ChangeNotifierProvider.value(
+                                value: fuelConsumptions[i],
+                                child: DismissibleFuelComsumptionCard(
+                                    const FuelCosumptionItem(),
+                                    fuelConsumptions[i].id,
+                                    widget.isPreview)),
+                      ),
+                    ],
+                  ));
   }
 }

@@ -9,6 +9,7 @@ class FuelConsumption with ChangeNotifier {
   late final double pricePerLitter;
   late final double volume;
   late final double dashKm;
+  late final double kmRidden;
 
   FuelConsumption(
       {required this.id,
@@ -17,5 +18,6 @@ class FuelConsumption with ChangeNotifier {
       required this.price,
       required this.pricePerLitter,
       required this.volume,
-      required this.dashKm});
+      required this.dashKm,
+      required this.kmRidden});
 }

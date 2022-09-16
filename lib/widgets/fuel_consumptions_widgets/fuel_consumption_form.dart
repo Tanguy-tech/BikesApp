@@ -27,7 +27,8 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
       price: 0.0,
       pricePerLitter: 0.0,
       volume: 0.0,
-      dashKm: 0.0);
+      dashKm: 0.0,
+      kmRidden: 0.0);
   var _isLoading = false;
 
   Future<void> _saveForm() async {
@@ -109,7 +110,8 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
                             price: _fc.price,
                             pricePerLitter: _fc.pricePerLitter,
                             volume: _fc.volume,
-                            dashKm: _fc.dashKm);
+                            dashKm: _fc.dashKm,
+                            kmRidden: _fc.kmRidden);
                       },
                       decoration: InputDecoration(
                         hintText: "Fuel type",
@@ -182,7 +184,8 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
                             price: double.parse(value!),
                             pricePerLitter: _fc.pricePerLitter,
                             volume: _fc.volume,
-                            dashKm: _fc.dashKm);
+                            dashKm: _fc.dashKm,
+                            kmRidden: _fc.kmRidden);
                       },
                       decoration: InputDecoration(
                           hintText: "Price",
@@ -225,7 +228,8 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
                             price: _fc.price,
                             pricePerLitter: _fc.pricePerLitter,
                             volume: double.parse(value!),
-                            dashKm: _fc.dashKm);
+                            dashKm: _fc.dashKm,
+                            kmRidden: _fc.kmRidden);
                       },
                       decoration: InputDecoration(
                           hintText: "Volume",
@@ -268,7 +272,8 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
                             price: _fc.price,
                             pricePerLitter: _fc.pricePerLitter,
                             volume: _fc.volume,
-                            dashKm: double.parse(value!));
+                            dashKm: double.parse(value!),
+                            kmRidden: _fc.kmRidden);
                       },
                       decoration: InputDecoration(
                           hintText: "Dashboard km",

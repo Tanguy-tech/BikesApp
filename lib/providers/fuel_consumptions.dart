@@ -79,7 +79,8 @@ class FuelConsumptions with ChangeNotifier {
                 price: fcDATA['price'],
                 pricePerLitter: fcDATA['pricePerLitter'],
                 volume: fcDATA['volume'],
-                dashKm: fcDATA['dashKm']));
+                dashKm: fcDATA['dashKm'],
+                kmRidden: fcDATA['kmRidden']));
       });
       _fuelConsumptions = loadedFuelConsumptions;
       notifyListeners();
@@ -99,7 +100,8 @@ class FuelConsumptions with ChangeNotifier {
             'price': fc.price,
             'pricePerLitter': fc.pricePerLitter,
             'volume': fc.volume,
-            'dashKm': fc.dashKm
+            'dashKm': fc.dashKm,
+            'kmRidden': fc.kmRidden
           }));
       final newFc = FuelConsumption(
           id: json.decode(response.body)['name'],
@@ -108,7 +110,8 @@ class FuelConsumptions with ChangeNotifier {
           price: fc.price,
           pricePerLitter: fc.pricePerLitter,
           volume: fc.volume,
-          dashKm: fc.dashKm);
+          dashKm: fc.dashKm,
+          kmRidden: fc.kmRidden);
       //_fuelConsumptions.add(newFc); // at the end of list
       _fuelConsumptions.insert(0, newFc); // at the begining of list
       notifyListeners();
