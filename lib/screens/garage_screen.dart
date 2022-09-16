@@ -42,7 +42,10 @@ class MyGarageScreen extends StatelessWidget {
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: const [
-                      Expanded(child: InvoicesList()),
+                      Expanded(
+                          child: InvoicesList(
+                        isPreview: true,
+                      )),
                       Expanded(
                           child: FuelConsumptionList(
                         isPreview: true,

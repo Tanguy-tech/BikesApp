@@ -9,62 +9,73 @@ import '../../screens/invoices_screens/edit_invoice_screen.dart';
 class DismissibleInvoiceCard extends StatelessWidget {
   Widget? children;
   String id;
-  DismissibleInvoiceCard(this.children, this.id, {Key? key}) : super(key: key);
+  final bool _isPreview;
+  DismissibleInvoiceCard(this.children, this.id, this._isPreview, {Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final fcData = Provider.of<Invoice>(context);
+    final invData = Provider.of<Invoice>(context);
     final scaffold = ScaffoldMessenger.of(context);
     return GestureDetector(
       onTap: () {
-        showDialog(
-          context: context,
-          builder: (context) => Container(
-            padding: const EdgeInsets.symmetric(vertical: 250, horizontal: 80),
-            child: Stack(
-              children: [
-                Card(
-                  margin: const EdgeInsets.only(top: 50.0),
-                  child: SizedBox(
-                    height: 400.0,
-                    width: double.infinity,
-                    child: Center(
-                      child: ListTile(
-                        leading: IconButton(
-                            onPressed: () {
-                              Navigator.of(context).pushReplacementNamed(
-                                  EditInvoiceScreen.routeName);
-                            },
-                            icon: const Icon(Icons.edit)),
-                        title: Text(
-                          '${fcData.price}',
-                          style: TextStyle(
-                              color:
-                                  Theme.of(context).textTheme.bodyLarge?.color),
+        _isPreview
+            ? showDialog(
+                context: context,
+                builder: (context) => Container(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 250, horizontal: 80),
+                  child: Stack(
+                    children: [
+                      Card(
+                        margin: const EdgeInsets.only(top: 50.0),
+                        child: SizedBox(
+                          height: 400.0,
+                          width: double.infinity,
+                          child: Center(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                IconButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pushReplacementNamed(
+                                        EditInvoiceScreen.routeName);
+                                  },
+                                  icon: const Icon(Icons.edit),
+                                ),
+                                Text(
+                                  'title: ${invData.title}\nPrice: ${invData.price}€',
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold),
+                                )
+                              ],
+                            ),
+                          ),
                         ),
-                        subtitle: const Text('SUBTITLE'),
                       ),
-                    ),
+                      Positioned(
+                        //top: .0,
+                        bottom: 170,
+                        left: .0,
+                        right: .0,
+                        child: Center(
+                          child: CircleAvatar(
+                            backgroundColor:
+                                Theme.of(context).colorScheme.primary,
+                            radius: 45.0,
+                            child: Icon(Icons.receipt,
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .titleLarge
+                                    ?.color),
+                          ),
+                        ),
+                      )
+                    ],
                   ),
                 ),
-                Positioned(
-                  //top: .0,
-                  bottom: 170,
-                  left: .0,
-                  right: .0,
-                  child: Center(
-                    child: CircleAvatar(
-                      backgroundColor: Theme.of(context).colorScheme.primary,
-                      radius: 45.0,
-                      child: Icon(Icons.receipt,
-                          color: Theme.of(context).textTheme.titleLarge?.color),
-                    ),
-                  ),
-                )
-              ],
-            ),
-          ),
-        );
+              )
+            : {Navigator.of(context).pushNamed(EditInvoiceScreen.routeName)};
       },
       child: Card(
         elevation: 5,

@@ -4,9 +4,11 @@ import 'package:motobox/widgets/invoices_widgets/dismissible_invoice_card.dart';
 import 'package:provider/provider.dart';
 import '../../providers/invoices.dart';
 import 'invoice_item.dart';
+import 'invoice_summary.dart';
 
 class InvoicesList extends StatefulWidget {
-  const InvoicesList({Key? key}) : super(key: key);
+  final bool isPreview;
+  const InvoicesList({Key? key, required this.isPreview}) : super(key: key);
 
   @override
   State<InvoicesList> createState() => _InvoicesListState();
@@ -53,14 +55,29 @@ class _InvoicesListState extends State<InvoicesList> {
           )
         : RefreshIndicator(
             onRefresh: () => _refreshData(context),
-            child: ListView.builder(
-              itemCount: invoices.length,
-              itemBuilder: (context, i) => ChangeNotifierProvider.value(
-                value: invoices[i],
-                child:
-                    DismissibleInvoiceCard(const InvoiceItem(), invoices[i].id),
-              ),
-            ),
-          );
+            child: widget.isPreview
+                ? ListView.builder(
+                    itemCount: invoices.length,
+                    itemBuilder: (context, i) => ChangeNotifierProvider.value(
+                      value: invoices[i],
+                      child: DismissibleInvoiceCard(const InvoiceItem(),
+                          invoices[i].id, widget.isPreview),
+                    ),
+                  )
+                : Column(
+                    children: [
+                      const InvoiceSummary(),
+                      ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: invoices.length,
+                        itemBuilder: (context, i) =>
+                            ChangeNotifierProvider.value(
+                          value: invoices[i],
+                          child: DismissibleInvoiceCard(const InvoiceItem(),
+                              invoices[i].id, widget.isPreview),
+                        ),
+                      )
+                    ],
+                  ));
   }
 }

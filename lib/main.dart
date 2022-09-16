@@ -4,7 +4,6 @@ import 'package:motobox/providers/invoices.dart';
 import 'package:motobox/providers/theme_provider.dart';
 import 'package:motobox/screens/category_screen.dart';
 import 'package:motobox/screens/garage_screen.dart';
-import 'package:motobox/widgets/app_widgets/home_skeleton_cards.dart';
 import 'package:motobox/widgets/app_widgets/dropup_button.dart';
 import 'package:motobox/widgets/app_widgets/my_bottom_app_bar.dart';
 import 'package:motobox/widgets/routes.dart';

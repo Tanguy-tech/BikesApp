@@ -34,23 +34,24 @@ class DismissibleFuelComsumptionCard extends StatelessWidget {
                           height: 400.0,
                           width: double.infinity,
                           child: Center(
-                              child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              IconButton(
-                                onPressed: () {
-                                  Navigator.of(context).pushReplacementNamed(
-                                      EditFuelConsumptionScreen.routeName);
-                                },
-                                icon: const Icon(Icons.edit),
-                              ),
-                              Text(
-                                'Fuel: ${fcData.fuelType}\nVol: ${fcData.volume}L\nprice: ${fcData.price}€\n€/L: ${fcData.pricePerLitter}€',
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.bold),
-                              )
-                            ],
-                          )),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                IconButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pushReplacementNamed(
+                                        EditFuelConsumptionScreen.routeName);
+                                  },
+                                  icon: const Icon(Icons.edit),
+                                ),
+                                Text(
+                                  'Fuel: ${fcData.fuelType}\nVol: ${fcData.volume}L\nprice: ${fcData.price}€\n€/L: ${fcData.pricePerLitter}€',
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold),
+                                )
+                              ],
+                            ),
+                          ),
                         ),
                       ),
                       Positioned(

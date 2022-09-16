@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:motobox/providers/fuel_consumptions.dart';
+import 'package:motobox/providers/invoices.dart';
 import 'package:provider/provider.dart';
 
-class FuelConsumptionSummary extends StatefulWidget {
-  const FuelConsumptionSummary({Key? key}) : super(key: key);
+class InvoiceSummary extends StatefulWidget {
+  const InvoiceSummary({Key? key}) : super(key: key);
 
   @override
-  State<FuelConsumptionSummary> createState() => _FuelConsumptionSummaryState();
+  State<InvoiceSummary> createState() => _InvoiceSummaryState();
 }
 
-class _FuelConsumptionSummaryState extends State<FuelConsumptionSummary> {
+class _InvoiceSummaryState extends State<InvoiceSummary> {
   @override
   Widget build(BuildContext context) {
-    final data = Provider.of<FuelConsumptions>(context).consumptions;
+    final data = Provider.of<Invoices>(context).invoices;
     double totalCosts = 0;
     double mostExpensive = 0;
     for (var element in data) {
