@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:motobox/screens/fuel_consumptions_screens/edit_fuel_cosumption_screen.dart';
+import 'package:motobox/screens/fuel_consumptions_screens/fuel_consumption_form_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../../providers/fuel_consumption.dart';
@@ -40,7 +40,7 @@ class DismissibleFuelComsumptionCard extends StatelessWidget {
                                 IconButton(
                                   onPressed: () {
                                     Navigator.of(context).pushReplacementNamed(
-                                        EditFuelConsumptionScreen.routeName);
+                                        FuelConsrumptionFormScreen.routeName);
                                   },
                                   icon: const Icon(Icons.edit),
                                 ),
@@ -78,7 +78,7 @@ class DismissibleFuelComsumptionCard extends StatelessWidget {
               )
             : {
                 Navigator.of(context)
-                    .pushNamed(EditFuelConsumptionScreen.routeName)
+                    .pushNamed(FuelConsrumptionFormScreen.routeName)
               };
       },
       child: Card(

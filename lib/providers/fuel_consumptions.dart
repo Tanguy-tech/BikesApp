@@ -120,6 +120,33 @@ class FuelConsumptions with ChangeNotifier {
     }
   }
 
+  Future<void> updateFuelConsumption(String id, FuelConsumption newFc) async {
+    final fuelConsumptionIndex =
+        _fuelConsumptions.indexWhere((fc) => newFc.id == id);
+    if (fuelConsumptionIndex >= 0) {
+      final url = Uri.parse(
+          'https://motobox-eedda-default-rtdb.europe-west1.firebasedatabase.app/fuel_consumptions/$id.json');
+      try {
+        await http.patch(url,
+            body: json.encode({
+              'fuelType': newFc.fuelType,
+              'date': DateFormat('dd.MM.yy').format(newFc.date),
+              'price': newFc.price,
+              'pricePerLitter': newFc.pricePerLitter,
+              'dashKm': newFc.dashKm,
+              'volume': newFc.volume,
+              'kmRidden': newFc.kmRidden
+            }));
+        _fuelConsumptions[fuelConsumptionIndex] = newFc;
+        notifyListeners();
+      } catch (error) {
+        rethrow;
+      }
+    } else {
+      print('...');
+    }
+  }
+
   Future<void> deleteFuelConsumption(String id) async {
     final url = Uri.parse(
         'https://motobox-eedda-default-rtdb.europe-west1.firebasedatabase.app/fuel_consumptions/$id.json');

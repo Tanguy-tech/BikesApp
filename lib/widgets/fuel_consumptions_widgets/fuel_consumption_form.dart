@@ -40,6 +40,10 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
     setState(() {
       _isLoading = true;
     });
+    // if (_fc.id != null) {
+    //   // await Provider.of<FuelConsumptions>(context, listen: false)
+    //   //     .updateFuelConsumption(_fc.id, _fc);
+    // } else {
     try {
       await Provider.of<FuelConsumptions>(context, listen: false)
           .addFuelConsumption(_fc);
@@ -66,6 +70,11 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
       Navigator.of(context).pop();
     }
   }
+  // setState(() {
+  //   _isLoading = false;
+  // });
+  // Navigator.of(context).pop();
+  //}
 
   @override
   void dispose() {

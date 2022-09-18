@@ -14,7 +14,7 @@ class FuelConsrumptionFormScreen extends StatelessWidget {
     final theme = Provider.of<AppTheme>(context);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Add Refill'),
+        title: const Text('Add or Edit a Refill'),
         actions: [
           Switch(
               onChanged: (value) => theme.toogleTheme(context), value: theme.sw)
