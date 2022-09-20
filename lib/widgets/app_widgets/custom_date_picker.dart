@@ -54,10 +54,13 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
     return CupertinoFormRow(
       prefix: Text(
         'Date',
-        style: TextStyle(color: Theme.of(context).textTheme.labelMedium?.color),
+        style: TextStyle(
+          color: Theme.of(context).textTheme.labelMedium?.color,
+          fontWeight: FontWeight.w500,
+        ),
       ),
       child: CupertinoButton(
-        padding: const EdgeInsets.all(0),
+        padding: const EdgeInsets.all(10),
         onPressed: () {
           _showDatePicker().then((date) {
             setState(() {
@@ -67,7 +70,7 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
         },
         child: Container(
           alignment: Alignment.centerLeft,
-          padding: const EdgeInsets.only(left: 26),
+          padding: const EdgeInsets.only(left: 16),
           child: widget.editing
               ? Text(
                   DateFormat('dd - MM - yy')

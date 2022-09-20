@@ -78,6 +78,7 @@ class _InvoicesListState extends State<InvoicesList> {
                         ),
                       )
                     ],
-                  ));
+                  ),
+          );
   }
 }

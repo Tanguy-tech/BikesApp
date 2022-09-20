@@ -18,7 +18,9 @@ class AppTheme with ChangeNotifier {
         secondary: Colors.tealAccent.shade700,
         brightness: Brightness.light),
     backgroundColor: Colors.indigoAccent.shade700,
-    appBarTheme: AppBarTheme(backgroundColor: Colors.indigoAccent.shade700),
+    appBarTheme: AppBarTheme(
+        backgroundColor: Colors.indigoAccent.shade700,
+        foregroundColor: Colors.white),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
         backgroundColor: Colors.indigoAccent.shade700,
         selectedItemColor: Colors.white,
@@ -45,6 +47,8 @@ class AppTheme with ChangeNotifier {
               color: Colors.white),
           labelSmall: const TextStyle(color: Color.fromARGB(255, 33, 33, 33)),
         ),
+    cupertinoOverrideTheme: const NoDefaultCupertinoThemeData(
+        textTheme: CupertinoTextThemeData(primaryColor: CupertinoColors.white)),
   );
 
   void toogleTheme(BuildContext ctx) {
@@ -60,6 +64,7 @@ class AppTheme with ChangeNotifier {
             brightness: Brightness.light),
         backgroundColor: Colors.indigoAccent.shade700,
         appBarTheme: AppBarTheme(
+            foregroundColor: Colors.white,
             backgroundColor:
                 Theme.of(navigatorKey.currentContext!).colorScheme.primary),
         bottomNavigationBarTheme: BottomNavigationBarThemeData(
@@ -90,6 +95,9 @@ class AppTheme with ChangeNotifier {
                 color: Colors.white),
             labelSmall:
                 const TextStyle(color: Color.fromARGB(255, 33, 33, 33))),
+        cupertinoOverrideTheme: const NoDefaultCupertinoThemeData(
+            textTheme:
+                CupertinoTextThemeData(primaryColor: CupertinoColors.white)),
       );
     } else {
       sw = true; // DARK MODE

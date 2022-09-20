@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:motobox/providers/theme_provider.dart';
 import 'package:motobox/screens/invoices_screens/invoice_form_screen.dart';
@@ -14,14 +15,28 @@ class InvoiceScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Provider.of<AppTheme>(context);
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("My invoices"),
-        actions: [
-          Switch(
-              onChanged: (value) => theme.toogleTheme(context), value: theme.sw)
-        ],
-      ),
       drawer: const MainDrawer(),
+      endDrawerEnableOpenDragGesture: true,
+      appBar: CupertinoNavigationBar(
+        backgroundColor: Theme.of(context).backgroundColor,
+        leading: Builder(
+          builder: (context) {
+            return CupertinoButton(
+              padding: const EdgeInsets.all(0),
+              child: Icon(Icons.menu,
+                  color: Theme.of(context).appBarTheme.foregroundColor),
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+            );
+          },
+        ),
+        middle: Text(
+          "My invoices",
+          style:
+              TextStyle(color: Theme.of(context).appBarTheme.foregroundColor),
+        ),
+      ),
       body: const InvoicesList(isPreview: false),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Theme.of(context).backgroundColor,

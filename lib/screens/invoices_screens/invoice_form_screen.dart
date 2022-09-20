@@ -15,10 +15,6 @@ class InvoiceFormScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Add an invoice'),
-        actions: [
-          Switch(
-              onChanged: (value) => theme.toogleTheme(context), value: theme.sw)
-        ],
       ),
       body: const InvoiceForm(),
     );

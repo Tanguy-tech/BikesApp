@@ -134,6 +134,7 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
                         prefix: Text(
                           'Fuel type',
                           style: TextStyle(
+                              fontWeight: FontWeight.w500,
                               color: Theme.of(context)
                                   .textTheme
                                   .labelMedium
@@ -182,6 +183,7 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
                         prefix: Text(
                           'Price',
                           style: TextStyle(
+                              fontWeight: FontWeight.w500,
                               color: Theme.of(context)
                                   .textTheme
                                   .labelMedium
@@ -229,6 +231,7 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
                         prefix: Text(
                           'Volume',
                           style: TextStyle(
+                              fontWeight: FontWeight.w500,
                               color: Theme.of(context)
                                   .textTheme
                                   .labelMedium
@@ -274,6 +277,7 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
                         prefix: Text(
                           'KM',
                           style: TextStyle(
+                              fontWeight: FontWeight.w500,
                               color: Theme.of(context)
                                   .textTheme
                                   .labelMedium

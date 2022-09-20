@@ -70,21 +70,37 @@ class _MyAppState extends State<MyApp> {
             themeMode: theme.mode,
             home: Builder(builder: (context) {
               return Scaffold(
-                appBar: AppBar(
-                  elevation: 5,
-                  title: Text(
-                    _pages[_index]["title"] as String,
-                    style: theme.myTheme.textTheme.titleLarge,
+                endDrawerEnableOpenDragGesture: true,
+                drawer: const MainDrawer(),
+                appBar: CupertinoNavigationBar(
+                  backgroundColor: Theme.of(context).backgroundColor,
+                  leading: Builder(
+                    builder: (context) {
+                      return CupertinoButton(
+                        padding: const EdgeInsets.all(0),
+                        child: Icon(Icons.menu,
+                            color:
+                                Theme.of(context).appBarTheme.foregroundColor),
+                        onPressed: () {
+                          Scaffold.of(context).openDrawer();
+                        },
+                      );
+                    },
                   ),
-                  actions: [
-                    CupertinoSwitch(
+                  middle: Text(
+                    _pages[_index]["title"] as String,
+                    style: TextStyle(
+                        color: Theme.of(context).appBarTheme.foregroundColor),
+                  ),
+                  trailing: Transform.scale(
+                    scale: 0.7,
+                    child: CupertinoSwitch(
                         activeColor: Colors.grey.shade800,
                         trackColor: Theme.of(context).canvasColor,
                         onChanged: (value) => theme.toogleTheme(context),
-                        value: theme.sw)
-                  ],
+                        value: theme.sw),
+                  ),
                 ),
-                drawer: const MainDrawer(),
                 body:
                     // _isLoading
                     //     ? const Center(

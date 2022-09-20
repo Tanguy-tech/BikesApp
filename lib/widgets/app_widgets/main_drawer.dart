@@ -25,7 +25,7 @@ class MainDrawer extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            height: 103,
+            //height: 103,
             width: double.infinity,
             padding: const EdgeInsets.all(20),
             alignment: Alignment.centerLeft,
@@ -33,11 +33,10 @@ class MainDrawer extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.only(top: 30),
               child: Text(
-                "MotoBox's Drawer menu",
+                "MotoBox's menu",
                 style: TextStyle(
-                    fontWeight: FontWeight.w900,
-                    fontSize: 20,
-                    color: Theme.of(context).textTheme.titleLarge?.color),
+                    fontSize: 18,
+                    color: Theme.of(context).appBarTheme.foregroundColor),
               ),
             ),
           ),
