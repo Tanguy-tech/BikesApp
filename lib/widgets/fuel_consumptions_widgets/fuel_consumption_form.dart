@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import 'package:motobox/widgets/app_widgets/custom_date_picker.dart';
 import 'package:provider/provider.dart';
 import '../../providers/fuel_consumption.dart';
 import '../../providers/fuel_consumptions.dart';
@@ -31,7 +31,7 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
       kmRidden: 0.0);
   var _initValues = {
     'fuelType': '',
-    'date': '',
+    'date': DateTime,
     'price': '',
     'pricePerLitter': '',
     'volume': '',
@@ -40,6 +40,7 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
   };
   var _isLoading = false;
   var _isInit = true;
+  var _editing = false;
 
   @override
   void didChangeDependencies() {
@@ -50,13 +51,14 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
             .findById(productId);
         _initValues = {
           'fuelType': _fc.fuelType,
-          'date': _fc.date.toString(),
+          'date': _fc.date,
           'price': _fc.price.toString(),
           'pricePerLitter': _fc.pricePerLitter.toString(),
           'volume': _fc.volume.toString(),
           'dashKm': _fc.dashKm.toString(),
           'kmRidden': _fc.kmRidden.toString(),
         };
+        _editing = true;
       }
     }
     _isInit = false;
@@ -96,12 +98,6 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
           ),
         );
       }
-      // finally {
-      //   setState(() {
-      //     _isLoading = false;
-      //   });
-      //   Navigator.of(context).pop();
-      // }
     }
     setState(() {
       _isLoading = false;
@@ -126,221 +122,177 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
           )
         : Form(
             key: _formKey,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ListView(
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: Theme.of(context).backgroundColor),
-                    padding: const EdgeInsets.all(5),
-                    margin: const EdgeInsets.all(10),
-                    child: TextFormField(
-                      initialValue: _initValues['fuelType'],
-                      // The validator receives the text that the user has entered.
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter some text';
-                        }
-                        return null;
-                      },
-                      onSaved: (value) {
-                        _fc = FuelConsumption(
-                            //id: 'ongoing', // to set the id different of 'id' -> means _fc already exists
-                            id: _fc.id,
-                            fuelType: value!,
-                            date: _fc.date,
-                            price: _fc.price,
-                            pricePerLitter: _fc.pricePerLitter,
-                            volume: _fc.volume,
-                            dashKm: _fc.dashKm,
-                            kmRidden: _fc.kmRidden);
-                      },
-                      decoration: InputDecoration(
-                        hintText: "Fuel type",
-                        hintStyle: TextStyle(
-                            color:
-                                Theme.of(context).textTheme.labelSmall?.color,
-                            fontSize: 15,
-                            fontWeight: FontWeight.w600),
+            child: ListView(
+              children: [
+                CupertinoFormSection.insetGrouped(
+                    backgroundColor: Theme.of(context).canvasColor,
+                    margin: const EdgeInsets.all(8),
+                    children: [
+                      CupertinoFormRow(
+                        prefix: const Text('Fuel type'),
+                        child: CupertinoTextFormFieldRow(
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          initialValue: _initValues['fuelType'].toString(),
+                          placeholder: 'Enter fuel type used',
+                          textInputAction: TextInputAction.next,
+                          onFieldSubmitted: (_) {
+                            FocusScope.of(context).requestFocus(_dateFocusNode);
+                          },
+                          onSaved: (value) {
+                            _fc = FuelConsumption(
+                                //id: 'ongoing', // to set the id different of 'id' -> means _fc already exists
+                                id: _fc.id,
+                                fuelType: value!,
+                                date: _fc.date,
+                                price: _fc.price,
+                                pricePerLitter: _fc.pricePerLitter,
+                                volume: _fc.volume,
+                                dashKm: _fc.dashKm,
+                                kmRidden: _fc.kmRidden);
+                          },
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter some text';
+                            }
+                            return null;
+                          },
+                        ),
                       ),
-                      textInputAction: TextInputAction.next,
-                      onFieldSubmitted: (_) {
-                        FocusScope.of(context).requestFocus(_dateFocusNode);
-                      },
-                    ),
-                  ),
-                  //Platform.isIOS ?
-                  Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: Theme.of(context).backgroundColor),
-                    child: CupertinoButton(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Theme.of(context).backgroundColor,
-                      // focusNode: _dateFocusNode,
-                      // style: const ButtonStyle(alignment: Alignment.centerLeft),
-                      onPressed: () {
-                        showDatePicker(
-                                context: context,
-                                initialDate: DateTime.now(),
-                                firstDate: DateTime(2000),
-                                lastDate: DateTime.now())
-                            .then((date) {
-                          setState(() {
-                            _dateTime = date!;
-                          });
-                        });
-                      },
-                      child: Text(
-                        'Select a date :   ${DateFormat('dd - MM - yy').format(_dateTime)}',
-                        style: TextStyle(
-                            color:
-                                Theme.of(context).textTheme.labelSmall?.color,
-                            fontWeight: FontWeight.w500),
-                      ),
-                    ),
-                  ),
-                  //],
-                  Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: Theme.of(context).backgroundColor),
-                    padding: const EdgeInsets.all(5),
-                    margin: const EdgeInsets.all(10),
-                    child: TextFormField(
-                      initialValue: _initValues['price'],
-                      // The validator receives the text that the user has entered.
-                      validator: (value) {
-                        if (value?.isEmpty == true) {
-                          return 'Please enter some text';
-                        }
-                        if (double.tryParse(value!) == null) {
-                          return 'Please enter a valid price';
-                        }
-                        return null;
-                      },
-                      onSaved: (value) {
-                        _fc = FuelConsumption(
-                            id: _fc.id,
-                            fuelType: _fc.fuelType,
-                            date: _fc.date,
-                            price: double.parse(value!),
-                            pricePerLitter: _fc.pricePerLitter,
-                            volume: _fc.volume,
-                            dashKm: _fc.dashKm,
-                            kmRidden: _fc.kmRidden);
-                      },
-                      decoration: InputDecoration(
-                          hintText: "Price",
-                          hintStyle: TextStyle(
-                              color:
-                                  Theme.of(context).textTheme.labelSmall?.color,
-                              fontSize: 15,
-                              fontWeight: FontWeight.w600)),
-                      textInputAction: TextInputAction.next,
-                      keyboardType: const TextInputType.numberWithOptions(
-                          signed: true, decimal: true),
-                      focusNode: _priceFocusNode,
-                      onFieldSubmitted: (_) {
-                        FocusScope.of(context).requestFocus(_volumeFocusNode);
-                      },
-                    ),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: Theme.of(context).backgroundColor),
-                    padding: const EdgeInsets.all(5),
-                    margin: const EdgeInsets.all(10),
-                    child: TextFormField(
-                      initialValue: _initValues['volume'],
-                      // The validator receives the text that the user has entered.
-                      validator: (value) {
-                        if (value?.isEmpty == true) {
-                          return 'Please enter some text';
-                        }
-                        if (double.tryParse(value!) == null) {
-                          return 'Please enter a valid volume amount';
-                        }
-                        return null;
-                      },
-                      onSaved: (value) {
-                        _fc = FuelConsumption(
-                            id: _fc.id,
-                            fuelType: _fc.fuelType,
-                            date: _fc.date,
-                            price: _fc.price,
-                            pricePerLitter: _fc.pricePerLitter,
-                            volume: double.parse(value!),
-                            dashKm: _fc.dashKm,
-                            kmRidden: _fc.kmRidden);
-                      },
-                      decoration: InputDecoration(
-                          hintText: "Volume",
-                          hintStyle: TextStyle(
-                              color:
-                                  Theme.of(context).textTheme.labelSmall?.color,
-                              fontSize: 15,
-                              fontWeight: FontWeight.w600)),
-                      textInputAction: TextInputAction.next,
-                      keyboardType: const TextInputType.numberWithOptions(
-                          signed: true, decimal: true),
-                      focusNode: _volumeFocusNode,
-                      onFieldSubmitted: (_) {
-                        FocusScope.of(context).requestFocus(_dashFocusNode);
-                      },
-                    ),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: Theme.of(context).backgroundColor),
-                    padding: const EdgeInsets.all(5),
-                    margin: const EdgeInsets.all(10),
-                    child: TextFormField(
-                      initialValue: _initValues['dashKm'],
-                      // The validator receives the text that the user has entered.
-                      validator: (value) {
-                        if (value?.isEmpty == true) {
-                          return 'Please enter some text';
-                        }
-                        if (double.tryParse(value!) == null) {
-                          return 'Please enter a valid KM metric';
-                        }
-                        return null;
-                      },
-                      onSaved: (value) {
-                        _fc = FuelConsumption(
-                            id: _fc.id,
-                            fuelType: _fc.fuelType,
-                            date: _fc.date,
-                            price: _fc.price,
-                            pricePerLitter: _fc.pricePerLitter,
-                            volume: _fc.volume,
-                            dashKm: double.parse(value!),
-                            kmRidden: _fc.kmRidden);
-                      },
-                      decoration: InputDecoration(
-                          hintText: "Dashboard km",
-                          hintStyle: TextStyle(
-                              color:
-                                  Theme.of(context).textTheme.labelSmall?.color,
-                              fontSize: 15,
-                              fontWeight: FontWeight.w600)),
-                      textInputAction: TextInputAction.next,
-                      onFieldSubmitted: (_) {
-                        _saveForm();
-                      },
-                      keyboardType: const TextInputType.numberWithOptions(
-                          signed: true, decimal: true),
-                      focusNode: _dashFocusNode,
-                    ),
-                  ),
-                  FloatingActionButton(onPressed: _saveForm)
-                ],
-              ),
+                    ]),
+                CupertinoFormSection.insetGrouped(
+                    backgroundColor: Theme.of(context).canvasColor,
+                    margin: const EdgeInsets.all(8),
+                    children: [
+                      CustomDatePicker(
+                          ctx: context,
+                          selectedDate: selectedDate,
+                          dateTime: _dateTime,
+                          initValues: _initValues,
+                          editing: _editing)
+                    ]),
+                CupertinoFormSection.insetGrouped(
+                    backgroundColor: Theme.of(context).canvasColor,
+                    margin: const EdgeInsets.all(8),
+                    children: [
+                      CupertinoFormRow(
+                        prefix: const Text('Price'),
+                        child: CupertinoTextFormFieldRow(
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          initialValue: _initValues['price'].toString(),
+                          placeholder: 'Enter price',
+                          textInputAction: TextInputAction.next,
+                          focusNode: _priceFocusNode,
+                          onFieldSubmitted: (_) {
+                            FocusScope.of(context)
+                                .requestFocus(_volumeFocusNode);
+                          },
+                          onSaved: (value) {
+                            _fc = FuelConsumption(
+                                //id: 'ongoing', // to set the id different of 'id' -> means _fc already exists
+                                id: _fc.id,
+                                fuelType: _fc.fuelType,
+                                date: _fc.date,
+                                price: double.parse(value!),
+                                pricePerLitter: _fc.pricePerLitter,
+                                volume: _fc.volume,
+                                dashKm: _fc.dashKm,
+                                kmRidden: _fc.kmRidden);
+                          },
+                          validator: (value) {
+                            if (value?.isEmpty == true) {
+                              return 'Please enter an amount';
+                            }
+                            if (double.tryParse(value!) == null) {
+                              return 'Please enter a valid price';
+                            }
+                            return null;
+                          },
+                        ),
+                      )
+                    ]),
+                CupertinoFormSection.insetGrouped(
+                    backgroundColor: Theme.of(context).canvasColor,
+                    margin: const EdgeInsets.all(8),
+                    children: [
+                      CupertinoFormRow(
+                        prefix: const Text('Volume'),
+                        child: CupertinoTextFormFieldRow(
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          initialValue: _initValues['volume'].toString(),
+                          placeholder: 'Enter volume',
+                          textInputAction: TextInputAction.next,
+                          onFieldSubmitted: (_) {
+                            FocusScope.of(context).requestFocus(_dashFocusNode);
+                          },
+                          onSaved: (value) {
+                            _fc = FuelConsumption(
+                                //id: 'ongoing', // to set the id different of 'id' -> means _fc already exists
+                                id: _fc.id,
+                                fuelType: _fc.fuelType,
+                                date: _fc.date,
+                                price: _fc.price,
+                                pricePerLitter: _fc.pricePerLitter,
+                                volume: double.parse(value!),
+                                dashKm: _fc.dashKm,
+                                kmRidden: _fc.kmRidden);
+                          },
+                          validator: (value) {
+                            if (value?.isEmpty == true) {
+                              return 'Please enter an amount';
+                            }
+                            if (double.tryParse(value!) == null) {
+                              return 'Please enter a valid volume amount';
+                            }
+                            return null;
+                          },
+                        ),
+                      )
+                    ]),
+                CupertinoFormSection.insetGrouped(
+                    backgroundColor: Theme.of(context).canvasColor,
+                    margin: const EdgeInsets.all(8),
+                    children: [
+                      CupertinoFormRow(
+                        prefix: const Text('KM'),
+                        child: CupertinoTextFormFieldRow(
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          initialValue: _initValues['dashKm'].toString(),
+                          placeholder: 'Enter dashboard km',
+                          textInputAction: TextInputAction.next,
+                          onFieldSubmitted: (_) {
+                            _saveForm();
+                          },
+                          onSaved: (value) {
+                            _fc = FuelConsumption(
+                                //id: 'ongoing', // to set the id different of 'id' -> means _fc already exists
+                                id: _fc.id,
+                                fuelType: _fc.fuelType,
+                                date: _fc.date,
+                                price: _fc.price,
+                                pricePerLitter: _fc.pricePerLitter,
+                                volume: _fc.volume,
+                                dashKm: double.parse(value!),
+                                kmRidden: _fc.kmRidden);
+                          },
+                          validator: (value) {
+                            if (value?.isEmpty == true) {
+                              return 'Please enter an amount';
+                            }
+                            if (double.tryParse(value!) == null) {
+                              return 'Please enter a valid KM metric';
+                            }
+                            return null;
+                          },
+                        ),
+                      )
+                    ]),
+                Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 8),
+                  width: double.infinity,
+                  child: CupertinoButton.filled(
+                      onPressed: _saveForm, child: const Text('Submit')),
+                )
+              ],
             ),
           );
   }

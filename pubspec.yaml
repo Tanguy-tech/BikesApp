@@ -38,6 +38,7 @@ dependencies:
   date_format:
   intl:
   flutter_launcher_icons: "^0.10.0"
+  fluttertoast: ^8.0.9
   cool_dropdown: ^1.4.2
   http: ^0.13.5
   swipeable_tile:

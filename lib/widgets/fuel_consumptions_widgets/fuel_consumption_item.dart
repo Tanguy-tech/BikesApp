@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:motobox/screens/fuel_consumptions_screens/fuel_consumption_form_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../../providers/fuel_consumption.dart';
@@ -13,20 +14,26 @@ class FuelCosumptionItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final fuelConsumption =
         Provider.of<FuelConsumption>(context, listen: false);
-    return ListTile(
-      minLeadingWidth: 0,
-      leading: const SizedBox(
-          height: double.infinity,
-          child: Icon(Icons.oil_barrel, color: Colors.white)),
-      title: Text(
-        '${DateFormat('dd.MM.yy').format(fuelConsumption.date)}     ${fuelConsumption.fuelType}',
-        textAlign: TextAlign.left,
-        style: const TextStyle(fontSize: 14),
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).pushNamed(FuelConsrumptionFormScreen.routeName,
+            arguments: fuelConsumption.id);
+      },
+      child: ListTile(
+        minLeadingWidth: 0,
+        leading: const SizedBox(
+            height: double.infinity,
+            child: Icon(Icons.oil_barrel, color: Colors.white)),
+        title: Text(
+          '${DateFormat('dd.MM.yy').format(fuelConsumption.date)}     ${fuelConsumption.fuelType}',
+          textAlign: TextAlign.left,
+          style: const TextStyle(fontSize: 14),
+        ),
+        subtitle: Text(
+            '${fuelConsumption.pricePerLitter.toString()}€/L ${fuelConsumption.volume.toString()}L Total: ${fuelConsumption.price.toString()}€'),
+        //trailing: Icon(Icons.more_vert),
+        isThreeLine: true,
       ),
-      subtitle: Text(
-          '${fuelConsumption.pricePerLitter.toString()}€/L ${fuelConsumption.volume.toString()}L Total: ${fuelConsumption.price.toString()}€'),
-      //trailing: Icon(Icons.more_vert),
-      isThreeLine: true,
     );
   }
 }
