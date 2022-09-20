@@ -16,7 +16,9 @@ class MyBottomAppBar extends StatelessWidget {
     return BottomAppBar(
       notchMargin: 5,
       color: theme.myTheme.bottomNavigationBarTheme.backgroundColor,
-      shape: const CircularNotchedRectangle(),
+      // shape: const CircularNotchedRectangle(),
+      shape: const AutomaticNotchedShape(
+          RoundedRectangleBorder(), StadiumBorder(side: BorderSide())),
       elevation: 0,
       child: BottomNavigationBar(
           backgroundColor: theme
