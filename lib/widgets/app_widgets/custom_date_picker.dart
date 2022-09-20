@@ -30,8 +30,8 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
         builder: (BuildContext builder) {
           return Container(
             height: MediaQuery.of(widget.ctx).copyWith().size.height * 0.25,
-            color: Colors.white,
             child: CupertinoDatePicker(
+              backgroundColor: CupertinoColors.systemBackground,
               mode: CupertinoDatePickerMode.date,
               onDateTimeChanged: (value) {
                 if (value != null && value != widget.selectedDate) {
@@ -52,7 +52,10 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
   @override
   Widget build(BuildContext context) {
     return CupertinoFormRow(
-      prefix: const Text('Date'),
+      prefix: Text(
+        'Date',
+        style: TextStyle(color: Theme.of(context).textTheme.labelMedium?.color),
+      ),
       child: CupertinoButton(
         padding: const EdgeInsets.all(0),
         onPressed: () {
@@ -62,15 +65,21 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
             });
           });
         },
-        child: Center(
+        child: Container(
+          alignment: Alignment.centerLeft,
+          padding: const EdgeInsets.only(left: 26),
           child: widget.editing
               ? Text(
                   DateFormat('dd - MM - yy')
                       .format(widget.initValues['date'] as DateTime),
-                  style: const TextStyle(color: CupertinoColors.black),
+                  style: TextStyle(
+                      color: Theme.of(context).textTheme.labelSmall?.color),
                 )
-              : Text(DateFormat('dd - MM - yy').format(widget.dateTime),
-                  style: const TextStyle(color: CupertinoColors.black)),
+              : Text(
+                  DateFormat('dd - MM - yy').format(widget.dateTime),
+                  style: TextStyle(
+                      color: Theme.of(context).textTheme.labelSmall?.color),
+                ),
         ),
       ),
     );

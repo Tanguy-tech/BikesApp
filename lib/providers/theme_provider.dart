@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AppTheme with ChangeNotifier {
@@ -42,8 +43,7 @@ class AppTheme with ChangeNotifier {
               fontSize: 15,
               fontWeight: FontWeight.bold,
               color: Colors.white),
-          labelSmall:
-              const TextStyle(color: Color.fromARGB(255, 178, 178, 178)),
+          labelSmall: const TextStyle(color: Color.fromARGB(255, 33, 33, 33)),
         ),
   );
 
@@ -89,7 +89,7 @@ class AppTheme with ChangeNotifier {
                 fontWeight: FontWeight.bold,
                 color: Colors.white),
             labelSmall:
-                const TextStyle(color: Color.fromARGB(255, 178, 178, 178))),
+                const TextStyle(color: Color.fromARGB(255, 33, 33, 33))),
       );
     } else {
       sw = true; // DARK MODE
@@ -137,8 +137,10 @@ class AppTheme with ChangeNotifier {
               fontWeight: FontWeight.bold,
               color: Color.fromARGB(255, 202, 202, 202),
             ),
-            labelSmall:
-                const TextStyle(color: Color.fromARGB(255, 141, 141, 141))),
+            labelSmall: const TextStyle(color: CupertinoColors.systemGrey)),
+        cupertinoOverrideTheme: const NoDefaultCupertinoThemeData(
+            textTheme:
+                CupertinoTextThemeData(primaryColor: CupertinoColors.white)),
       );
     }
     notifyListeners();

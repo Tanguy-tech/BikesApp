@@ -127,10 +127,24 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
                 CupertinoFormSection.insetGrouped(
                     backgroundColor: Theme.of(context).canvasColor,
                     margin: const EdgeInsets.all(8),
+                    footer: const Text(
+                        'Create or edit a consumption. Price in €, Volume in L.'),
                     children: [
                       CupertinoFormRow(
-                        prefix: const Text('Fuel type'),
+                        prefix: Text(
+                          'Fuel type',
+                          style: TextStyle(
+                              color: Theme.of(context)
+                                  .textTheme
+                                  .labelMedium
+                                  ?.color),
+                        ),
                         child: CupertinoTextFormFieldRow(
+                          style: TextStyle(
+                              color: Theme.of(context)
+                                  .textTheme
+                                  .labelSmall
+                                  ?.color),
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           initialValue: _initValues['fuelType'].toString(),
                           placeholder: 'Enter fuel type used',
@@ -158,25 +172,27 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
                           },
                         ),
                       ),
-                    ]),
-                CupertinoFormSection.insetGrouped(
-                    backgroundColor: Theme.of(context).canvasColor,
-                    margin: const EdgeInsets.all(8),
-                    children: [
                       CustomDatePicker(
                           ctx: context,
                           selectedDate: selectedDate,
                           dateTime: _dateTime,
                           initValues: _initValues,
-                          editing: _editing)
-                    ]),
-                CupertinoFormSection.insetGrouped(
-                    backgroundColor: Theme.of(context).canvasColor,
-                    margin: const EdgeInsets.all(8),
-                    children: [
+                          editing: _editing),
                       CupertinoFormRow(
-                        prefix: const Text('Price'),
+                        prefix: Text(
+                          'Price',
+                          style: TextStyle(
+                              color: Theme.of(context)
+                                  .textTheme
+                                  .labelMedium
+                                  ?.color),
+                        ),
                         child: CupertinoTextFormFieldRow(
+                          style: TextStyle(
+                              color: Theme.of(context)
+                                  .textTheme
+                                  .labelSmall
+                                  ?.color),
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           initialValue: _initValues['price'].toString(),
                           placeholder: 'Enter price',
@@ -208,15 +224,22 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
                             return null;
                           },
                         ),
-                      )
-                    ]),
-                CupertinoFormSection.insetGrouped(
-                    backgroundColor: Theme.of(context).canvasColor,
-                    margin: const EdgeInsets.all(8),
-                    children: [
+                      ),
                       CupertinoFormRow(
-                        prefix: const Text('Volume'),
+                        prefix: Text(
+                          'Volume',
+                          style: TextStyle(
+                              color: Theme.of(context)
+                                  .textTheme
+                                  .labelMedium
+                                  ?.color),
+                        ),
                         child: CupertinoTextFormFieldRow(
+                          style: TextStyle(
+                              color: Theme.of(context)
+                                  .textTheme
+                                  .labelSmall
+                                  ?.color),
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           initialValue: _initValues['volume'].toString(),
                           placeholder: 'Enter volume',
@@ -246,15 +269,22 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
                             return null;
                           },
                         ),
-                      )
-                    ]),
-                CupertinoFormSection.insetGrouped(
-                    backgroundColor: Theme.of(context).canvasColor,
-                    margin: const EdgeInsets.all(8),
-                    children: [
+                      ),
                       CupertinoFormRow(
-                        prefix: const Text('KM'),
+                        prefix: Text(
+                          'KM',
+                          style: TextStyle(
+                              color: Theme.of(context)
+                                  .textTheme
+                                  .labelMedium
+                                  ?.color),
+                        ),
                         child: CupertinoTextFormFieldRow(
+                          style: TextStyle(
+                              color: Theme.of(context)
+                                  .textTheme
+                                  .labelSmall
+                                  ?.color),
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           initialValue: _initValues['dashKm'].toString(),
                           placeholder: 'Enter dashboard km',
@@ -287,10 +317,12 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
                       )
                     ]),
                 Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 8),
+                  margin: const EdgeInsets.all(8),
                   width: double.infinity,
-                  child: CupertinoButton.filled(
-                      onPressed: _saveForm, child: const Text('Submit')),
+                  child: CupertinoButton(
+                      color: Theme.of(context).backgroundColor,
+                      onPressed: _saveForm,
+                      child: const Text('Submit')),
                 )
               ],
             ),

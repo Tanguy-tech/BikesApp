@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:motobox/providers/fuel_consumptions.dart';
 import 'package:motobox/providers/invoices.dart';
@@ -76,7 +77,9 @@ class _MyAppState extends State<MyApp> {
                     style: theme.myTheme.textTheme.titleLarge,
                   ),
                   actions: [
-                    Switch(
+                    CupertinoSwitch(
+                        activeColor: Colors.grey.shade800,
+                        trackColor: Theme.of(context).canvasColor,
                         onChanged: (value) => theme.toogleTheme(context),
                         value: theme.sw)
                   ],
