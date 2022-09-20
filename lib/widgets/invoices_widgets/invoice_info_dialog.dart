@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:motobox/screens/invoices_screens/edit_invoice_screen.dart';
+import 'package:motobox/screens/invoices_screens/invoice_form_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../../providers/invoice.dart';
@@ -24,7 +24,7 @@ class InvoiceInfoDialog extends StatelessWidget {
                   leading: IconButton(
                       onPressed: () {
                         Navigator.of(context)
-                            .pushNamed(EditInvoiceScreen.routeName);
+                            .pushNamed(InvoiceFormScreen.routeName);
                       },
                       icon: const Icon(Icons.edit)),
                   title: Text(

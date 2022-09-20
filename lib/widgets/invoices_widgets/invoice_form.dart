@@ -43,7 +43,34 @@ class _InvoiceFormState extends State<InvoiceForm> {
       price: 0.0,
       //photo: Image.asset('placeHolder.png'),
       title: 'default');
+  var _initValues = {
+    'title': '',
+    'date': DateTime,
+    'price': '',
+    'pricePerLitter': '',
+  };
   var _isLoading = false;
+  var _isInit = true;
+  var _editing = false;
+
+  @override
+  void didChangeDependencies() {
+    if (_isInit) {
+      final productId = ModalRoute.of(context)?.settings.arguments as String;
+      if (productId != null) {
+        _inv =
+            Provider.of<Invoices>(context, listen: false).findById(productId);
+        _initValues = {
+          'title': _inv.title,
+          'date': _inv.date,
+          'price': _inv.price.toString(),
+        };
+        _editing = true;
+      }
+    }
+    _isInit = false;
+    super.didChangeDependencies();
+  }
 
   Future<void> _saveForm() async {
     final isValid = _formKey.currentState!.validate();
@@ -54,30 +81,40 @@ class _InvoiceFormState extends State<InvoiceForm> {
     setState(() {
       _isLoading = true;
     });
-    try {
-      await Provider.of<Invoices>(context, listen: false).addInvoice(_inv);
-    } catch (error) {
-      await showDialog(
-        context: context,
-        builder: (ctx) => AlertDialog(
-          title: const Text('An error occured..!'),
-          content: const Text('Something went wrong...'),
-          actions: <Widget>[
-            FloatingActionButton(
-              child: const Text('ok'),
-              onPressed: () {
-                Navigator.of(ctx).pop();
-              },
-            )
-          ],
-        ),
-      );
-    } finally {
-      setState(() {
-        _isLoading = false;
-      });
-      Navigator.of(context).pop();
+    if (_inv.id != null && _inv.id != '') {
+      await Provider.of<Invoices>(context, listen: false)
+          .updateInvoice(_inv.id, _inv);
+    } else {
+      try {
+        await Provider.of<Invoices>(context, listen: false).addInvoice(_inv);
+      } catch (error) {
+        await showDialog(
+          context: context,
+          builder: (ctx) => AlertDialog(
+            title: const Text('An error occured..!'),
+            content: const Text('Something went wrong...'),
+            actions: <Widget>[
+              FloatingActionButton(
+                child: const Text('ok'),
+                onPressed: () {
+                  Navigator.of(ctx).pop();
+                },
+              )
+            ],
+          ),
+        );
+      }
+      // finally {
+      //   setState(() {
+      //     _isLoading = false;
+      //   });
+      //   Navigator.of(context).pop();
+      // }
     }
+    setState(() {
+      _isLoading = false;
+    });
+    Navigator.of(context).pop();
   }
 
   @override
@@ -108,6 +145,7 @@ class _InvoiceFormState extends State<InvoiceForm> {
                     padding: const EdgeInsets.all(5),
                     margin: const EdgeInsets.all(10),
                     child: TextFormField(
+                      initialValue: _initValues['title'].toString(),
                       // The validator receives the text that the user has entered.
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -158,12 +196,15 @@ class _InvoiceFormState extends State<InvoiceForm> {
                           });
                         });
                       },
-                      child: Text(
-                        'Select a date :   ${DateFormat('dd - MM - yy').format(_dateTime)}',
-                        style: const TextStyle(
-                            color: Color.fromARGB(255, 34, 34, 34),
-                            fontWeight: FontWeight.w500),
-                      ),
+                      child: _editing
+                          ? Text(DateFormat('dd - MM - yy')
+                              .format(_initValues['date'] as DateTime))
+                          : Text(
+                              'Select a date :   ${DateFormat('dd - MM - yy').format(_dateTime)}',
+                              style: const TextStyle(
+                                  color: Color.fromARGB(255, 34, 34, 34),
+                                  fontWeight: FontWeight.w500),
+                            ),
                     ),
                   ),
                   Container(
@@ -173,6 +214,7 @@ class _InvoiceFormState extends State<InvoiceForm> {
                     padding: const EdgeInsets.all(5),
                     margin: const EdgeInsets.all(10),
                     child: TextFormField(
+                      initialValue: _initValues['price'].toString(),
                       // The validator receives the text that the user has entered.
                       validator: (value) {
                         if (value?.isEmpty == true) {

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:motobox/screens/invoices_screens/invoice_form_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../../providers/invoice.dart';
 import '../../providers/invoices.dart';
-import '../../screens/invoices_screens/edit_invoice_screen.dart';
 
 // ignore: must_be_immutable
 class DismissibleInvoiceCard extends StatelessWidget {
@@ -39,7 +39,8 @@ class DismissibleInvoiceCard extends StatelessWidget {
                                 IconButton(
                                   onPressed: () {
                                     Navigator.of(context).pushReplacementNamed(
-                                        EditInvoiceScreen.routeName);
+                                        InvoiceFormScreen.routeName,
+                                        arguments: id);
                                   },
                                   icon: const Icon(Icons.edit),
                                 ),
@@ -75,7 +76,10 @@ class DismissibleInvoiceCard extends StatelessWidget {
                   ),
                 ),
               )
-            : {Navigator.of(context).pushNamed(EditInvoiceScreen.routeName)};
+            : {
+                Navigator.of(context)
+                    .pushNamed(InvoiceFormScreen.routeName, arguments: id)
+              };
       },
       child: Card(
         elevation: 5,

@@ -55,6 +55,10 @@ class Invoices with ChangeNotifier {
     return [..._invoices];
   }
 
+  Invoice findById(String id) {
+    return _invoices.firstWhere((fc) => fc.id == id);
+  }
+
   Future<void> fetchAndSetInvoices() async {
     final url = Uri.parse(
         'https://motobox-eedda-default-rtdb.europe-west1.firebasedatabase.app/invoices.json');
@@ -62,17 +66,21 @@ class Invoices with ChangeNotifier {
       final response = await http.get(url);
       final extractedData = json.decode(response.body) as Map<String, dynamic>;
       final List<Invoice> loadedFuelConsumptions = [];
-      extractedData.forEach((fcID, fcDATA) {
-        loadedFuelConsumptions.insert(
-            0,
-            Invoice(
-              id: fcID,
-              title: fcDATA['fuelType'],
-              date: DateFormat('dd.MM.yy').parse(fcDATA['date']),
-              price: fcDATA['price'],
-            ));
-      });
-      _invoices = loadedFuelConsumptions;
+      if (extractedData == null || extractedData.isEmpty) {
+        _invoices = [];
+      } else {
+        extractedData.forEach((fcID, fcDATA) {
+          loadedFuelConsumptions.insert(
+              0,
+              Invoice(
+                id: fcID,
+                title: fcDATA['title'],
+                date: DateFormat('dd.MM.yy').parse(fcDATA['date']),
+                price: fcDATA['price'],
+              ));
+        });
+        _invoices = loadedFuelConsumptions;
+      }
       notifyListeners();
     } catch (error) {
       rethrow;
@@ -101,6 +109,28 @@ class Invoices with ChangeNotifier {
       notifyListeners();
     } catch (error) {
       rethrow;
+    }
+  }
+
+  Future<void> updateInvoice(String id, Invoice newInv) async {
+    final invoiceIndex = _invoices.indexWhere((fc) => newInv.id == id);
+    if (invoiceIndex >= 0) {
+      final url = Uri.parse(
+          'https://motobox-eedda-default-rtdb.europe-west1.firebasedatabase.app/invoices/$id.json');
+      try {
+        await http.patch(url,
+            body: json.encode({
+              'title': newInv.title,
+              'date': DateFormat('dd.MM.yy').format(newInv.date),
+              'price': newInv.price,
+            }));
+        _invoices[invoiceIndex] = newInv;
+        notifyListeners();
+      } catch (error) {
+        rethrow;
+      }
+    } else {
+      print('...');
     }
   }
 
