@@ -62,6 +62,10 @@ class FuelConsumptions with ChangeNotifier {
     return [..._fuelConsumptions];
   }
 
+  FuelConsumption findById(String id) {
+    return _fuelConsumptions.firstWhere((fc) => fc.id == id);
+  }
+
   Future<void> fetchAndSetFuelConsumptions() async {
     final url = Uri.parse(
         'https://motobox-eedda-default-rtdb.europe-west1.firebasedatabase.app/fuel_consumptions.json');
@@ -69,20 +73,24 @@ class FuelConsumptions with ChangeNotifier {
       final response = await http.get(url);
       final extractedData = json.decode(response.body) as Map<String, dynamic>;
       final List<FuelConsumption> loadedFuelConsumptions = [];
-      extractedData.forEach((fcID, fcDATA) {
-        loadedFuelConsumptions.insert(
-            0,
-            FuelConsumption(
-                id: fcID,
-                fuelType: fcDATA['fuelType'],
-                date: DateFormat('dd.MM.yy').parse(fcDATA['date']),
-                price: fcDATA['price'],
-                pricePerLitter: fcDATA['pricePerLitter'],
-                volume: fcDATA['volume'],
-                dashKm: fcDATA['dashKm'],
-                kmRidden: fcDATA['kmRidden']));
-      });
-      _fuelConsumptions = loadedFuelConsumptions;
+      if (extractedData == null || extractedData.isEmpty) {
+        _fuelConsumptions = [];
+      } else {
+        extractedData.forEach((fcID, fcDATA) {
+          loadedFuelConsumptions.insert(
+              0,
+              FuelConsumption(
+                  id: fcID,
+                  fuelType: fcDATA['fuelType'],
+                  date: DateFormat('dd.MM.yy').parse(fcDATA['date']),
+                  price: fcDATA['price'],
+                  pricePerLitter: fcDATA['pricePerLitter'],
+                  volume: fcDATA['volume'],
+                  dashKm: fcDATA['dashKm'],
+                  kmRidden: fcDATA['kmRidden']));
+        });
+        _fuelConsumptions = loadedFuelConsumptions;
+      }
       notifyListeners();
     } catch (error) {
       rethrow;
@@ -95,6 +103,7 @@ class FuelConsumptions with ChangeNotifier {
     try {
       final response = await http.post(url,
           body: json.encode({
+            //'id': fc.id,
             'fuelType': fc.fuelType,
             'date': DateFormat('dd.MM.yy').format(fc.date),
             'price': fc.price,

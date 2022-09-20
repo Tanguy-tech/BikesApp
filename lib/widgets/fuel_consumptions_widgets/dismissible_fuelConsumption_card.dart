@@ -40,7 +40,8 @@ class DismissibleFuelComsumptionCard extends StatelessWidget {
                                 IconButton(
                                   onPressed: () {
                                     Navigator.of(context).pushReplacementNamed(
-                                        FuelConsrumptionFormScreen.routeName);
+                                        FuelConsrumptionFormScreen.routeName,
+                                        arguments: id);
                                   },
                                   icon: const Icon(Icons.edit),
                                 ),
@@ -77,8 +78,9 @@ class DismissibleFuelComsumptionCard extends StatelessWidget {
                 ),
               )
             : {
-                Navigator.of(context)
-                    .pushNamed(FuelConsrumptionFormScreen.routeName)
+                Navigator.of(context).pushNamed(
+                    FuelConsrumptionFormScreen.routeName,
+                    arguments: id)
               };
       },
       child: Card(

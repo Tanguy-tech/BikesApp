@@ -15,7 +15,7 @@ class FuelConsumptionScreen extends StatelessWidget {
     final theme = Provider.of<AppTheme>(context);
     return Scaffold(
       appBar: AppBar(
-        title: const Text("My fuel consumption"),
+        title: const Text("My consumption"),
         actions: [
           Switch(
               onChanged: (value) => theme.toogleTheme(context), value: theme.sw)

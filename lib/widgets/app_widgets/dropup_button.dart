@@ -52,7 +52,6 @@ class _DropUpButtonState extends State<DropUpButton> {
           color: Colors.purpleAccent.shade400,
           borderRadius: BorderRadius.circular(50)),
       isTriangle: true,
-
       // placeholder: 'insert...',
     );
   }

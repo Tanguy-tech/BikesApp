@@ -8,9 +8,7 @@ import 'package:motobox/widgets/app_widgets/dropup_button.dart';
 import 'package:motobox/widgets/app_widgets/my_bottom_app_bar.dart';
 import 'package:motobox/widgets/routes.dart';
 import 'package:provider/provider.dart';
-import 'widgets/app_widgets/dropup_button.dart';
 import 'widgets/app_widgets/main_drawer.dart';
-import 'widgets/app_widgets/my_bottom_app_bar.dart';
 
 //part 'my_file.gform.dart';
 

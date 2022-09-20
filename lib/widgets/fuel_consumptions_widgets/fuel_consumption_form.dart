@@ -29,7 +29,39 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
       volume: 0.0,
       dashKm: 0.0,
       kmRidden: 0.0);
+  var _initValues = {
+    'fuelType': '',
+    'date': '',
+    'price': '',
+    'pricePerLitter': '',
+    'volume': '',
+    'dashKm': '',
+    'kmRidden': '',
+  };
   var _isLoading = false;
+  var _isInit = true;
+
+  @override
+  void didChangeDependencies() {
+    if (_isInit) {
+      final productId = ModalRoute.of(context)?.settings.arguments as String;
+      if (productId != null) {
+        _fc = Provider.of<FuelConsumptions>(context, listen: false)
+            .findById(productId);
+        _initValues = {
+          'fuelType': _fc.fuelType,
+          'date': _fc.date.toString(),
+          'price': _fc.price.toString(),
+          'pricePerLitter': _fc.pricePerLitter.toString(),
+          'volume': _fc.volume.toString(),
+          'dashKm': _fc.dashKm.toString(),
+          'kmRidden': _fc.kmRidden.toString(),
+        };
+      }
+    }
+    _isInit = false;
+    super.didChangeDependencies();
+  }
 
   Future<void> _saveForm() async {
     final isValid = _formKey.currentState!.validate();
@@ -40,41 +72,42 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
     setState(() {
       _isLoading = true;
     });
-    // if (_fc.id != null) {
-    //   // await Provider.of<FuelConsumptions>(context, listen: false)
-    //   //     .updateFuelConsumption(_fc.id, _fc);
-    // } else {
-    try {
+    if (_fc.id != null && _fc.id != '') {
       await Provider.of<FuelConsumptions>(context, listen: false)
-          .addFuelConsumption(_fc);
-    } catch (error) {
-      await showDialog(
-        context: context,
-        builder: (ctx) => AlertDialog(
-          title: const Text('An error occured..!'),
-          content: const Text('Something went wrong...'),
-          actions: <Widget>[
-            FloatingActionButton(
-              child: const Text('ok'),
-              onPressed: () {
-                Navigator.of(ctx).pop();
-              },
-            )
-          ],
-        ),
-      );
-    } finally {
-      setState(() {
-        _isLoading = false;
-      });
-      Navigator.of(context).pop();
+          .updateFuelConsumption(_fc.id, _fc);
+    } else {
+      try {
+        await Provider.of<FuelConsumptions>(context, listen: false)
+            .addFuelConsumption(_fc);
+      } catch (error) {
+        await showDialog(
+          context: context,
+          builder: (ctx) => AlertDialog(
+            title: const Text('An error occured..!'),
+            content: const Text('Something went wrong...'),
+            actions: <Widget>[
+              FloatingActionButton(
+                child: const Text('ok'),
+                onPressed: () {
+                  Navigator.of(ctx).pop();
+                },
+              )
+            ],
+          ),
+        );
+      }
+      // finally {
+      //   setState(() {
+      //     _isLoading = false;
+      //   });
+      //   Navigator.of(context).pop();
+      // }
     }
+    setState(() {
+      _isLoading = false;
+    });
+    Navigator.of(context).pop();
   }
-  // setState(() {
-  //   _isLoading = false;
-  // });
-  // Navigator.of(context).pop();
-  //}
 
   @override
   void dispose() {
@@ -104,6 +137,7 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
                     padding: const EdgeInsets.all(5),
                     margin: const EdgeInsets.all(10),
                     child: TextFormField(
+                      initialValue: _initValues['fuelType'],
                       // The validator receives the text that the user has entered.
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -113,6 +147,7 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
                       },
                       onSaved: (value) {
                         _fc = FuelConsumption(
+                            //id: 'ongoing', // to set the id different of 'id' -> means _fc already exists
                             id: _fc.id,
                             fuelType: value!,
                             date: _fc.date,
@@ -175,6 +210,7 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
                     padding: const EdgeInsets.all(5),
                     margin: const EdgeInsets.all(10),
                     child: TextFormField(
+                      initialValue: _initValues['price'],
                       // The validator receives the text that the user has entered.
                       validator: (value) {
                         if (value?.isEmpty == true) {
@@ -219,6 +255,7 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
                     padding: const EdgeInsets.all(5),
                     margin: const EdgeInsets.all(10),
                     child: TextFormField(
+                      initialValue: _initValues['volume'],
                       // The validator receives the text that the user has entered.
                       validator: (value) {
                         if (value?.isEmpty == true) {
@@ -263,6 +300,7 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
                     padding: const EdgeInsets.all(5),
                     margin: const EdgeInsets.all(10),
                     child: TextFormField(
+                      initialValue: _initValues['dashKm'],
                       // The validator receives the text that the user has entered.
                       validator: (value) {
                         if (value?.isEmpty == true) {

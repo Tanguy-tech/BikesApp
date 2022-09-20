@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 
 class FuelConsumption with ChangeNotifier {
-  late final String id;
-  late final String fuelType;
-  late final double price;
-  late final DateTime date;
-  late final double pricePerLitter;
-  late final double volume;
-  late final double dashKm;
-  late final double kmRidden;
+  final String id;
+  final String fuelType;
+  final double price;
+  final DateTime date;
+  final double pricePerLitter;
+  final double volume;
+  final double dashKm;
+  final double kmRidden;
 
   FuelConsumption(
       {required this.id,
