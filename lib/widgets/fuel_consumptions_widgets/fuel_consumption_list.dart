@@ -60,7 +60,7 @@ class _FuelConsumptionListState extends State<FuelConsumptionList> {
                     itemBuilder: (context, i) => ChangeNotifierProvider.value(
                         value: fuelConsumptions[i],
                         child: DismissibleFuelComsumptionCard(
-                            const FuelCosumptionItem(),
+                            FuelCosumptionItem(false),
                             fuelConsumptions[i].id,
                             widget.isPreview)),
                   )
@@ -74,7 +74,7 @@ class _FuelConsumptionListState extends State<FuelConsumptionList> {
                             ChangeNotifierProvider.value(
                                 value: fuelConsumptions[i],
                                 child: DismissibleFuelComsumptionCard(
-                                    const FuelCosumptionItem(),
+                                    FuelCosumptionItem(true),
                                     fuelConsumptions[i].id,
                                     widget.isPreview)),
                       ),

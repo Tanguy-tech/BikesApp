@@ -70,15 +70,17 @@ class _MyAppState extends State<MyApp> {
             themeMode: theme.mode,
             home: Builder(builder: (context) {
               return Scaffold(
+                backgroundColor: theme.myTheme.colorScheme.background,
                 endDrawerEnableOpenDragGesture: true,
                 drawer: const MainDrawer(),
                 appBar: CupertinoNavigationBar(
-                  backgroundColor: Theme.of(context).backgroundColor,
+                  backgroundColor:
+                      Theme.of(context).appBarTheme.backgroundColor,
                   leading: Builder(
                     builder: (context) {
                       return CupertinoButton(
                         padding: const EdgeInsets.all(0),
-                        child: Icon(Icons.menu,
+                        child: Icon(Icons.more_vert,
                             color:
                                 Theme.of(context).appBarTheme.foregroundColor),
                         onPressed: () {
@@ -87,27 +89,19 @@ class _MyAppState extends State<MyApp> {
                       );
                     },
                   ),
-                  middle: Text(
-                    _pages[_index]["title"] as String,
-                    style: TextStyle(
-                        color: Theme.of(context).appBarTheme.foregroundColor),
-                  ),
+                  middle: Text(_pages[_index]["title"] as String,
+                      style: Theme.of(context).appBarTheme.titleTextStyle),
                   trailing: Transform.scale(
                     scale: 0.7,
                     child: CupertinoSwitch(
-                        activeColor: Colors.grey.shade800,
-                        trackColor: Theme.of(context).canvasColor,
+                        activeColor:
+                            Theme.of(context).appBarTheme.foregroundColor,
+                        trackColor: Theme.of(context).colorScheme.background,
                         onChanged: (value) => theme.toogleTheme(context),
                         value: theme.sw),
                   ),
                 ),
-                body:
-                    // _isLoading
-                    //     ? const Center(
-                    //         child: HomeSkeletonCards(),
-                    //       )
-                    //     :
-                    _pages[_index]["page"] as Widget,
+                body: _pages[_index]["page"] as Widget,
                 extendBody: true,
                 floatingActionButtonLocation:
                     FloatingActionButtonLocation.centerDocked,

@@ -25,32 +25,45 @@ class MainDrawer extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            //height: 103,
             width: double.infinity,
             padding: const EdgeInsets.all(20),
             alignment: Alignment.centerLeft,
             color: Theme.of(context).appBarTheme.backgroundColor,
             child: Padding(
               padding: const EdgeInsets.only(top: 30),
-              child: Text(
-                "MotoBox's menu",
-                style: TextStyle(
-                    fontSize: 18,
-                    color: Theme.of(context).appBarTheme.foregroundColor),
-              ),
+              child: Text("Menu",
+                  style: Theme.of(context).appBarTheme.titleTextStyle),
             ),
           ),
           const SizedBox(height: 20),
-          buildListTile("Home", Icons.home, () {
-            Navigator.of(context).pushReplacementNamed("/");
-          }),
-          buildListTile("My invoices", Icons.receipt, () {
-            Navigator.of(context).pushReplacementNamed(InvoiceScreen.routeName);
-          }),
-          buildListTile("My consumption", Icons.oil_barrel, () {
-            Navigator.of(context)
-                .pushReplacementNamed(FuelConsumptionScreen.routeName);
-          }),
+          ListTile(
+            leading: Icon(Icons.home,
+                color: Theme.of(context).appBarTheme.foregroundColor),
+            title: Text('Home', style: Theme.of(context).textTheme.bodyLarge),
+            onTap: () {
+              Navigator.of(context).pushReplacementNamed("/");
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.receipt,
+                color: Theme.of(context).appBarTheme.foregroundColor),
+            title: Text('My invoices',
+                style: Theme.of(context).textTheme.bodyLarge),
+            onTap: () {
+              Navigator.of(context)
+                  .pushReplacementNamed(InvoiceScreen.routeName);
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.oil_barrel,
+                color: Theme.of(context).appBarTheme.foregroundColor),
+            title: Text('My consumptions',
+                style: Theme.of(context).textTheme.bodyLarge),
+            onTap: () {
+              Navigator.of(context)
+                  .pushReplacementNamed(FuelConsumptionScreen.routeName);
+            },
+          )
         ],
       ),
     );

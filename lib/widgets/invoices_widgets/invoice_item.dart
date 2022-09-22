@@ -9,7 +9,8 @@ import '../../providers/invoice.dart';
 import '../../screens/fuel_consumptions_screens/fuel_consumption_form_screen.dart';
 
 class InvoiceItem extends StatelessWidget {
-  const InvoiceItem({Key? key}) : super(key: key);
+  bool fullView;
+  InvoiceItem(this.fullView, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,19 +22,27 @@ class InvoiceItem extends StatelessWidget {
       },
       child: ListTile(
         minLeadingWidth: 0,
-        leading: const SizedBox(
+        leading: SizedBox(
             height: double.infinity,
-            child: Icon(Icons.receipt, color: Colors.white)),
+            child: Icon(Icons.receipt,
+                color: Theme.of(context).colorScheme.secondary)),
         title: Text(
           DateFormat('dd.MM.yy').format(invoice.date),
           textAlign: TextAlign.left,
-          style: const TextStyle(fontSize: 14),
+          style: Theme.of(context).textTheme.titleSmall,
         ),
-        subtitle: Text(
-          '${invoice.title}\n${invoice.price.toString()}€',
-          style:
-              TextStyle(color: Theme.of(context).textTheme.labelSmall?.color),
-        ),
+        subtitle: fullView
+            ? const Text('')
+            : Text(
+                '${invoice.title}\n${invoice.price.toString()}€',
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
+        trailing: fullView
+            ? Text(
+                '${invoice.title}\n\n${invoice.price.toString()}€',
+                style: Theme.of(context).textTheme.titleSmall,
+              )
+            : null,
         isThreeLine: true,
       ),
     );

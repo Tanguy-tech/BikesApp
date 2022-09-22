@@ -8,13 +8,9 @@ class BikeDataField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(left: 15, top: 10),
-      child: Text(
-        dataField,
-        textAlign: TextAlign.left,
-        style: const TextStyle(
-          color: Colors.white,
-        ),
-      ),
+      child: Text(dataField,
+          textAlign: TextAlign.left,
+          style: Theme.of(context).textTheme.bodyMedium),
     );
   }
 }

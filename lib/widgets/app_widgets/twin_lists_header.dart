@@ -12,24 +12,21 @@ class TwinListsHeader extends StatelessWidget {
             Container(
               height: 30,
               width: constraints.maxWidth,
-              //margin: const EdgeInsets.only(left: 10, right: 10),
               decoration: BoxDecoration(
-                  color: const Color.fromRGBO(0, 156, 255, 100),
+                  color: Theme.of(context).appBarTheme.backgroundColor,
                   borderRadius: BorderRadius.circular(10)),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
-                children: const [
+                children: [
                   Expanded(
-                    child: Text(
-                      "Header 1",
-                      textAlign: TextAlign.center,
-                    ),
+                    child: Text("Invoices",
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.headlineMedium),
                   ),
                   Expanded(
-                      child: Text(
-                    "Header 2",
-                    textAlign: TextAlign.center,
-                  )),
+                      child: Text("Consumptions",
+                          textAlign: TextAlign.center,
+                          style: Theme.of(context).textTheme.headlineMedium)),
                 ],
               ),
             )

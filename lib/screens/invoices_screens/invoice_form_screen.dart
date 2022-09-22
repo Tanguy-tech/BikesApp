@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -13,9 +14,19 @@ class InvoiceFormScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Provider.of<AppTheme>(context);
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Add an invoice'),
-      ),
+      backgroundColor: theme.myTheme.colorScheme.background,
+      appBar: CupertinoNavigationBar(
+          padding: const EdgeInsetsDirectional.all(0),
+          leading: CupertinoNavigationBarBackButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              color: Theme.of(context).appBarTheme.titleTextStyle?.color),
+          middle: Text(
+            'Add an invoice',
+            style: Theme.of(context).appBarTheme.titleTextStyle,
+          ),
+          backgroundColor: Theme.of(context).appBarTheme.backgroundColor),
       body: const InvoiceForm(),
     );
   }

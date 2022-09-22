@@ -14,19 +14,19 @@ class FuelConsrumptionFormScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Provider.of<AppTheme>(context);
     return Scaffold(
-      //appBar: AppBar(title: const Text('Add or Edit a Refill')),
+      backgroundColor: theme.myTheme.colorScheme.background,
       appBar: CupertinoNavigationBar(
           padding: const EdgeInsetsDirectional.all(0),
-          // leading: CupertinoNavigationBarBackButton(
-          //     color: Theme.of(context).appBarTheme.foregroundColor,
-          //     previousPageTitle: 'Home'),
-          previousPageTitle: 'Home',
+          leading: CupertinoNavigationBarBackButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              color: Theme.of(context).appBarTheme.titleTextStyle?.color),
           middle: Text(
             'Add or Edit a Refill',
-            style:
-                TextStyle(color: Theme.of(context).appBarTheme.foregroundColor),
+            style: Theme.of(context).appBarTheme.titleTextStyle,
           ),
-          backgroundColor: Theme.of(context).backgroundColor),
+          backgroundColor: Theme.of(context).appBarTheme.backgroundColor),
       body: const FuelConsumptionForm(),
     );
   }

@@ -52,13 +52,7 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
   @override
   Widget build(BuildContext context) {
     return CupertinoFormRow(
-      prefix: Text(
-        'Date',
-        style: TextStyle(
-          color: Theme.of(context).textTheme.labelMedium?.color,
-          fontWeight: FontWeight.w500,
-        ),
-      ),
+      prefix: Text('Date', style: Theme.of(context).textTheme.headlineMedium),
       child: CupertinoButton(
         padding: const EdgeInsets.all(10),
         onPressed: () {
@@ -75,13 +69,11 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
               ? Text(
                   DateFormat('dd - MM - yy')
                       .format(widget.initValues['date'] as DateTime),
-                  style: TextStyle(
-                      color: Theme.of(context).textTheme.labelSmall?.color),
+                  style: Theme.of(context).textTheme.bodyLarge,
                 )
               : Text(
                   DateFormat('dd - MM - yy').format(widget.dateTime),
-                  style: TextStyle(
-                      color: Theme.of(context).textTheme.labelSmall?.color),
+                  style: Theme.of(context).textTheme.bodyLarge,
                 ),
         ),
       ),

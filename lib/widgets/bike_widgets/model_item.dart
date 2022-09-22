@@ -27,7 +27,7 @@ class ModelItem extends StatelessWidget {
       context: ctx,
       builder: (_) => AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-        backgroundColor: Theme.of(ctx).canvasColor,
+        backgroundColor: Theme.of(ctx).colorScheme.background,
         title: Text(
           name,
           textAlign: TextAlign.center,

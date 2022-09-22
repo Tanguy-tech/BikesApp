@@ -21,7 +21,7 @@ class DismissibleFuelComsumptionCard extends StatelessWidget {
     return Card(
       elevation: 5,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-      color: Theme.of(context).colorScheme.secondary,
+      color: Theme.of(context).colorScheme.primary,
       child: Dismissible(
         onDismissed: (direction) async {
           try {
@@ -75,7 +75,7 @@ class DismissibleFuelComsumptionCard extends StatelessWidget {
         ),
         child: Container(
           decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.secondary,
+              color: Theme.of(context).colorScheme.primary,
               borderRadius: const BorderRadius.all(Radius.circular(10))),
           child: children,
         ),

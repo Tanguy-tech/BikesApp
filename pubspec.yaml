@@ -137,6 +137,13 @@ flutter:
         - asset: assets/fonts/RobotoCondensed-Light.ttf
           weight: 300
         - asset: assets/fonts/RobotoCondensed-Regular.ttf
+    - family: CaviarDreams
+      fonts:
+        - asset: assets/fonts/CaviarDreams_Bold.ttf
+        - asset: assets/fonts/CaviarDreams_BoldItalic.ttf
+        - asset: assets/fonts/CaviarDreams_italic.ttf
+        - asset: assets/fonts/CaviarDreams.ttf
+
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf

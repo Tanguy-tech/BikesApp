@@ -15,10 +15,11 @@ class InvoiceScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Provider.of<AppTheme>(context);
     return Scaffold(
+      backgroundColor: theme.myTheme.colorScheme.background,
       drawer: const MainDrawer(),
       endDrawerEnableOpenDragGesture: true,
       appBar: CupertinoNavigationBar(
-        backgroundColor: Theme.of(context).backgroundColor,
+        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
         leading: Builder(
           builder: (context) {
             return CupertinoButton(

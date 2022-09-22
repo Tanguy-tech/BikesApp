@@ -16,7 +16,9 @@ class BikeMainInfo extends StatelessWidget {
             height: 150,
             width: constraints.maxWidth,
             decoration: BoxDecoration(
-              color: Colors.purpleAccent.shade400,
+              border: Border.all(
+                  color: Theme.of(context).colorScheme.secondary.withAlpha(30)),
+              color: Theme.of(context).colorScheme.background,
               borderRadius: const BorderRadius.all(Radius.circular(10)),
             ),
             child: Padding(

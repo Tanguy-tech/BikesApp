@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:motobox/providers/bike_datas.dart';
-import 'package:motobox/widgets/twin_lists_header.dart';
+import 'package:motobox/widgets/app_widgets/twin_lists_header.dart';
 import 'package:provider/provider.dart';
 import '../widgets/bike_widgets/bike_data_container.dart';
 import '../widgets/fuel_consumptions_widgets/fuel_consumption_list.dart';

@@ -18,7 +18,7 @@ class BrandDetailsScreen extends StatelessWidget {
     final theme = Provider.of<AppTheme>(context);
 
     return Scaffold(
-      backgroundColor: Theme.of(context).canvasColor,
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
         title: LayoutBuilder(
           builder: ((context, constraints) {

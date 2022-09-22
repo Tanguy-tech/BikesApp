@@ -60,8 +60,8 @@ class _InvoicesListState extends State<InvoicesList> {
                     itemCount: invoices.length,
                     itemBuilder: (context, i) => ChangeNotifierProvider.value(
                       value: invoices[i],
-                      child: DismissibleInvoiceCard(const InvoiceItem(),
-                          invoices[i].id, widget.isPreview),
+                      child: DismissibleInvoiceCard(
+                          InvoiceItem(false), invoices[i].id, widget.isPreview),
                     ),
                   )
                 : Column(
@@ -73,7 +73,7 @@ class _InvoicesListState extends State<InvoicesList> {
                         itemBuilder: (context, i) =>
                             ChangeNotifierProvider.value(
                           value: invoices[i],
-                          child: DismissibleInvoiceCard(const InvoiceItem(),
+                          child: DismissibleInvoiceCard(InvoiceItem(true),
                               invoices[i].id, widget.isPreview),
                         ),
                       )

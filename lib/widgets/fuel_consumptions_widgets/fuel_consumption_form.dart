@@ -125,27 +125,24 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
             child: ListView(
               children: [
                 CupertinoFormSection.insetGrouped(
-                    backgroundColor: Theme.of(context).canvasColor,
+                    decoration: BoxDecoration(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(10)),
+                        color: Theme.of(context).colorScheme.primary),
+                    backgroundColor: Theme.of(context).colorScheme.background,
                     margin: const EdgeInsets.all(8),
-                    footer: const Text(
-                        'Create or edit a consumption. Price in €, Volume in L.'),
+                    footer: Text(
+                      'Create or edit a consumption. Price in €, Volume in L.',
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
                     children: [
                       CupertinoFormRow(
                         prefix: Text(
                           'Fuel type',
-                          style: TextStyle(
-                              fontWeight: FontWeight.w500,
-                              color: Theme.of(context)
-                                  .textTheme
-                                  .labelMedium
-                                  ?.color),
+                          style: Theme.of(context).textTheme.headlineMedium,
                         ),
                         child: CupertinoTextFormFieldRow(
-                          style: TextStyle(
-                              color: Theme.of(context)
-                                  .textTheme
-                                  .labelSmall
-                                  ?.color),
+                          style: Theme.of(context).textTheme.bodyLarge,
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           initialValue: _initValues['fuelType'].toString(),
                           placeholder: 'Enter fuel type used',
@@ -182,19 +179,10 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
                       CupertinoFormRow(
                         prefix: Text(
                           'Price',
-                          style: TextStyle(
-                              fontWeight: FontWeight.w500,
-                              color: Theme.of(context)
-                                  .textTheme
-                                  .labelMedium
-                                  ?.color),
+                          style: Theme.of(context).textTheme.headlineMedium,
                         ),
                         child: CupertinoTextFormFieldRow(
-                          style: TextStyle(
-                              color: Theme.of(context)
-                                  .textTheme
-                                  .labelSmall
-                                  ?.color),
+                          style: Theme.of(context).textTheme.bodyLarge,
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           initialValue: _initValues['price'].toString(),
                           placeholder: 'Enter price',
@@ -230,19 +218,10 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
                       CupertinoFormRow(
                         prefix: Text(
                           'Volume',
-                          style: TextStyle(
-                              fontWeight: FontWeight.w500,
-                              color: Theme.of(context)
-                                  .textTheme
-                                  .labelMedium
-                                  ?.color),
+                          style: Theme.of(context).textTheme.headlineMedium,
                         ),
                         child: CupertinoTextFormFieldRow(
-                          style: TextStyle(
-                              color: Theme.of(context)
-                                  .textTheme
-                                  .labelSmall
-                                  ?.color),
+                          style: Theme.of(context).textTheme.bodyLarge,
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           initialValue: _initValues['volume'].toString(),
                           placeholder: 'Enter volume',
@@ -276,19 +255,10 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
                       CupertinoFormRow(
                         prefix: Text(
                           'KM',
-                          style: TextStyle(
-                              fontWeight: FontWeight.w500,
-                              color: Theme.of(context)
-                                  .textTheme
-                                  .labelMedium
-                                  ?.color),
+                          style: Theme.of(context).textTheme.headlineMedium,
                         ),
                         child: CupertinoTextFormFieldRow(
-                          style: TextStyle(
-                              color: Theme.of(context)
-                                  .textTheme
-                                  .labelSmall
-                                  ?.color),
+                          style: Theme.of(context).textTheme.bodyLarge,
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           initialValue: _initValues['dashKm'].toString(),
                           placeholder: 'Enter dashboard km',
@@ -324,9 +294,11 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
                   margin: const EdgeInsets.all(8),
                   width: double.infinity,
                   child: CupertinoButton(
-                      color: Theme.of(context).backgroundColor,
+                      color: Theme.of(context).colorScheme.secondary,
                       onPressed: _saveForm,
-                      child: const Text('Submit')),
+                      child: Text('Submit',
+                          style: TextStyle(
+                              color: Theme.of(context).colorScheme.primary))),
                 )
               ],
             ),

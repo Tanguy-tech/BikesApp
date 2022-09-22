@@ -8,7 +8,8 @@ import 'package:provider/provider.dart';
 import '../../providers/fuel_consumption.dart';
 
 class FuelCosumptionItem extends StatelessWidget {
-  const FuelCosumptionItem({Key? key}) : super(key: key);
+  bool fullView;
+  FuelCosumptionItem(this.fullView, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,17 +22,30 @@ class FuelCosumptionItem extends StatelessWidget {
       },
       child: ListTile(
         minLeadingWidth: 0,
-        leading: const SizedBox(
+        leading: SizedBox(
             height: double.infinity,
-            child: Icon(Icons.oil_barrel, color: Colors.white)),
+            child: Icon(Icons.oil_barrel,
+                color: Theme.of(context).colorScheme.secondary)),
         title: Text(
-          '${DateFormat('dd.MM.yy').format(fuelConsumption.date)}     ${fuelConsumption.fuelType}',
+          DateFormat('dd.MM.yy').format(fuelConsumption.date),
           textAlign: TextAlign.left,
-          style: const TextStyle(fontSize: 14),
+          style: Theme.of(context).textTheme.titleSmall,
         ),
-        subtitle: Text(
-            '${fuelConsumption.pricePerLitter.toString()}€/L ${fuelConsumption.volume.toString()}L Total: ${fuelConsumption.price.toString()}€'),
-        //trailing: Icon(Icons.more_vert),
+        subtitle: fullView
+            ? Text(
+                '${fuelConsumption.pricePerLitter}€/L\n${fuelConsumption.volume}L',
+                style: Theme.of(context).textTheme.bodyMedium,
+              )
+            : Text(
+                '${fuelConsumption.fuelType}\n${fuelConsumption.price.toString()}€',
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
+        trailing: fullView
+            ? Text(
+                '${fuelConsumption.fuelType}\n\n${fuelConsumption.price.toString()}€',
+                style: Theme.of(context).textTheme.titleSmall,
+              )
+            : null,
         isThreeLine: true,
       ),
     );

@@ -12,6 +12,7 @@ class EditInvoiceScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Provider.of<AppTheme>(context);
     return Scaffold(
+      backgroundColor: theme.myTheme.colorScheme.background,
       appBar: AppBar(
         title: const Text("My fuel consumption"),
         actions: [

@@ -57,21 +57,22 @@ class DropUpButton extends StatelessWidget {
         //   // placeholder: 'insert...',
         // );
         Container(
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(30),
-          gradient: LinearGradient(
-            colors: [
-              Colors.indigoAccent.shade700,
-              Colors.tealAccent.shade700,
-            ],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          )),
+      // decoration: BoxDecoration(
+      //     borderRadius: BorderRadius.circular(30),
+      //     gradient: LinearGradient(
+      //       colors: [
+      //         Colors.indigoAccent.shade700,
+      //         Colors.tealAccent.shade700,
+      //       ],
+      //       begin: Alignment.topCenter,
+      //       end: Alignment.bottomCenter,
+      //     )),
       width: 100,
       height: 40,
       child: CupertinoButton(
+        color: Theme.of(context).colorScheme.secondary,
         padding: const EdgeInsets.all(0),
-        //borderRadius: BorderRadius.circular(30.0),
+        borderRadius: BorderRadius.circular(30.0),
         onPressed: () => showCupertinoModalPopup(
           context: context,
           builder: (BuildContext ctx) => CupertinoActionSheet(
@@ -100,7 +101,8 @@ class DropUpButton extends StatelessWidget {
             ],
           ),
         ),
-        child: const Icon(CupertinoIcons.add, color: Colors.white),
+        child: Icon(CupertinoIcons.add,
+            color: Theme.of(context).colorScheme.primary),
       ),
     );
   }
