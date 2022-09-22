@@ -87,7 +87,11 @@ class DropUpButton extends StatelessWidget {
                   Navigator.of(ctx)
                       .pushNamed(FuelConsrumptionFormScreen.routeName);
                 },
-                child: const Text('Add a Refill'),
+                child: Text(
+                  'Add a Refill',
+                  style: TextStyle(
+                      color: CupertinoColors.systemGrey6.darkHighContrastColor),
+                ),
               ),
               CupertinoActionSheetAction(
                 /// This parameter indicates the action would be a default
@@ -96,7 +100,11 @@ class DropUpButton extends StatelessWidget {
                 onPressed: () {
                   Navigator.of(ctx).pushNamed(InvoiceFormScreen.routeName);
                 },
-                child: const Text('Add an Invoice'),
+                child: Text(
+                  'Add an Invoice',
+                  style: TextStyle(
+                      color: CupertinoColors.systemGrey6.darkHighContrastColor),
+                ),
               ),
             ],
           ),

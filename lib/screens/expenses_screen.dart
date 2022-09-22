@@ -6,9 +6,9 @@ import '../widgets/bike_widgets/bike_data_container.dart';
 import '../widgets/fuel_consumptions_widgets/fuel_consumption_list.dart';
 import '../widgets/invoices_widgets/invoices_list.dart';
 
-class MyGarageScreen extends StatelessWidget {
-  static const routeName = '/garage';
-  const MyGarageScreen({Key? key}) : super(key: key);
+class MyExpensesScreen extends StatelessWidget {
+  static const routeName = '/expenses';
+  const MyExpensesScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -44,6 +44,7 @@ class FuelCosumptionItem extends StatelessWidget {
             ? Text(
                 '${fuelConsumption.fuelType}\n\n${fuelConsumption.price.toString()}€',
                 style: Theme.of(context).textTheme.titleSmall,
+                textAlign: TextAlign.right,
               )
             : null,
         isThreeLine: true,

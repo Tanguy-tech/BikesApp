@@ -142,7 +142,7 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
                           style: Theme.of(context).textTheme.headlineMedium,
                         ),
                         child: CupertinoTextFormFieldRow(
-                          style: Theme.of(context).textTheme.bodyLarge,
+                          style: Theme.of(context).textTheme.labelLarge,
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           initialValue: _initValues['fuelType'].toString(),
                           placeholder: 'Enter fuel type used',
@@ -182,7 +182,7 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
                           style: Theme.of(context).textTheme.headlineMedium,
                         ),
                         child: CupertinoTextFormFieldRow(
-                          style: Theme.of(context).textTheme.bodyLarge,
+                          style: Theme.of(context).textTheme.labelLarge,
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           initialValue: _initValues['price'].toString(),
                           placeholder: 'Enter price',
@@ -221,7 +221,7 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
                           style: Theme.of(context).textTheme.headlineMedium,
                         ),
                         child: CupertinoTextFormFieldRow(
-                          style: Theme.of(context).textTheme.bodyLarge,
+                          style: Theme.of(context).textTheme.labelLarge,
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           initialValue: _initValues['volume'].toString(),
                           placeholder: 'Enter volume',
@@ -258,7 +258,7 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
                           style: Theme.of(context).textTheme.headlineMedium,
                         ),
                         child: CupertinoTextFormFieldRow(
-                          style: Theme.of(context).textTheme.bodyLarge,
+                          style: Theme.of(context).textTheme.labelLarge,
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           initialValue: _initValues['dashKm'].toString(),
                           placeholder: 'Enter dashboard km',

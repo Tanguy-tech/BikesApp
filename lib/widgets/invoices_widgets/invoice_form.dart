@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:motobox/widgets/app_widgets/custom_date_picker.dart';
 import 'package:provider/provider.dart';
 import '../../../providers/invoice.dart';
 import '../../../providers/invoices.dart';
@@ -138,167 +139,267 @@ class _InvoiceFormState extends State<InvoiceForm> {
               padding: const EdgeInsets.all(8.0),
               child: ListView(
                 children: [
-                  Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: Theme.of(context).backgroundColor),
-                    padding: const EdgeInsets.all(5),
-                    margin: const EdgeInsets.all(10),
-                    child: TextFormField(
-                      initialValue: _initValues['title'].toString(),
-                      // The validator receives the text that the user has entered.
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter a valid title';
-                        }
-                        return null;
-                      },
-                      onSaved: (value) {
-                        _inv = Invoice(
-                          id: _inv.id,
-                          title: value!,
-                          date: _inv.date,
-                          price: _inv.price,
-                        );
-                        //photo: _inv.photo);
-                      },
-                      decoration: const InputDecoration(
-                        hintText: "Title",
-                        hintStyle: TextStyle(
-                            color: Color.fromARGB(255, 34, 34, 34),
-                            fontSize: 15,
-                            fontWeight: FontWeight.w600),
+                  CupertinoFormSection.insetGrouped(
+                      decoration: BoxDecoration(
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(10)),
+                          color: Theme.of(context).colorScheme.primary),
+                      backgroundColor: Theme.of(context).colorScheme.background,
+                      margin: const EdgeInsets.all(8),
+                      footer: Text(
+                        'Create or edit an invoice. Price in €.',
+                        style: Theme.of(context).textTheme.bodyMedium,
                       ),
-                      textInputAction: TextInputAction.next,
-                      onFieldSubmitted: (_) {
-                        FocusScope.of(context).requestFocus(_dateFocusNode);
-                      },
-                    ),
-                  ),
+                      children: [
+                        CupertinoFormRow(
+                          prefix: Text(
+                            'Title',
+                            style: Theme.of(context).textTheme.headlineMedium,
+                          ),
+                          child: CupertinoTextFormFieldRow(
+                            style: Theme.of(context).textTheme.labelLarge,
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            initialValue: _initValues['title'].toString(),
+                            placeholder: 'Enter a title / invoice content',
+                            textInputAction: TextInputAction.next,
+                            onFieldSubmitted: (_) {
+                              FocusScope.of(context)
+                                  .requestFocus(_dateFocusNode);
+                            },
+                            onSaved: (value) {
+                              _inv = Invoice(
+                                //id: 'ongoing', // to set the id different of 'id' -> means _inv already exists
+                                id: _inv.id,
+                                title: value!,
+                                date: _inv.date,
+                                price: _inv.price,
+                              );
+                            },
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter some text';
+                              }
+                              return null;
+                            },
+                          ),
+                        ),
+                        CustomDatePicker(
+                            ctx: context,
+                            selectedDate: selectedDate,
+                            dateTime: _dateTime,
+                            initValues: _initValues,
+                            editing: _editing),
+                        CupertinoFormRow(
+                          prefix: Text(
+                            'Price',
+                            style: Theme.of(context).textTheme.headlineMedium,
+                          ),
+                          child: CupertinoTextFormFieldRow(
+                            style: Theme.of(context).textTheme.labelLarge,
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            initialValue: _initValues['price'].toString(),
+                            placeholder: 'Enter price',
+                            textInputAction: TextInputAction.next,
+                            focusNode: _priceFocusNode,
+                            onFieldSubmitted: (_) {
+                              _saveForm();
+                            },
+                            onSaved: (value) {
+                              _inv = Invoice(
+                                //id: 'ongoing', // to set the id different of 'id' -> means _inv already exists
+                                id: _inv.id,
+                                title: _inv.title,
+                                date: _inv.date,
+                                price: double.parse(value!),
+                              );
+                            },
+                            validator: (value) {
+                              if (value?.isEmpty == true) {
+                                return 'Please enter an amount';
+                              }
+                              if (double.tryParse(value!) == null) {
+                                return 'Please enter a valid price';
+                              }
+                              return null;
+                            },
+                          ),
+                        )
+                      ]),
                   Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: Theme.of(context).backgroundColor),
+                    margin: const EdgeInsets.all(8),
+                    width: double.infinity,
                     child: CupertinoButton(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Theme.of(context).backgroundColor,
-                      // focusNode: _dateFocusNode,
-                      // style: const ButtonStyle(alignment: Alignment.centerLeft),
-                      onPressed: () {
-                        showDatePicker(
-                                context: context,
-                                initialDate: DateTime.now(),
-                                firstDate: DateTime(2000),
-                                lastDate: DateTime.now())
-                            .then((date) {
-                          setState(() {
-                            _dateTime = date!;
-                          });
-                        });
-                      },
-                      child: _editing
-                          ? Text(DateFormat('dd - MM - yy')
-                              .format(_initValues['date'] as DateTime))
-                          : Text(
-                              'Select a date :   ${DateFormat('dd - MM - yy').format(_dateTime)}',
-                              style: const TextStyle(
-                                  color: Color.fromARGB(255, 34, 34, 34),
-                                  fontWeight: FontWeight.w500),
-                            ),
-                    ),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: Theme.of(context).backgroundColor),
-                    padding: const EdgeInsets.all(5),
-                    margin: const EdgeInsets.all(10),
-                    child: TextFormField(
-                      initialValue: _initValues['price'].toString(),
-                      // The validator receives the text that the user has entered.
-                      validator: (value) {
-                        if (value?.isEmpty == true) {
-                          return 'Please enter a price..';
-                        }
-                        if (double.tryParse(value!) == null) {
-                          return 'Please enter a valide price';
-                        }
-                        return null;
-                      },
-                      onSaved: (value) {
-                        _inv = Invoice(
-                          id: _inv.id,
-                          title: _inv.title,
-                          date: _inv.date,
-                          price: double.parse(value!),
-                        );
-                        //photo: _inv.photo);
-                      },
-                      decoration: const InputDecoration(
-                        hintText: "Price",
-                        hintStyle: TextStyle(
-                            color: Color.fromARGB(255, 34, 34, 34),
-                            fontSize: 15,
-                            fontWeight: FontWeight.w600),
-                      ),
-                      textInputAction: TextInputAction.next,
-                      keyboardType: const TextInputType.numberWithOptions(
-                          signed: true, decimal: true),
-                      focusNode: _priceFocusNode,
-                      // onFieldSubmitted: (_) {
-                      //   FocusScope.of(context).requestFocus(_imageViewerFocusNode);
-                      // },
-                    ),
-                  ),
-                  // FormField(
-                  //   builder: (field) => Row(
-                  //     mainAxisAlignment: MainAxisAlignment.center,
-                  //     children: [
-                  //       Container(
-                  //         margin: const EdgeInsets.only(left: 10, right: 10),
-                  //         child: ElevatedButton(
-                  //             onPressed: () => pickImage(ImageSource.gallery),
-                  //             child: const Text('Pick from gallery')),
-                  //       ),
-                  //       Container(
-                  //         margin: const EdgeInsets.only(left: 10, right: 10),
-                  //         child: ElevatedButton(
-                  //             onPressed: () => pickImage(ImageSource.camera),
-                  //             child: const Text('Pick from camera')),
-                  //       ),
-                  //     ],
-                  //   ),
-                  //   onSaved: (value) {
-                  //     _inv = Invoice(
-                  //         id: _inv.id,
-                  //         title: _inv.title,
-                  //         date: _inv.date,
-                  //         price: _inv.price,
-                  //         photo: value as Image);
-                  //   },
-                  // ),
-                  // Container(
-                  //   decoration: BoxDecoration(
-                  //       borderRadius: BorderRadius.circular(15),
-                  //       color: Theme.of(context).backgroundColor),
-                  //   padding: const EdgeInsets.all(5),
-                  //   margin: const EdgeInsets.all(10),
-                  //   child: image != null
-                  //       ? Image.file(
-                  //           image!,
-                  //           //  width: constraints.maxWidth,
-                  //           height: 200,
-                  //         )
-                  //       : Image.asset(
-                  //           'placeHolder.png',
-                  //           // width: constraints.maxWidth,
-                  //           height: 200,
-                  //         ),
-                  // ),
-                  FloatingActionButton(onPressed: _saveForm)
+                        color: Theme.of(context).colorScheme.secondary,
+                        onPressed: _saveForm,
+                        child: Text('Submit',
+                            style: TextStyle(
+                                color: Theme.of(context).colorScheme.primary))),
+                  )
                 ],
               ),
             ),
           );
   }
 }
+
+
+// Container(
+//                     decoration: BoxDecoration(
+//                         borderRadius: BorderRadius.circular(15),
+//                         color: Theme.of(context).backgroundColor),
+//                     padding: const EdgeInsets.all(5),
+//                     margin: const EdgeInsets.all(10),
+//                     child: TextFormField(
+//                       initialValue: _initValues['title'].toString(),
+//                       // The validator receives the text that the user has entered.
+//                       validator: (value) {
+//                         if (value == null || value.isEmpty) {
+//                           return 'Please enter a valid title';
+//                         }
+//                         return null;
+//                       },
+//                       onSaved: (value) {
+//                         _inv = Invoice(
+//                           id: _inv.id,
+//                           title: value!,
+//                           date: _inv.date,
+//                           price: _inv.price,
+//                         );
+//                         //photo: _inv.photo);
+//                       },
+//                       decoration: const InputDecoration(
+//                         hintText: "Title",
+//                         hintStyle: TextStyle(
+//                             color: Color.fromARGB(255, 34, 34, 34),
+//                             fontSize: 15,
+//                             fontWeight: FontWeight.w600),
+//                       ),
+//                       textInputAction: TextInputAction.next,
+//                       onFieldSubmitted: (_) {
+//                         FocusScope.of(context).requestFocus(_dateFocusNode);
+//                       },
+//                     ),
+//                   ),
+//                   Container(
+//                     decoration: BoxDecoration(
+//                         borderRadius: BorderRadius.circular(15),
+//                         color: Theme.of(context).backgroundColor),
+//                     child: CupertinoButton(
+//                       borderRadius: BorderRadius.circular(15),
+//                       color: Theme.of(context).backgroundColor,
+//                       // focusNode: _dateFocusNode,
+//                       // style: const ButtonStyle(alignment: Alignment.centerLeft),
+//                       onPressed: () {
+//                         showDatePicker(
+//                                 context: context,
+//                                 initialDate: DateTime.now(),
+//                                 firstDate: DateTime(2000),
+//                                 lastDate: DateTime.now())
+//                             .then((date) {
+//                           setState(() {
+//                             _dateTime = date!;
+//                           });
+//                         });
+//                       },
+//                       child: _editing
+//                           ? Text(DateFormat('dd - MM - yy')
+//                               .format(_initValues['date'] as DateTime))
+//                           : Text(
+//                               'Select a date :   ${DateFormat('dd - MM - yy').format(_dateTime)}',
+//                               style: const TextStyle(
+//                                   color: Color.fromARGB(255, 34, 34, 34),
+//                                   fontWeight: FontWeight.w500),
+//                             ),
+//                     ),
+//                   ),
+//                   Container(
+//                     decoration: BoxDecoration(
+//                         borderRadius: BorderRadius.circular(15),
+//                         color: Theme.of(context).backgroundColor),
+//                     padding: const EdgeInsets.all(5),
+//                     margin: const EdgeInsets.all(10),
+//                     child: TextFormField(
+//                       initialValue: _initValues['price'].toString(),
+//                       // The validator receives the text that the user has entered.
+//                       validator: (value) {
+//                         if (value?.isEmpty == true) {
+//                           return 'Please enter a price..';
+//                         }
+//                         if (double.tryParse(value!) == null) {
+//                           return 'Please enter a valide price';
+//                         }
+//                         return null;
+//                       },
+//                       onSaved: (value) {
+//                         _inv = Invoice(
+//                           id: _inv.id,
+//                           title: _inv.title,
+//                           date: _inv.date,
+//                           price: double.parse(value!),
+//                         );
+//                         //photo: _inv.photo);
+//                       },
+//                       decoration: const InputDecoration(
+//                         hintText: "Price",
+//                         hintStyle: TextStyle(
+//                             color: Color.fromARGB(255, 34, 34, 34),
+//                             fontSize: 15,
+//                             fontWeight: FontWeight.w600),
+//                       ),
+//                       textInputAction: TextInputAction.next,
+//                       keyboardType: const TextInputType.numberWithOptions(
+//                           signed: true, decimal: true),
+//                       focusNode: _priceFocusNode,
+//                       // onFieldSubmitted: (_) {
+//                       //   FocusScope.of(context).requestFocus(_imageViewerFocusNode);
+//                       // },
+//                     ),
+//                   ),
+//                   // FormField(
+//                   //   builder: (field) => Row(
+//                   //     mainAxisAlignment: MainAxisAlignment.center,
+//                   //     children: [
+//                   //       Container(
+//                   //         margin: const EdgeInsets.only(left: 10, right: 10),
+//                   //         child: ElevatedButton(
+//                   //             onPressed: () => pickImage(ImageSource.gallery),
+//                   //             child: const Text('Pick from gallery')),
+//                   //       ),
+//                   //       Container(
+//                   //         margin: const EdgeInsets.only(left: 10, right: 10),
+//                   //         child: ElevatedButton(
+//                   //             onPressed: () => pickImage(ImageSource.camera),
+//                   //             child: const Text('Pick from camera')),
+//                   //       ),
+//                   //     ],
+//                   //   ),
+//                   //   onSaved: (value) {
+//                   //     _inv = Invoice(
+//                   //         id: _inv.id,
+//                   //         title: _inv.title,
+//                   //         date: _inv.date,
+//                   //         price: _inv.price,
+//                   //         photo: value as Image);
+//                   //   },
+//                   // ),
+//                   // Container(
+//                   //   decoration: BoxDecoration(
+//                   //       borderRadius: BorderRadius.circular(15),
+//                   //       color: Theme.of(context).backgroundColor),
+//                   //   padding: const EdgeInsets.all(5),
+//                   //   margin: const EdgeInsets.all(10),
+//                   //   child: image != null
+//                   //       ? Image.file(
+//                   //           image!,
+//                   //           //  width: constraints.maxWidth,
+//                   //           height: 200,
+//                   //         )
+//                   //       : Image.asset(
+//                   //           'placeHolder.png',
+//                   //           // width: constraints.maxWidth,
+//                   //           height: 200,
+//                   //         ),
+//                   // ),
+//                   FloatingActionButton(onPressed: _saveForm)

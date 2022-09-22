@@ -79,55 +79,69 @@ ColorScheme myLightColorScheme() {
 /* LIGHT TEXT THEME */
 TextTheme myLightTextTheme() {
   return ThemeData.light().textTheme.copyWith(
-        titleLarge: const TextStyle(
+      titleLarge: const TextStyle(
+        fontFamily: 'CaviarDreams',
+        fontSize: 25,
+        fontWeight: FontWeight.bold,
+        color: CupertinoColors.white,
+      ),
+      titleMedium: const TextStyle(
+        fontFamily: 'CaviarDreams',
+        fontSize: 20,
+        fontWeight: FontWeight.bold,
+        color: CupertinoColors.white,
+      ),
+      titleSmall: const TextStyle(
+        fontFamily: 'CaviarDreams',
+        fontSize: 15,
+        fontWeight: FontWeight.bold,
+        color: CupertinoColors.white,
+      ),
+      bodyLarge: const TextStyle(
           fontFamily: 'CaviarDreams',
-          fontSize: 25,
-          fontWeight: FontWeight.bold,
-          color: CupertinoColors.white,
-        ),
-        titleMedium: const TextStyle(
+          fontSize: 18,
+          fontWeight: FontWeight.normal,
+          color: CupertinoColors.secondaryLabel),
+      bodyMedium: const TextStyle(
           fontFamily: 'CaviarDreams',
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
-          color: CupertinoColors.white,
-        ),
-        titleSmall: const TextStyle(
+          fontSize: 13,
+          fontWeight: FontWeight.normal,
+          color: CupertinoColors.secondaryLabel),
+      bodySmall: const TextStyle(
           fontFamily: 'CaviarDreams',
-          fontSize: 15,
-          fontWeight: FontWeight.bold,
-          color: CupertinoColors.white,
-        ),
-        bodyLarge: const TextStyle(
-            fontFamily: 'CaviarDreams',
-            fontSize: 18,
-            fontWeight: FontWeight.normal,
-            color: CupertinoColors.secondaryLabel),
-        bodyMedium: const TextStyle(
-            fontFamily: 'CaviarDreams',
-            fontSize: 13,
-            fontWeight: FontWeight.normal,
-            color: CupertinoColors.secondaryLabel),
-        bodySmall: const TextStyle(
-            fontFamily: 'CaviarDreams',
-            fontSize: 11,
-            fontWeight: FontWeight.normal,
-            color: CupertinoColors.secondaryLabel),
-        headlineLarge: TextStyle(
-            color: CupertinoColors.systemGrey6.darkHighContrastColor,
-            fontFamily: 'CaviarDreams',
-            fontSize: 18,
-            fontWeight: FontWeight.normal),
-        headlineMedium: TextStyle(
-            color: CupertinoColors.systemGrey6.darkHighContrastColor,
-            fontFamily: 'CaviarDreams',
-            fontSize: 16,
-            fontWeight: FontWeight.normal),
-        headlineSmall: TextStyle(
-            color: CupertinoColors.systemGrey6.darkHighContrastColor,
-            fontFamily: 'CaviarDreams',
-            fontSize: 14,
-            fontWeight: FontWeight.normal),
-      );
+          fontSize: 11,
+          fontWeight: FontWeight.normal,
+          color: CupertinoColors.secondaryLabel),
+      headlineLarge: TextStyle(
+          color: CupertinoColors.systemGrey6.darkHighContrastColor,
+          fontFamily: 'CaviarDreams',
+          fontSize: 18,
+          fontWeight: FontWeight.normal),
+      headlineMedium: TextStyle(
+          color: CupertinoColors.systemGrey6.darkHighContrastColor,
+          fontFamily: 'CaviarDreams',
+          fontSize: 16,
+          fontWeight: FontWeight.normal),
+      headlineSmall: TextStyle(
+          color: CupertinoColors.systemGrey6.darkHighContrastColor,
+          fontFamily: 'CaviarDreams',
+          fontSize: 14,
+          fontWeight: FontWeight.normal),
+      labelLarge: const TextStyle(
+          color: CupertinoColors.secondaryLabel,
+          fontFamily: 'RobotoCondensed',
+          fontSize: 18,
+          fontWeight: FontWeight.normal),
+      labelMedium: const TextStyle(
+          color: CupertinoColors.secondaryLabel,
+          fontFamily: 'RobotoCondensed',
+          fontSize: 16,
+          fontWeight: FontWeight.normal),
+      labelSmall: const TextStyle(
+          color: CupertinoColors.secondaryLabel,
+          fontFamily: 'RobotoCondensed',
+          fontSize: 14,
+          fontWeight: FontWeight.normal));
 }
 
 /* DARK THEME */
@@ -169,53 +183,67 @@ ColorScheme myDarkColorScheme() {
 /* DARK TEXT THEME */
 TextTheme myDarkTextTheme() {
   return ThemeData.light().textTheme.copyWith(
-        titleLarge: const TextStyle(
+      titleLarge: const TextStyle(
+        fontFamily: 'CaviarDreams',
+        fontSize: 25,
+        fontWeight: FontWeight.bold,
+        color: CupertinoColors.lightBackgroundGray,
+      ),
+      titleMedium: const TextStyle(
+        fontFamily: 'CaviarDreams',
+        fontSize: 20,
+        fontWeight: FontWeight.bold,
+        color: CupertinoColors.lightBackgroundGray,
+      ),
+      titleSmall: const TextStyle(
+        fontFamily: 'CaviarDreams',
+        fontSize: 15,
+        fontWeight: FontWeight.bold,
+        color: CupertinoColors.lightBackgroundGray,
+      ),
+      bodyLarge: const TextStyle(
           fontFamily: 'CaviarDreams',
-          fontSize: 25,
-          fontWeight: FontWeight.bold,
-          color: CupertinoColors.lightBackgroundGray,
-        ),
-        titleMedium: const TextStyle(
+          fontSize: 18,
+          fontWeight: FontWeight.normal,
+          color: CupertinoColors.inactiveGray),
+      bodyMedium: const TextStyle(
           fontFamily: 'CaviarDreams',
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
-          color: CupertinoColors.lightBackgroundGray,
-        ),
-        titleSmall: const TextStyle(
+          fontSize: 13,
+          fontWeight: FontWeight.normal,
+          color: CupertinoColors.inactiveGray),
+      bodySmall: const TextStyle(
           fontFamily: 'CaviarDreams',
-          fontSize: 15,
-          fontWeight: FontWeight.bold,
-          color: CupertinoColors.lightBackgroundGray,
-        ),
-        bodyLarge: const TextStyle(
-            fontFamily: 'CaviarDreams',
-            fontSize: 18,
-            fontWeight: FontWeight.normal,
-            color: CupertinoColors.inactiveGray),
-        bodyMedium: const TextStyle(
-            fontFamily: 'CaviarDreams',
-            fontSize: 13,
-            fontWeight: FontWeight.normal,
-            color: CupertinoColors.inactiveGray),
-        bodySmall: const TextStyle(
-            fontFamily: 'CaviarDreams',
-            fontSize: 11,
-            fontWeight: FontWeight.normal,
-            color: CupertinoColors.inactiveGray),
-        headlineLarge: const TextStyle(
-            color: Color.fromARGB(255, 161, 221, 250),
-            fontFamily: 'CaviarDreams',
-            fontSize: 18,
-            fontWeight: FontWeight.normal),
-        headlineMedium: const TextStyle(
-            color: Color.fromARGB(255, 161, 221, 250),
-            fontFamily: 'CaviarDreams',
-            fontSize: 16,
-            fontWeight: FontWeight.normal),
-        headlineSmall: const TextStyle(
-            color: Color.fromARGB(255, 161, 221, 250),
-            fontFamily: 'CaviarDreams',
-            fontSize: 14,
-            fontWeight: FontWeight.normal),
-      );
+          fontSize: 11,
+          fontWeight: FontWeight.normal,
+          color: CupertinoColors.inactiveGray),
+      headlineLarge: const TextStyle(
+          color: Color.fromARGB(255, 161, 221, 250),
+          fontFamily: 'CaviarDreams',
+          fontSize: 18,
+          fontWeight: FontWeight.normal),
+      headlineMedium: const TextStyle(
+          color: Color.fromARGB(255, 161, 221, 250),
+          fontFamily: 'CaviarDreams',
+          fontSize: 16,
+          fontWeight: FontWeight.normal),
+      headlineSmall: const TextStyle(
+          color: Color.fromARGB(255, 161, 221, 250),
+          fontFamily: 'CaviarDreams',
+          fontSize: 14,
+          fontWeight: FontWeight.normal),
+      labelLarge: const TextStyle(
+          color: CupertinoColors.inactiveGray,
+          fontFamily: 'RobotoCondensed',
+          fontSize: 18,
+          fontWeight: FontWeight.normal),
+      labelMedium: const TextStyle(
+          color: CupertinoColors.inactiveGray,
+          fontFamily: 'RobotoCondensed',
+          fontSize: 16,
+          fontWeight: FontWeight.normal),
+      labelSmall: const TextStyle(
+          color: CupertinoColors.inactiveGray,
+          fontFamily: 'RobotoCondensed',
+          fontSize: 14,
+          fontWeight: FontWeight.normal));
 }

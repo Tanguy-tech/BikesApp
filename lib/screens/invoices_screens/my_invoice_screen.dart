@@ -37,15 +37,16 @@ class InvoiceScreen extends StatelessWidget {
           style:
               TextStyle(color: Theme.of(context).appBarTheme.foregroundColor),
         ),
+        trailing: CupertinoButton(
+          padding: const EdgeInsets.all(0),
+          onPressed: () {
+            Navigator.of(context).pushNamed(InvoiceFormScreen.routeName);
+          },
+          child: Icon(CupertinoIcons.add,
+              color: Theme.of(context).appBarTheme.foregroundColor),
+        ),
       ),
       body: const InvoicesList(isPreview: false),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Theme.of(context).backgroundColor,
-        onPressed: () {
-          Navigator.of(context).pushNamed(InvoiceFormScreen.routeName);
-        },
-        child: const Icon(Icons.add),
-      ),
     );
   }
 }

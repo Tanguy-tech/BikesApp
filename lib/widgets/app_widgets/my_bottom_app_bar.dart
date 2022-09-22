@@ -34,11 +34,11 @@ class MyBottomAppBar extends StatelessWidget {
           items: [
             BottomNavigationBarItem(
                 backgroundColor: theme.myTheme.appBarTheme.backgroundColor,
-                icon: const Icon(Icons.border_all_rounded),
+                icon: const Icon(Icons.sports_motorsports),
                 label: pages[0]["title"] as String),
             BottomNavigationBarItem(
                 backgroundColor: theme.myTheme.appBarTheme.backgroundColor,
-                icon: const Icon(Icons.favorite),
+                icon: const Icon(Icons.sell),
                 label: pages[1]["title"] as String)
           ]),
     );

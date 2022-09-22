@@ -41,6 +41,7 @@ class InvoiceItem extends StatelessWidget {
             ? Text(
                 '${invoice.title}\n\n${invoice.price.toString()}€',
                 style: Theme.of(context).textTheme.titleSmall,
+                textAlign: TextAlign.right,
               )
             : null,
         isThreeLine: true,

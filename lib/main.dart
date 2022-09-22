@@ -4,7 +4,7 @@ import 'package:motobox/providers/fuel_consumptions.dart';
 import 'package:motobox/providers/invoices.dart';
 import 'package:motobox/providers/theme_provider.dart';
 import 'package:motobox/screens/category_screen.dart';
-import 'package:motobox/screens/garage_screen.dart';
+import 'package:motobox/screens/expenses_screen.dart';
 import 'package:motobox/widgets/app_widgets/dropup_button.dart';
 import 'package:motobox/widgets/app_widgets/my_bottom_app_bar.dart';
 import 'package:motobox/widgets/routes.dart';
@@ -29,8 +29,8 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final List<Map<String, Object>> _pages = [
-    {"page": CategoryScreen(), "title": "Brands"},
-    {"page": const MyGarageScreen(), "title": "My Garage"},
+    {"page": CategoryScreen(), "title": "Profile"},
+    {"page": const MyExpensesScreen(), "title": "Expenses"},
   ];
 
   int _index = 1;

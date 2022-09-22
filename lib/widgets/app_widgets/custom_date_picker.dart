@@ -69,11 +69,11 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
               ? Text(
                   DateFormat('dd - MM - yy')
                       .format(widget.initValues['date'] as DateTime),
-                  style: Theme.of(context).textTheme.bodyLarge,
+                  style: Theme.of(context).textTheme.labelLarge,
                 )
               : Text(
                   DateFormat('dd - MM - yy').format(widget.dateTime),
-                  style: Theme.of(context).textTheme.bodyLarge,
+                  style: Theme.of(context).textTheme.labelLarge,
                 ),
         ),
       ),
