@@ -3,9 +3,9 @@ import 'package:motobox/models/category.dart';
 import 'package:motobox/widgets/bike_widgets/category_item.dart';
 import 'package:motobox/data/brand_data.dart';
 
-class CategoryScreen extends StatelessWidget {
+class BrandsScreen extends StatelessWidget {
   final List<Category> ci = brandCategories;
-  CategoryScreen({Key? key}) : super(key: key);
+  BrandsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

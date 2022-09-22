@@ -3,7 +3,7 @@ import '../models/models.dart';
 
 class BikeData with ChangeNotifier {
   late final String id;
-  late final Model bikeModel;
+  // late final Model bikeModel;
   late final double costs;
   late final double totalKmRidden;
   late final double riddenSincePurchased;
@@ -11,7 +11,7 @@ class BikeData with ChangeNotifier {
 
   BikeData(
       {required this.id,
-      required this.bikeModel,
+      // required this.bikeModel,
       required this.costs,
       required this.totalKmRidden,
       required this.riddenSincePurchased,

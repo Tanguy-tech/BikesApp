@@ -273,7 +273,7 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
                                 fuelType: _fc.fuelType,
                                 date: _fc.date,
                                 price: _fc.price,
-                                pricePerLitter: _fc.pricePerLitter,
+                                pricePerLitter: _fc.price / _fc.volume,
                                 volume: _fc.volume,
                                 dashKm: double.parse(value!),
                                 kmRidden: _fc.kmRidden);

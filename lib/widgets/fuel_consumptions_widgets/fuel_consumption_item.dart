@@ -33,7 +33,7 @@ class FuelCosumptionItem extends StatelessWidget {
         ),
         subtitle: fullView
             ? Text(
-                '${fuelConsumption.pricePerLitter}€/L\n${fuelConsumption.volume}L',
+                '${fuelConsumption.pricePerLitter.toStringAsFixed(3)}€/L\n${fuelConsumption.volume}L',
                 style: Theme.of(context).textTheme.bodyMedium,
               )
             : Text(
