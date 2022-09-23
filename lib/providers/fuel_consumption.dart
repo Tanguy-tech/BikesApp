@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 
+import 'bike_data.dart';
+
 class FuelConsumption with ChangeNotifier {
   final String id;
   final String fuelType;
@@ -10,6 +12,7 @@ class FuelConsumption with ChangeNotifier {
   final double volume;
   final double dashKm;
   final double kmRidden;
+  final String bikeId;
 
   FuelConsumption(
       {required this.id,
@@ -19,5 +22,6 @@ class FuelConsumption with ChangeNotifier {
       required this.pricePerLitter,
       required this.volume,
       required this.dashKm,
-      required this.kmRidden});
+      required this.kmRidden,
+      required this.bikeId});
 }

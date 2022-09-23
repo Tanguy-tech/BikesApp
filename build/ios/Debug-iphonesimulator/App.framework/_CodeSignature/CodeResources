@@ -10,11 +10,11 @@
 		</data>
 		<key>flutter_assets/AssetManifest.json</key>
 		<data>
-		GgYqUjlrQRHz5yql5EC+r2ncpxc=
+		JpjrbZB1fXx38va4rsVU4+ZdX6M=
 		</data>
 		<key>flutter_assets/FontManifest.json</key>
 		<data>
-		Zo/oVtRZV/1bwRXudwZ6dVwhxDk=
+		qKU2uu/paQofwJ58myLGKLI3ryY=
 		</data>
 		<key>flutter_assets/NOTICES.Z</key>
 		<data>
@@ -140,6 +140,22 @@
 		<data>
 		NkDvG763Ge2RLjXnx+iETN5ZCNc=
 		</data>
+		<key>flutter_assets/assets/fonts/CaviarDreams.ttf</key>
+		<data>
+		/brmgOU+p/XHpH1ZvFWIVT/5f0A=
+		</data>
+		<key>flutter_assets/assets/fonts/CaviarDreams_Bold.ttf</key>
+		<data>
+		RVD5XNlAwBGHYxvJPWxZyhvt62U=
+		</data>
+		<key>flutter_assets/assets/fonts/CaviarDreams_BoldItalic.ttf</key>
+		<data>
+		qnWjoL14I4pjDlFCaPvnC3BhNvk=
+		</data>
+		<key>flutter_assets/assets/fonts/CaviarDreams_italic.ttf</key>
+		<data>
+		aa3X4eeVNxbMpOGD1+8PVf7NBXE=
+		</data>
 		<key>flutter_assets/assets/fonts/Raleway-Black.ttf</key>
 		<data>
 		v5rJzcx87XkptgbZJeAl0RMnd/A=
@@ -194,7 +210,7 @@
 		</data>
 		<key>flutter_assets/kernel_blob.bin</key>
 		<data>
-		BY4w2wNaQp5fPRFbm8G9aMurv4c=
+		ATYcVefDkTKfjeHM3PyoYCbszs0=
 		</data>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -219,22 +235,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			GgYqUjlrQRHz5yql5EC+r2ncpxc=
+			JpjrbZB1fXx38va4rsVU4+ZdX6M=
 			</data>
 			<key>hash2</key>
 			<data>
-			5vzNSFkqA6WwoirLA9YZAbzLXyXOcdreDfZQ/vExaEg=
+			O5Vkaf1K/Wmjkj2hTI2yzuSfKNCU1erDT5/D7dBz4Qk=
 			</data>
 		</dict>
 		<key>flutter_assets/FontManifest.json</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			Zo/oVtRZV/1bwRXudwZ6dVwhxDk=
+			qKU2uu/paQofwJ58myLGKLI3ryY=
 			</data>
 			<key>hash2</key>
 			<data>
-			5lpwPtKCOIyP4nk23GBJqPruLI69aZerJmxbEGuFJZE=
+			CeQwCdBiUYgHhCnFLQxJOHUfJpIZLhMzuLUbwTd8Zqo=
 			</data>
 		</dict>
 		<key>flutter_assets/NOTICES.Z</key>
@@ -578,6 +594,50 @@
 			w+kcnCMZLgRcvq9A5iZjYJsD+lDbmUTKnV18O51RPKk=
 			</data>
 		</dict>
+		<key>flutter_assets/assets/fonts/CaviarDreams.ttf</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			/brmgOU+p/XHpH1ZvFWIVT/5f0A=
+			</data>
+			<key>hash2</key>
+			<data>
+			SOZCFicMte/r3lC6OgrPjiDbP790W9xf8D5UWW+OBio=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/fonts/CaviarDreams_Bold.ttf</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			RVD5XNlAwBGHYxvJPWxZyhvt62U=
+			</data>
+			<key>hash2</key>
+			<data>
+			yLGYzIQJWar1PKe5jB1iUjsEEwifqEgj0ZvHf4DwHA4=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/fonts/CaviarDreams_BoldItalic.ttf</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			qnWjoL14I4pjDlFCaPvnC3BhNvk=
+			</data>
+			<key>hash2</key>
+			<data>
+			MIgMaVQJGSJ/WUgRpHPuWu4mUA0F2w+fupR7PEpuxUA=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/fonts/CaviarDreams_italic.ttf</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			aa3X4eeVNxbMpOGD1+8PVf7NBXE=
+			</data>
+			<key>hash2</key>
+			<data>
+			nTCr+bbEbqJ6btTSBft0DuX3lENSZ+JikyFSYs2v/nU=
+			</data>
+		</dict>
 		<key>flutter_assets/assets/fonts/Raleway-Black.ttf</key>
 		<dict>
 			<key>hash</key>
@@ -725,11 +785,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			BY4w2wNaQp5fPRFbm8G9aMurv4c=
+			ATYcVefDkTKfjeHM3PyoYCbszs0=
 			</data>
 			<key>hash2</key>
 			<data>
-			ffVH8pQY1/+eStjRwjwANNlZmmZfHo5si0orz4qLKeo=
+			HH3iHt7z9WkpvAA4JdTgxMWUlXXa+jlFc4GCZPzTzhc=
 			</data>
 		</dict>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>

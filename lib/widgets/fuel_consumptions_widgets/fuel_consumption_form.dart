@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/number_symbols_data.dart';
+import 'package:motobox/providers/bike_data.dart';
+import 'package:motobox/providers/my_bikes.dart';
 import 'package:motobox/widgets/app_widgets/custom_date_picker.dart';
 import 'package:provider/provider.dart';
 import '../../providers/fuel_consumption.dart';
@@ -28,7 +31,17 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
       pricePerLitter: 0.0,
       volume: 0.0,
       dashKm: 0.0,
-      kmRidden: 0.0);
+      kmRidden: 0.0,
+      bikeId: '');
+  // bikeData: BikeData(
+  //     id: '',
+  //     costs: 0,
+  //     isSelected: false,
+  //     model: '',
+  //     riddenSincePurchased: 0,
+  //     riddenWithLastRefill: 0,
+  //     totalKmRidden: 0,
+  //     fuelConsumptions: []));
   var _initValues = {
     'fuelType': '',
     'date': DateTime,
@@ -81,12 +94,27 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
       try {
         await Provider.of<FuelConsumptions>(context, listen: false)
             .addFuelConsumption(_fc);
+        // await Provider.of<MyBikes>(context, listen: false).updateBike(
+        //     _fc.bikeData.id,
+        //     BikeData(
+        //         id: _fc.bikeData.id,
+        //         isSelected: _fc.bikeData.isSelected,
+        //         model: _fc.bikeData.model,
+        //         costs: _fc.bikeData.costs,
+        //         totalKmRidden: _fc.dashKm,
+        //         riddenSincePurchased: _fc.bikeData.riddenSincePurchased +
+        //             (_fc.dashKm - _fc.bikeData.totalKmRidden),
+        //         riddenWithLastRefill: _fc.dashKm - _fc.bikeData.totalKmRidden,
+        //         fuelConsumptions: _fc.bikeData.fuelConsumptions));
       } catch (error) {
         await showDialog(
           context: context,
           builder: (ctx) => AlertDialog(
             title: const Text('An error occured..!'),
-            content: const Text('Something went wrong...'),
+            content: Text(
+              error.toString(),
+              style: TextStyle(color: Colors.black),
+            ),
             actions: <Widget>[
               FloatingActionButton(
                 child: const Text('ok'),
@@ -102,7 +130,8 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
     setState(() {
       _isLoading = false;
     });
-    Navigator.of(context).pop();
+    Navigator.of(context).pop(); // esapce form
+    Navigator.of(context).pop(); // escape dropup menu
   }
 
   @override
@@ -116,6 +145,9 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
 
   @override
   Widget build(BuildContext context) {
+    BikeData currentBike = Provider.of<MyBikes>(context)
+        .bikes
+        .firstWhere((element) => element.isSelected == true);
     return _isLoading
         ? const Center(
             child: CircularProgressIndicator(),
@@ -160,7 +192,9 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
                                 pricePerLitter: _fc.pricePerLitter,
                                 volume: _fc.volume,
                                 dashKm: _fc.dashKm,
-                                kmRidden: _fc.kmRidden);
+                                kmRidden: _fc.kmRidden,
+                                // bikeData: currentBike,
+                                bikeId: _fc.bikeId);
                           },
                           validator: (value) {
                             if (value == null || value.isEmpty) {
@@ -202,7 +236,9 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
                                 pricePerLitter: _fc.pricePerLitter,
                                 volume: _fc.volume,
                                 dashKm: _fc.dashKm,
-                                kmRidden: _fc.kmRidden);
+                                kmRidden: _fc.kmRidden,
+                                // bikeData: _fc.bikeData,
+                                bikeId: _fc.bikeId);
                           },
                           validator: (value) {
                             if (value?.isEmpty == true) {
@@ -239,7 +275,9 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
                                 pricePerLitter: _fc.pricePerLitter,
                                 volume: double.parse(value!),
                                 dashKm: _fc.dashKm,
-                                kmRidden: _fc.kmRidden);
+                                kmRidden: _fc.kmRidden,
+                                // bikeData: _fc.bikeData,
+                                bikeId: _fc.bikeId);
                           },
                           validator: (value) {
                             if (value?.isEmpty == true) {
@@ -276,7 +314,21 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
                                 pricePerLitter: _fc.price / _fc.volume,
                                 volume: _fc.volume,
                                 dashKm: double.parse(value!),
-                                kmRidden: _fc.kmRidden);
+                                kmRidden: _fc.kmRidden,
+                                bikeId: _fc.bikeId);
+                            // bikeData: BikeData(
+                            //     id: _fc.bikeData.id,
+                            //     isSelected: _fc.bikeData.isSelected,
+                            //     model: _fc.bikeData.model,
+                            //     costs: _fc.bikeData.costs + _fc.price,
+                            //     totalKmRidden: _fc.bikeData.totalKmRidden +
+                            //         _fc.kmRidden,
+                            //     riddenSincePurchased:
+                            //         _fc.bikeData.riddenSincePurchased +
+                            //             _fc.kmRidden,
+                            //     riddenWithLastRefill: _fc.kmRidden,
+                            //     fuelConsumptions:
+                            //         _fc.bikeData.fuelConsumptions));
                           },
                           validator: (value) {
                             if (value?.isEmpty == true) {

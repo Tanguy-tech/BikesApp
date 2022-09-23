@@ -1,19 +1,23 @@
 import 'package:flutter/material.dart';
-import '../models/models.dart';
+import 'package:motobox/providers/fuel_consumption.dart';
 
 class BikeData with ChangeNotifier {
-  late final String id;
-  // late final Model bikeModel;
-  late final double costs;
-  late final double totalKmRidden;
-  late final double riddenSincePurchased;
-  late final double riddenWithLastRefill;
+  final String id;
+  bool isSelected;
+  final String model;
+  final double costs;
+  final double totalKmRidden;
+  final double riddenSincePurchased;
+  final double riddenWithLastRefill;
+  final List<FuelConsumption> fuelConsumptions;
 
   BikeData(
       {required this.id,
-      // required this.bikeModel,
+      required this.isSelected,
+      required this.model,
       required this.costs,
       required this.totalKmRidden,
       required this.riddenSincePurchased,
-      required this.riddenWithLastRefill});
+      required this.riddenWithLastRefill,
+      required this.fuelConsumptions});
 }

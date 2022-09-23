@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:motobox/screens/fuel_consumptions_screens/my_fuel_consumption_screen.dart';
 import 'package:motobox/screens/invoices_screens/my_invoice_screen.dart';
+import 'package:motobox/screens/profile_screen.dart';
 
 class MainDrawer extends StatelessWidget {
   const MainDrawer({Key? key}) : super(key: key);
@@ -42,6 +43,16 @@ class MainDrawer extends StatelessWidget {
             title: Text('Home', style: Theme.of(context).textTheme.bodyLarge),
             onTap: () {
               Navigator.of(context).pushReplacementNamed("/");
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.sports_motorsports,
+                color: Theme.of(context).appBarTheme.foregroundColor),
+            title: Text('My profile',
+                style: Theme.of(context).textTheme.bodyLarge),
+            onTap: () {
+              Navigator.of(context)
+                  .pushReplacementNamed(MyProfileScreen.routeName);
             },
           ),
           ListTile(

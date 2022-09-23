@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:motobox/screens/fuel_consumptions_screens/fuel_consumption_form_screen.dart';
 import 'package:provider/provider.dart';
 
+import '../../providers/bike_data.dart';
 import '../../providers/fuel_consumption.dart';
 import '../../providers/fuel_consumptions.dart';
+import '../../providers/my_bikes.dart';
 
 // ignore: must_be_immutable
 class DismissibleFuelComsumptionCard extends StatelessWidget {
@@ -16,7 +18,9 @@ class DismissibleFuelComsumptionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final fcData = Provider.of<FuelConsumption>(context);
+    final fc = Provider.of<FuelConsumptions>(context, listen: false)
+        .consumptions
+        .firstWhere((element) => element.id == id);
     final scaffold = ScaffoldMessenger.of(context);
     return Card(
       elevation: 5,
@@ -27,6 +31,18 @@ class DismissibleFuelComsumptionCard extends StatelessWidget {
           try {
             await Provider.of<FuelConsumptions>(context, listen: false)
                 .deleteFuelConsumption(id);
+            // await Provider.of<MyBikes>(context, listen: false).updateBike(
+            //     fc.bikeData.id,
+            //     BikeData(
+            //         id: fc.bikeData.id,
+            //         isSelected: fc.bikeData.isSelected,
+            //         model: fc.bikeData.model,
+            //         costs: fc.bikeData.costs - fc.price,
+            //         totalKmRidden: fc.bikeData.totalKmRidden - fc.kmRidden,
+            //         riddenSincePurchased:
+            //             fc.bikeData.riddenSincePurchased - fc.kmRidden,
+            //         riddenWithLastRefill: fc.kmRidden,
+            //         fuelConsumptions: fc.bikeData.fuelConsumptions));
           } catch (error) {
             scaffold.showSnackBar(const SnackBar(
               content: Text(

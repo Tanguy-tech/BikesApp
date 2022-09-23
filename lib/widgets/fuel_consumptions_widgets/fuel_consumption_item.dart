@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:motobox/providers/my_bikes.dart';
 import 'package:motobox/screens/fuel_consumptions_screens/fuel_consumption_form_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -33,16 +34,16 @@ class FuelCosumptionItem extends StatelessWidget {
         ),
         subtitle: fullView
             ? Text(
-                '${fuelConsumption.pricePerLitter.toStringAsFixed(3)}€/L\n${fuelConsumption.volume}L',
+                '${fuelConsumption.pricePerLitter.toStringAsFixed(3)}€/L\n${fuelConsumption.volume.toStringAsFixed(3)}L\n',
                 style: Theme.of(context).textTheme.bodyMedium,
               )
             : Text(
-                '${fuelConsumption.fuelType}\n${fuelConsumption.price.toString()}€',
+                '${fuelConsumption.fuelType}\n${fuelConsumption.price.toStringAsFixed(2)}€',
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
         trailing: fullView
             ? Text(
-                '${fuelConsumption.fuelType}\n\n${fuelConsumption.price.toString()}€',
+                '${fuelConsumption.fuelType}\n\n${fuelConsumption.price.toStringAsFixed(2)}€',
                 style: Theme.of(context).textTheme.titleSmall,
                 textAlign: TextAlign.right,
               )

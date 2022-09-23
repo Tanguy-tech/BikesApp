@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:motobox/providers/my_bikes.dart';
 import 'package:motobox/providers/fuel_consumptions.dart';
 import 'package:motobox/providers/invoices.dart';
 import 'package:motobox/providers/theme_provider.dart';
 import 'package:motobox/screens/brands_screen.dart';
 import 'package:motobox/screens/expenses_screen.dart';
+import 'package:motobox/screens/my_bike/my_bike_screen.dart';
 import 'package:motobox/screens/profile_screen.dart';
 import 'package:motobox/widgets/app_widgets/dropup_button.dart';
 import 'package:motobox/widgets/app_widgets/my_bottom_app_bar.dart';
@@ -30,7 +32,8 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final List<Map<String, Object>> _pages = [
-    {"page": BrandsScreen(), "title": "Brands"},
+    // {"page": BrandsScreen(), "title": "Brands"},
+    {"page": const MyBikeScreen(), "title": "My bike"},
     // {"page": const MyProfileScreen(), "title": "Profile"},
     {"page": const MyExpensesScreen(), "title": "Expenses"},
   ];
@@ -64,6 +67,7 @@ class _MyAppState extends State<MyApp> {
         providers: [
           ChangeNotifierProvider(create: (context) => FuelConsumptions()),
           ChangeNotifierProvider(create: (context) => Invoices()),
+          ChangeNotifierProvider(create: (context) => MyBikes())
         ],
         child: MaterialApp(
             navigatorKey: AppTheme.navigatorKey,
@@ -72,7 +76,7 @@ class _MyAppState extends State<MyApp> {
             themeMode: theme.mode,
             home: Builder(builder: (context) {
               return Scaffold(
-                backgroundColor: theme.myTheme.colorScheme.background,
+                backgroundColor: Theme.of(context).colorScheme.background,
                 endDrawerEnableOpenDragGesture: true,
                 drawer: const MainDrawer(),
                 appBar: CupertinoNavigationBar(

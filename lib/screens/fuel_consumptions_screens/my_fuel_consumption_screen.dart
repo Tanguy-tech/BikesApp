@@ -24,7 +24,7 @@ class FuelConsumptionScreen extends StatelessWidget {
           builder: (context) {
             return CupertinoButton(
               padding: const EdgeInsets.all(0),
-              child: Icon(Icons.menu,
+              child: Icon(Icons.more_vert,
                   color: Theme.of(context).appBarTheme.foregroundColor),
               onPressed: () {
                 Scaffold.of(context).openDrawer();

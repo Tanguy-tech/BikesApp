@@ -2,61 +2,14 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:motobox/providers/bike_data.dart';
+import 'package:motobox/providers/my_bikes.dart';
 import '../models/http_exception.dart';
 import 'fuel_consumption.dart';
 import 'package:http/http.dart' as http;
 
 class FuelConsumptions with ChangeNotifier {
-  List<FuelConsumption> _fuelConsumptions = [
-    // FuelConsumption(
-    //     id: "f1",
-    //     fuelType: "SP98",
-    //     date: DateTime(2022, 7, 6, 9, 30),
-    //     price: 27.98,
-    //     pricePerLitter: 1.89,
-    //     volume: 13.5,
-    //     dashKm: 28080),
-    // FuelConsumption(
-    //     id: "f1",
-    //     fuelType: "SP98",
-    //     date: DateTime(2022, 7, 6, 9, 30),
-    //     price: 31.98,
-    //     pricePerLitter: 1.89,
-    //     volume: 13.5,
-    //     dashKm: 28080),
-    // FuelConsumption(
-    //     id: "f1",
-    //     fuelType: "SP98",
-    //     date: DateTime(2022, 7, 6, 9, 30),
-    //     price: 16.12,
-    //     pricePerLitter: 1.89,
-    //     volume: 13.5,
-    //     dashKm: 28080),
-    // FuelConsumption(
-    //     id: "f1",
-    //     fuelType: "SP98",
-    //     date: DateTime(2022, 7, 6, 9, 30),
-    //     price: 16.12,
-    //     pricePerLitter: 1.89,
-    //     volume: 13.5,
-    //     dashKm: 28080),
-    // FuelConsumption(
-    //     id: "f1",
-    //     fuelType: "SP98",
-    //     date: DateTime(2022, 7, 6, 9, 30),
-    //     price: 16.12,
-    //     pricePerLitter: 1.89,
-    //     volume: 13.5,
-    //     dashKm: 28080),
-    // FuelConsumption(
-    //     id: "f1",
-    //     fuelType: "SP98",
-    //     date: DateTime(2022, 7, 6, 9, 30),
-    //     price: 16.12,
-    //     pricePerLitter: 1.89,
-    //     volume: 13.5,
-    //     dashKm: 28080),
-  ];
+  List<FuelConsumption> _fuelConsumptions = [];
 
   List<FuelConsumption> get consumptions {
     return [..._fuelConsumptions];
@@ -87,7 +40,8 @@ class FuelConsumptions with ChangeNotifier {
                   pricePerLitter: fcDATA['pricePerLitter'],
                   volume: fcDATA['volume'],
                   dashKm: fcDATA['dashKm'],
-                  kmRidden: fcDATA['kmRidden']));
+                  kmRidden: fcDATA['kmRidden'],
+                  bikeId: fcDATA['bikeId']));
         });
         _fuelConsumptions = loadedFuelConsumptions;
       }
@@ -110,7 +64,8 @@ class FuelConsumptions with ChangeNotifier {
             'pricePerLitter': fc.pricePerLitter,
             'volume': fc.volume,
             'dashKm': fc.dashKm,
-            'kmRidden': fc.kmRidden
+            'kmRidden': fc.kmRidden,
+            'bikeId': fc.bikeId
           }));
       final newFc = FuelConsumption(
           id: json.decode(response.body)['name'],
@@ -120,7 +75,8 @@ class FuelConsumptions with ChangeNotifier {
           pricePerLitter: fc.pricePerLitter,
           volume: fc.volume,
           dashKm: fc.dashKm,
-          kmRidden: fc.kmRidden);
+          kmRidden: fc.kmRidden,
+          bikeId: fc.bikeId);
       //_fuelConsumptions.add(newFc); // at the end of list
       _fuelConsumptions.insert(0, newFc); // at the begining of list
       notifyListeners();
@@ -145,6 +101,7 @@ class FuelConsumptions with ChangeNotifier {
               'dashKm': newFc.dashKm,
               'volume': newFc.volume,
               'kmRidden': newFc.kmRidden
+              //'bikeData': newFc.bikeData
             }));
         _fuelConsumptions[fuelConsumptionIndex] = newFc;
         notifyListeners();
