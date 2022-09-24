@@ -100,8 +100,7 @@ class FuelConsumptions with ChangeNotifier {
               'pricePerLitter': newFc.pricePerLitter,
               'dashKm': newFc.dashKm,
               'volume': newFc.volume,
-              'kmRidden': newFc.kmRidden
-              //'bikeData': newFc.bikeData
+              'kmRidden': newFc.kmRidden,
             }));
         _fuelConsumptions[fuelConsumptionIndex] = newFc;
         notifyListeners();

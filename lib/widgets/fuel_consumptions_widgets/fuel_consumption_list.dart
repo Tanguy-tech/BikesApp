@@ -6,6 +6,8 @@ import 'package:motobox/widgets/fuel_consumptions_widgets/fuel_consumption_item.
 import 'package:motobox/widgets/fuel_consumptions_widgets/fuel_consumption_summary.dart';
 import 'package:provider/provider.dart';
 
+import '../../providers/my_bikes.dart';
+
 class FuelConsumptionList extends StatefulWidget {
   final bool isPreview;
   const FuelConsumptionList({Key? key, required this.isPreview})
@@ -28,6 +30,13 @@ class _FuelConsumptionListState extends State<FuelConsumptionList> {
       Provider.of<FuelConsumptions>(context)
           .fetchAndSetFuelConsumptions()
           .then((_) {
+        Future.delayed(const Duration(milliseconds: 50), () {
+          setState(() {
+            _isLoading = false;
+          });
+        });
+      });
+      Provider.of<MyBikes>(context).fetchAndSetBikes().then((_) {
         Future.delayed(const Duration(milliseconds: 50), () {
           setState(() {
             _isLoading = false;

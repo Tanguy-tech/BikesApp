@@ -22,8 +22,8 @@ class _NewBikeFormState extends State<NewBikeForm> {
       costs: 0.0,
       totalKmRidden: 0.0,
       riddenSincePurchased: 0.0,
-      riddenWithLastRefill: 0.0,
-      fuelConsumptions: []);
+      riddenWithLastRefill: 0.0);
+  // fuelConsumptions: []);
   var _initValues = {
     'isSelected': '',
     'model': '',
@@ -148,8 +148,8 @@ class _NewBikeFormState extends State<NewBikeForm> {
                                 costs: _bd.costs,
                                 totalKmRidden: _bd.totalKmRidden,
                                 riddenSincePurchased: _bd.riddenSincePurchased,
-                                riddenWithLastRefill: _bd.riddenWithLastRefill,
-                                fuelConsumptions: _bd.fuelConsumptions);
+                                riddenWithLastRefill: _bd.riddenWithLastRefill);
+                            //       fuelConsumptions: _bd.fuelConsumptions);
                           },
                           validator: (value) {
                             if (value == null || value.isEmpty) {
@@ -183,8 +183,8 @@ class _NewBikeFormState extends State<NewBikeForm> {
                                 costs: _bd.costs,
                                 totalKmRidden: double.parse(value!),
                                 riddenSincePurchased: _bd.riddenSincePurchased,
-                                riddenWithLastRefill: _bd.riddenWithLastRefill,
-                                fuelConsumptions: _bd.fuelConsumptions);
+                                riddenWithLastRefill: _bd.riddenWithLastRefill);
+                            // fuelConsumptions: _bd.fuelConsumptions);
                           },
                           validator: (value) {
                             if (value?.isEmpty == true) {

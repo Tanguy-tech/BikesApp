@@ -1,6 +1,6 @@
+// ignore_for_file: use_build_context_synchronously
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/number_symbols_data.dart';
 import 'package:motobox/providers/bike_data.dart';
 import 'package:motobox/providers/my_bikes.dart';
 import 'package:motobox/widgets/app_widgets/custom_date_picker.dart';
@@ -33,15 +33,14 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
       dashKm: 0.0,
       kmRidden: 0.0,
       bikeId: '');
-  // bikeData: BikeData(
-  //     id: '',
-  //     costs: 0,
-  //     isSelected: false,
-  //     model: '',
-  //     riddenSincePurchased: 0,
-  //     riddenWithLastRefill: 0,
-  //     totalKmRidden: 0,
-  //     fuelConsumptions: []));
+  var _bikeData = BikeData(
+      id: '',
+      costs: 0,
+      isSelected: false,
+      model: '',
+      riddenSincePurchased: 0,
+      riddenWithLastRefill: 0,
+      totalKmRidden: 0);
   var _initValues = {
     'fuelType': '',
     'date': DateTime,
@@ -49,7 +48,7 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
     'pricePerLitter': '',
     'volume': '',
     'dashKm': '',
-    'kmRidden': '',
+    // 'kmRidden': '',
   };
   var _isLoading = false;
   var _isInit = true;
@@ -69,13 +68,50 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
           'pricePerLitter': _fc.pricePerLitter.toString(),
           'volume': _fc.volume.toString(),
           'dashKm': _fc.dashKm.toString(),
-          'kmRidden': _fc.kmRidden.toString(),
+          // 'kmRidden': _fc.kmRidden.toString(),
         };
         _editing = true;
       }
     }
     _isInit = false;
     super.didChangeDependencies();
+  }
+
+  Future<void> _addFcAndUpdateBike(
+      BuildContext context, FuelConsumption fc, BikeData currentBike) async {
+    await Provider.of<FuelConsumptions>(context, listen: false)
+        .addFuelConsumption(fc);
+    await Provider.of<MyBikes>(context, listen: false)
+        .updateBike(fc.bikeId, currentBike);
+  }
+
+  Future<void> _updateFcAndBike(
+      BuildContext context, FuelConsumption fc, BikeData currentBike) async {
+    await Provider.of<FuelConsumptions>(context, listen: false)
+        .updateFuelConsumption(_fc.id, _fc);
+    await Provider.of<MyBikes>(context, listen: false)
+        .updateBike(fc.bikeId, currentBike);
+  }
+
+  Future<void> _showAlertDialog(Object error) async {
+    await showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text('An error occured..!'),
+        content: Text(
+          error.toString(),
+          style: const TextStyle(color: Colors.black),
+        ),
+        actions: <Widget>[
+          FloatingActionButton(
+            child: const Text('ok'),
+            onPressed: () {
+              Navigator.of(ctx).pop();
+            },
+          )
+        ],
+      ),
+    );
   }
 
   Future<void> _saveForm() async {
@@ -88,43 +124,12 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
       _isLoading = true;
     });
     if (_fc.id != null && _fc.id != '') {
-      await Provider.of<FuelConsumptions>(context, listen: false)
-          .updateFuelConsumption(_fc.id, _fc);
+      _updateFcAndBike(context, _fc, _bikeData);
     } else {
       try {
-        await Provider.of<FuelConsumptions>(context, listen: false)
-            .addFuelConsumption(_fc);
-        // await Provider.of<MyBikes>(context, listen: false).updateBike(
-        //     _fc.bikeData.id,
-        //     BikeData(
-        //         id: _fc.bikeData.id,
-        //         isSelected: _fc.bikeData.isSelected,
-        //         model: _fc.bikeData.model,
-        //         costs: _fc.bikeData.costs,
-        //         totalKmRidden: _fc.dashKm,
-        //         riddenSincePurchased: _fc.bikeData.riddenSincePurchased +
-        //             (_fc.dashKm - _fc.bikeData.totalKmRidden),
-        //         riddenWithLastRefill: _fc.dashKm - _fc.bikeData.totalKmRidden,
-        //         fuelConsumptions: _fc.bikeData.fuelConsumptions));
+        _addFcAndUpdateBike(context, _fc, _bikeData);
       } catch (error) {
-        await showDialog(
-          context: context,
-          builder: (ctx) => AlertDialog(
-            title: const Text('An error occured..!'),
-            content: Text(
-              error.toString(),
-              style: TextStyle(color: Colors.black),
-            ),
-            actions: <Widget>[
-              FloatingActionButton(
-                child: const Text('ok'),
-                onPressed: () {
-                  Navigator.of(ctx).pop();
-                },
-              )
-            ],
-          ),
-        );
+        _showAlertDialog(error);
       }
     }
     setState(() {
@@ -145,6 +150,7 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
 
   @override
   Widget build(BuildContext context) {
+    var tmp;
     BikeData currentBike = Provider.of<MyBikes>(context)
         .bikes
         .firstWhere((element) => element.isSelected == true);
@@ -174,6 +180,7 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
                           style: Theme.of(context).textTheme.headlineMedium,
                         ),
                         child: CupertinoTextFormFieldRow(
+                          cursorColor: Theme.of(context).colorScheme.secondary,
                           style: Theme.of(context).textTheme.labelLarge,
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           initialValue: _initValues['fuelType'].toString(),
@@ -193,7 +200,6 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
                                 volume: _fc.volume,
                                 dashKm: _fc.dashKm,
                                 kmRidden: _fc.kmRidden,
-                                // bikeData: currentBike,
                                 bikeId: _fc.bikeId);
                           },
                           validator: (value) {
@@ -216,6 +222,7 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
                           style: Theme.of(context).textTheme.headlineMedium,
                         ),
                         child: CupertinoTextFormFieldRow(
+                          cursorColor: Theme.of(context).colorScheme.secondary,
                           style: Theme.of(context).textTheme.labelLarge,
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           initialValue: _initValues['price'].toString(),
@@ -237,7 +244,6 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
                                 volume: _fc.volume,
                                 dashKm: _fc.dashKm,
                                 kmRidden: _fc.kmRidden,
-                                // bikeData: _fc.bikeData,
                                 bikeId: _fc.bikeId);
                           },
                           validator: (value) {
@@ -257,6 +263,7 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
                           style: Theme.of(context).textTheme.headlineMedium,
                         ),
                         child: CupertinoTextFormFieldRow(
+                          cursorColor: Theme.of(context).colorScheme.secondary,
                           style: Theme.of(context).textTheme.labelLarge,
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           initialValue: _initValues['volume'].toString(),
@@ -276,7 +283,6 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
                                 volume: double.parse(value!),
                                 dashKm: _fc.dashKm,
                                 kmRidden: _fc.kmRidden,
-                                // bikeData: _fc.bikeData,
                                 bikeId: _fc.bikeId);
                           },
                           validator: (value) {
@@ -296,6 +302,7 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
                           style: Theme.of(context).textTheme.headlineMedium,
                         ),
                         child: CupertinoTextFormFieldRow(
+                          cursorColor: Theme.of(context).colorScheme.secondary,
                           style: Theme.of(context).textTheme.labelLarge,
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           initialValue: _initValues['dashKm'].toString(),
@@ -314,21 +321,20 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
                                 pricePerLitter: _fc.price / _fc.volume,
                                 volume: _fc.volume,
                                 dashKm: double.parse(value!),
-                                kmRidden: _fc.kmRidden,
-                                bikeId: _fc.bikeId);
-                            // bikeData: BikeData(
-                            //     id: _fc.bikeData.id,
-                            //     isSelected: _fc.bikeData.isSelected,
-                            //     model: _fc.bikeData.model,
-                            //     costs: _fc.bikeData.costs + _fc.price,
-                            //     totalKmRidden: _fc.bikeData.totalKmRidden +
-                            //         _fc.kmRidden,
-                            //     riddenSincePurchased:
-                            //         _fc.bikeData.riddenSincePurchased +
-                            //             _fc.kmRidden,
-                            //     riddenWithLastRefill: _fc.kmRidden,
-                            //     fuelConsumptions:
-                            //         _fc.bikeData.fuelConsumptions));
+                                kmRidden: double.parse(value) -
+                                    currentBike.totalKmRidden,
+                                bikeId: currentBike.id);
+                            _bikeData = BikeData(
+                                id: currentBike.id,
+                                isSelected: currentBike.isSelected,
+                                model: currentBike.model,
+                                costs: currentBike.costs + _fc.price,
+                                riddenWithLastRefill:
+                                    _fc.dashKm - currentBike.totalKmRidden,
+                                totalKmRidden: _fc.dashKm,
+                                riddenSincePurchased:
+                                    currentBike.riddenSincePurchased +
+                                        _fc.kmRidden);
                           },
                           validator: (value) {
                             if (value?.isEmpty == true) {

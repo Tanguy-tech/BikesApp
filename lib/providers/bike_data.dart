@@ -9,7 +9,7 @@ class BikeData with ChangeNotifier {
   final double totalKmRidden;
   final double riddenSincePurchased;
   final double riddenWithLastRefill;
-  final List<FuelConsumption> fuelConsumptions;
+  // final List<FuelConsumption> fuelConsumptions;
 
   BikeData(
       {required this.id,
@@ -18,6 +18,6 @@ class BikeData with ChangeNotifier {
       required this.costs,
       required this.totalKmRidden,
       required this.riddenSincePurchased,
-      required this.riddenWithLastRefill,
-      required this.fuelConsumptions});
+      required this.riddenWithLastRefill});
+  // required this.fuelConsumptions});
 }

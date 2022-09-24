@@ -39,9 +39,9 @@ class MyBikes with ChangeNotifier {
                   riddenSincePurchased:
                       bikeData['riddenSincePurchased'].toDouble(),
                   riddenWithLastRefill:
-                      bikeData['riddenWithLastRefill'].toDouble(),
-                  fuelConsumptions:
-                      bikeData['fuelConsumptions'] as List<FuelConsumption>));
+                      bikeData['riddenWithLastRefill'].toDouble()));
+          // fuelConsumptions:
+          //     bikeData['fuelConsumptions'] as List<FuelConsumption>));
         });
         _myBikes = loadedBikeDatas;
       }
@@ -73,9 +73,9 @@ class MyBikes with ChangeNotifier {
                   riddenSincePurchased:
                       bikeData['riddenSincePurchased'].toDouble(),
                   riddenWithLastRefill:
-                      bikeData['riddenWithLastRefill'].toDouble(),
-                  fuelConsumptions:
-                      bikeData['fuelConsumptions'] as List<FuelConsumption>));
+                      bikeData['riddenWithLastRefill'].toDouble()));
+          // fuelConsumptions:
+          //     bikeData['fuelConsumptions'] as List<FuelConsumption>));
         });
         _myBikes = loadedBikeDatas;
       }
@@ -107,7 +107,7 @@ class MyBikes with ChangeNotifier {
             'totalKmRidden': bike.totalKmRidden,
             'riddenSincePurchased': bike.riddenSincePurchased,
             'riddenWithLastRefill': bike.riddenWithLastRefill,
-            'fuelConsumptions': bike.fuelConsumptions
+            // 'fuelConsumptions': bike.fuelConsumptions
           }));
       final newBike = BikeData(
           id: json.decode(response.body)['name'],
@@ -116,8 +116,8 @@ class MyBikes with ChangeNotifier {
           costs: bike.costs,
           totalKmRidden: bike.totalKmRidden,
           riddenSincePurchased: bike.riddenSincePurchased,
-          riddenWithLastRefill: bike.riddenWithLastRefill,
-          fuelConsumptions: bike.fuelConsumptions);
+          riddenWithLastRefill: bike.riddenWithLastRefill);
+      // fuelConsumptions: bike.fuelConsumptions);
       //_myBikes.add(newFc); // at the end of list
       _myBikes.insert(0, newBike); // at the begining of list
       notifyListeners();
@@ -140,7 +140,7 @@ class MyBikes with ChangeNotifier {
               'totalKmRidden': newBike.totalKmRidden,
               'riddenSincePurchased': newBike.riddenSincePurchased,
               'riddenWithLastRefill': newBike.riddenWithLastRefill,
-              'fuelConsumptions': newBike.fuelConsumptions
+              // 'fuelConsumptions': newBike.fuelConsumptions
             }));
         _myBikes[bikeDataIndex] = newBike;
         notifyListeners();

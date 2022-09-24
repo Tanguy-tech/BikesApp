@@ -157,6 +157,8 @@ class _InvoiceFormState extends State<InvoiceForm> {
                             style: Theme.of(context).textTheme.headlineMedium,
                           ),
                           child: CupertinoTextFormFieldRow(
+                            cursorColor:
+                                Theme.of(context).colorScheme.secondary,
                             style: Theme.of(context).textTheme.labelLarge,
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
@@ -196,6 +198,8 @@ class _InvoiceFormState extends State<InvoiceForm> {
                             style: Theme.of(context).textTheme.headlineMedium,
                           ),
                           child: CupertinoTextFormFieldRow(
+                            cursorColor:
+                                Theme.of(context).colorScheme.secondary,
                             style: Theme.of(context).textTheme.labelLarge,
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
