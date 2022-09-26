@@ -30,24 +30,27 @@ class BikeDataItem extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                   color: Theme.of(context).colorScheme.tertiary),
             )),
-        Card(
-          elevation: 5,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-          color: Theme.of(context).colorScheme.primary,
-          child: Padding(
-            padding: const EdgeInsets.all(10),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                BikeDataField("Costs : ${bike.costs.toStringAsFixed(2)}€"),
-                BikeDataField(
-                    "KM ridden : ${bike.totalKmRidden.toStringAsFixed(2)} km"),
-                BikeDataField(
-                    "RSP : ${bike.riddenSincePurchased.toStringAsFixed(2)} km"),
-                BikeDataField(
-                    "RWLR : ${bike.riddenWithLastRefill.toStringAsFixed(2)} km"),
-              ],
+        SizedBox(
+          width: constraints.maxWidth * .95,
+          child: Card(
+            elevation: 5,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            color: Theme.of(context).colorScheme.primary,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 10, bottom: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  BikeDataField("Costs : ${bike.costs.toStringAsFixed(2)}€"),
+                  BikeDataField(
+                      "KM ridden : ${bike.totalKmRidden.toStringAsFixed(2)} km"),
+                  BikeDataField(
+                      "RSP : ${bike.riddenSincePurchased.toStringAsFixed(2)} km"),
+                  BikeDataField(
+                      "RWLR : ${bike.riddenWithLastRefill.toStringAsFixed(2)} km"),
+                ],
+              ),
             ),
           ),
         ),

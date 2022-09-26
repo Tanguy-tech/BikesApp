@@ -38,27 +38,36 @@ class _BikesDataItemsState extends State<BikesDataItems> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Transform.scale(
-                  scale: .7,
-                  child: Checkbox(
-                      checkColor: Theme.of(context).appBarTheme.backgroundColor,
-                      activeColor:
-                          Theme.of(context).appBarTheme.foregroundColor,
-                      shape: const CircleBorder(),
-                      value: bike.isSelected,
-                      onChanged: (bool? value) {
-                        setState(() {
-                          bike.isSelected = value!;
-                          myBikes.setAsFavorite(bike);
-                        });
-                      }),
-                ),
-                BikeDataField(bike.model),
-                Text('current cost :${bike.costs.toStringAsFixed(2)}€'),
-              ],
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  bike.isSelected = true;
+                  myBikes.setAsFavorite(bike);
+                });
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Transform.scale(
+                    scale: .7,
+                    child: Checkbox(
+                        checkColor:
+                            Theme.of(context).appBarTheme.backgroundColor,
+                        activeColor:
+                            Theme.of(context).appBarTheme.foregroundColor,
+                        shape: const CircleBorder(),
+                        value: bike.isSelected,
+                        onChanged: (bool? value) {
+                          setState(() {
+                            bike.isSelected = value!;
+                            myBikes.setAsFavorite(bike);
+                          });
+                        }),
+                  ),
+                  BikeDataField(bike.model),
+                  Text('current cost :${bike.costs.toStringAsFixed(2)}€'),
+                ],
+              ),
             ),
           ],
         ),
