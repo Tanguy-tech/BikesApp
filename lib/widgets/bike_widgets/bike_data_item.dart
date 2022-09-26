@@ -17,33 +17,30 @@ class BikeDataItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final bike = bikeData.firstWhere((element) => element.isSelected == true);
     return Container(
-      height: 150,
+      height: 180,
       width: constraints.maxWidth,
       decoration: BoxDecoration(
         border: Border.all(color: Theme.of(context).colorScheme.background),
         color: Theme.of(context).colorScheme.background,
-        borderRadius: const BorderRadius.all(Radius.circular(10)),
+        // borderRadius: const BorderRadius.all(Radius.circular(10)),
       ),
       child: Padding(
         padding: const EdgeInsets.only(top: 15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                BikeDataField(
-                    "Total costs : ${bike.costs.toStringAsFixed(2)}€"),
-                Container(
-                    padding: const EdgeInsets.only(top: 10, right: 15),
-                    child: Text(
-                      bike.model,
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Theme.of(context).colorScheme.tertiary),
-                    )),
-              ],
-            ),
+            Container(
+                width: constraints.maxWidth * 0.95,
+                padding: const EdgeInsets.only(bottom: 10),
+                child: Text(
+                  textAlign: TextAlign.right,
+                  bike.model,
+                  style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).colorScheme.tertiary),
+                )),
+            BikeDataField("Total costs : ${bike.costs.toStringAsFixed(2)}€"),
             BikeDataField(
                 "Total KM ridden : ${bike.totalKmRidden.toStringAsFixed(2)} km"),
             BikeDataField(

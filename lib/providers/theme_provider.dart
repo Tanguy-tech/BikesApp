@@ -55,7 +55,7 @@ AppBarTheme myLightAppBarTheme() {
 /* LIGHT BOTTOM NAV BAR */
 BottomNavigationBarThemeData myLightBottomNavBarTheme() {
   return BottomNavigationBarThemeData(
-    backgroundColor: CupertinoColors.systemGrey5,
+    backgroundColor: CupertinoColors.extraLightBackgroundGray,
     selectedItemColor: CupertinoColors.black,
     unselectedItemColor: CupertinoColors.systemGrey2.darkColor,
   );
@@ -63,8 +63,7 @@ BottomNavigationBarThemeData myLightBottomNavBarTheme() {
 
 /* LIGHT DRAWER */
 DrawerThemeData myLightDrawerTheme() {
-  return const DrawerThemeData(
-      backgroundColor: CupertinoColors.lightBackgroundGray);
+  return const DrawerThemeData(backgroundColor: CupertinoColors.systemGrey5);
 }
 
 /* LIGHT COLORSCHEME */
@@ -168,8 +167,7 @@ BottomNavigationBarThemeData myDarkBottomNavBarTheme() {
 
 /* DARK DRAWER */
 DrawerThemeData myDarkDrawerTheme() {
-  return const DrawerThemeData(
-      backgroundColor: CupertinoColors.darkBackgroundGray);
+  return const DrawerThemeData(backgroundColor: CupertinoColors.black);
 }
 
 /* DARK COLORSCHEME */

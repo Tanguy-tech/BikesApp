@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:motobox/providers/my_bikes.dart';
 import 'package:motobox/screens/fuel_consumptions_screens/fuel_consumption_form_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -26,7 +25,9 @@ class FuelCosumptionItem extends StatelessWidget {
         leading: SizedBox(
             height: double.infinity,
             child: Icon(Icons.oil_barrel,
-                color: Theme.of(context).colorScheme.secondary)),
+                color: fullView
+                    ? Theme.of(context).colorScheme.tertiary
+                    : Theme.of(context).colorScheme.secondary)),
         title: Text(
           DateFormat('dd.MM.yy').format(fuelConsumption.date),
           textAlign: TextAlign.left,
@@ -34,7 +35,7 @@ class FuelCosumptionItem extends StatelessWidget {
         ),
         subtitle: fullView
             ? Text(
-                '${fuelConsumption.pricePerLitter.toStringAsFixed(3)}€/L\n${fuelConsumption.volume.toStringAsFixed(3)}L\n',
+                '${fuelConsumption.pricePerLitter.toStringAsFixed(3)} €/L\n${fuelConsumption.volume.toStringAsFixed(3)} L\n',
                 style: Theme.of(context).textTheme.bodyMedium,
               )
             : Text(

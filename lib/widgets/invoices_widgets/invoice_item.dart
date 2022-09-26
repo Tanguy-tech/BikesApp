@@ -4,9 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:motobox/screens/invoices_screens/invoice_form_screen.dart';
 import 'package:provider/provider.dart';
-
 import '../../providers/invoice.dart';
-import '../../screens/fuel_consumptions_screens/fuel_consumption_form_screen.dart';
 
 class InvoiceItem extends StatelessWidget {
   bool fullView;
@@ -25,7 +23,9 @@ class InvoiceItem extends StatelessWidget {
         leading: SizedBox(
             height: double.infinity,
             child: Icon(Icons.receipt,
-                color: Theme.of(context).colorScheme.secondary)),
+                color: fullView
+                    ? Theme.of(context).colorScheme.tertiary
+                    : Theme.of(context).colorScheme.secondary)),
         title: Text(
           DateFormat('dd.MM.yy').format(invoice.date),
           textAlign: TextAlign.left,

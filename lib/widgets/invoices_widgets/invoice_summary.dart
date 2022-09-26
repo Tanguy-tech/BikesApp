@@ -30,8 +30,10 @@ class _InvoiceSummaryState extends State<InvoiceSummary> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Total fuel costs: $totalCosts€'),
-            Text('Most expensive refill: $mostExpensive€'),
+            Text('Total fuel costs: $totalCosts€',
+                style: Theme.of(context).textTheme.titleSmall),
+            Text('Most expensive refill: $mostExpensive€',
+                style: Theme.of(context).textTheme.titleSmall),
           ],
         ),
       ),
