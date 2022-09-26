@@ -21,12 +21,12 @@ class TwinListsHeader extends StatelessWidget {
                   Expanded(
                     child: Text("Invoices",
                         textAlign: TextAlign.center,
-                        style: Theme.of(context).textTheme.headlineMedium),
+                        style: Theme.of(context).textTheme.titleMedium),
                   ),
                   Expanded(
-                      child: Text("Consumptions",
+                      child: Text("Fuel",
                           textAlign: TextAlign.center,
-                          style: Theme.of(context).textTheme.headlineMedium)),
+                          style: Theme.of(context).textTheme.titleMedium)),
                 ],
               ),
             )

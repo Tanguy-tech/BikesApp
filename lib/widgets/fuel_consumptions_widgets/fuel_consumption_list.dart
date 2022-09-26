@@ -65,7 +65,6 @@ class _FuelConsumptionListState extends State<FuelConsumptionList> {
             onRefresh: () => _refreshData(context),
             child: widget.isPreview
                 ? ListView.builder(
-                    padding: const EdgeInsets.only(right: 10),
                     itemCount: fuelConsumptions.length,
                     itemBuilder: (context, i) => ChangeNotifierProvider.value(
                         value: fuelConsumptions[i],
@@ -78,7 +77,6 @@ class _FuelConsumptionListState extends State<FuelConsumptionList> {
                     children: [
                       const FuelConsumptionSummary(),
                       ListView.builder(
-                        padding: const EdgeInsets.only(right: 10),
                         shrinkWrap: true,
                         itemCount: fuelConsumptions.length,
                         itemBuilder: (context, i) =>

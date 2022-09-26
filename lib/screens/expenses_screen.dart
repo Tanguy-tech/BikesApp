@@ -24,8 +24,8 @@ class MyExpensesScreen extends StatelessWidget {
             Stack(
               children: [
                 Container(
-                  padding: const EdgeInsets.only(top: 5),
-                  height: constraints.maxHeight * 0.6927,
+                  padding: const EdgeInsets.only(top: 5, left: 10, right: 10),
+                  height: constraints.maxHeight * 0.65,
                   width: constraints.maxWidth,
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,

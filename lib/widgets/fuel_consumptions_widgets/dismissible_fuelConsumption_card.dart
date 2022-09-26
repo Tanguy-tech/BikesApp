@@ -47,34 +47,7 @@ class DismissibleFuelComsumptionCard extends StatelessWidget {
       color: Theme.of(context).colorScheme.primary,
       child: Dismissible(
         confirmDismiss: (direction) {
-          return showCupertinoDialog(
-              context: context,
-              builder: (context) => CupertinoAlertDialog(
-                    title: Text(
-                      'Delete FuelConsumption',
-                      style: Theme.of(context).textTheme.titleSmall,
-                    ),
-                    content: Text(
-                      'Do you really want to delete this fuel consumption? It will automatically update the bike\'s data it is refering',
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    ),
-                    actions: <CupertinoDialogAction>[
-                      CupertinoDialogAction(
-                        child: const Text('No'),
-                        onPressed: () {
-                          Navigator.of(context).pop(false);
-                        },
-                      ),
-                      CupertinoDialogAction(
-                        isDestructiveAction: true,
-                        onPressed: () {
-                          // _deleteAndUpdate(context, fc, currentBike);
-                          Navigator.of(context).pop(true);
-                        },
-                        child: const Text('Yes'),
-                      )
-                    ],
-                  ));
+          return MyAlertDialog(context);
         },
         onDismissed: (direction) async {
           try {
@@ -89,48 +62,102 @@ class DismissibleFuelComsumptionCard extends StatelessWidget {
           }
         },
         key: UniqueKey(),
-        background: Container(
-          padding: const EdgeInsets.only(left: 10),
-          decoration: const BoxDecoration(
-            color: Color.fromARGB(255, 223, 30, 16),
-            borderRadius: BorderRadius.all(Radius.circular(15)),
-          ),
-          child: Row(
-            children: [
-              Icon(Icons.delete,
-                  color: Theme.of(context).textTheme.titleLarge?.color),
-              Text(
-                'Delete',
-                style: TextStyle(
-                    color: Theme.of(context).textTheme.titleLarge?.color),
-              ),
-            ],
-          ),
-        ),
-        secondaryBackground: Container(
-          padding: const EdgeInsets.only(left: 105),
-          decoration: const BoxDecoration(
-            color: Color.fromARGB(255, 223, 30, 16),
-            borderRadius: BorderRadius.all(Radius.circular(15)),
-          ),
-          child: Row(
-            children: [
-              Icon(Icons.delete,
-                  color: Theme.of(context).textTheme.titleLarge?.color),
-              Text(
-                'Delete',
-                style: TextStyle(
-                    color: Theme.of(context).textTheme.titleLarge?.color),
-              ),
-            ],
-          ),
-        ),
+        background: const FirstBkg(),
+        secondaryBackground: const SecondBkg(),
         child: Container(
           decoration: BoxDecoration(
               color: Theme.of(context).colorScheme.primary,
               borderRadius: const BorderRadius.all(Radius.circular(10))),
           child: children,
         ),
+      ),
+    );
+  }
+
+  Future<bool?> MyAlertDialog(BuildContext context) {
+    return showCupertinoDialog(
+      context: context,
+      builder: (context) => CupertinoAlertDialog(
+        title: Text(
+          'Delete FuelConsumption',
+          style: Theme.of(context).textTheme.titleSmall,
+        ),
+        content: Text(
+          'Do you really want to delete this fuel consumption? It will automatically update the bike\'s data it is refering to',
+          style: Theme.of(context).textTheme.bodyMedium,
+        ),
+        actions: <CupertinoDialogAction>[
+          CupertinoDialogAction(
+            child: const Text('No'),
+            onPressed: () {
+              Navigator.of(context).pop(false);
+            },
+          ),
+          CupertinoDialogAction(
+            isDestructiveAction: true,
+            onPressed: () {
+              // _deleteAndUpdate(context, fc, currentBike);
+              Navigator.of(context).pop(true);
+            },
+            child: const Text('Yes'),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class SecondBkg extends StatelessWidget {
+  const SecondBkg({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.only(left: 105),
+      decoration: const BoxDecoration(
+        color: Color.fromARGB(255, 223, 30, 16),
+        borderRadius: BorderRadius.all(Radius.circular(15)),
+      ),
+      child: Row(
+        children: [
+          Icon(Icons.delete,
+              color: Theme.of(context).textTheme.titleLarge?.color),
+          Text(
+            'Delete',
+            style:
+                TextStyle(color: Theme.of(context).textTheme.titleLarge?.color),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class FirstBkg extends StatelessWidget {
+  const FirstBkg({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.only(left: 10),
+      decoration: const BoxDecoration(
+        color: Color.fromARGB(255, 223, 30, 16),
+        borderRadius: BorderRadius.all(Radius.circular(15)),
+      ),
+      child: Row(
+        children: [
+          Icon(Icons.delete,
+              color: Theme.of(context).textTheme.titleLarge?.color),
+          Text(
+            'Delete',
+            style:
+                TextStyle(color: Theme.of(context).textTheme.titleLarge?.color),
+          ),
+        ],
       ),
     );
   }

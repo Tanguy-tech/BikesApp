@@ -16,40 +16,43 @@ class BikeDataItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bike = bikeData.firstWhere((element) => element.isSelected == true);
-    return Container(
-      height: 180,
-      width: constraints.maxWidth,
-      decoration: BoxDecoration(
-        border: Border.all(color: Theme.of(context).colorScheme.background),
-        color: Theme.of(context).colorScheme.background,
-        // borderRadius: const BorderRadius.all(Radius.circular(10)),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.only(top: 15),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-                width: constraints.maxWidth * 0.95,
-                padding: const EdgeInsets.only(bottom: 10),
-                child: Text(
-                  textAlign: TextAlign.right,
-                  bike.model,
-                  style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Theme.of(context).colorScheme.tertiary),
-                )),
-            BikeDataField("Total costs : ${bike.costs.toStringAsFixed(2)}€"),
-            BikeDataField(
-                "Total KM ridden : ${bike.totalKmRidden.toStringAsFixed(2)} km"),
-            BikeDataField(
-                "Ridden since Purchased : ${bike.riddenSincePurchased.toStringAsFixed(2)} km"),
-            BikeDataField(
-                "Ridden with last refuel : ${bike.riddenWithLastRefill.toStringAsFixed(2)} km"),
-          ],
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+            width: constraints.maxWidth * .95,
+            padding: const EdgeInsets.only(bottom: 20, top: 20),
+            child: Text(
+              textAlign: TextAlign.right,
+              bike.model,
+              style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Theme.of(context).colorScheme.tertiary),
+            )),
+        Card(
+          elevation: 5,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          color: Theme.of(context).colorScheme.primary,
+          child: Padding(
+            padding: const EdgeInsets.all(10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                BikeDataField("Costs : ${bike.costs.toStringAsFixed(2)}€"),
+                BikeDataField(
+                    "KM ridden : ${bike.totalKmRidden.toStringAsFixed(2)} km"),
+                BikeDataField(
+                    "RSP : ${bike.riddenSincePurchased.toStringAsFixed(2)} km"),
+                BikeDataField(
+                    "RWLR : ${bike.riddenWithLastRefill.toStringAsFixed(2)} km"),
+              ],
+            ),
+          ),
         ),
-      ),
+        // ),
+      ],
     );
   }
 }

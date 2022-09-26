@@ -103,8 +103,7 @@ class _MyAppState extends State<MyApp> {
                   trailing: Transform.scale(
                     scale: 0.7,
                     child: CupertinoSwitch(
-                        activeColor:
-                            Theme.of(context).appBarTheme.foregroundColor,
+                        activeColor: Theme.of(context).colorScheme.primary,
                         trackColor: Theme.of(context).colorScheme.secondary,
                         onChanged: (value) => theme.toogleTheme(context),
                         value: theme.sw),

@@ -1,4 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
+import 'dart:ffi';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:motobox/providers/bike_data.dart';
@@ -174,43 +176,32 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
                     children: [
-                      CupertinoFormRow(
-                        prefix: Text(
-                          'Fuel type',
-                          style: Theme.of(context).textTheme.labelLarge,
-                        ),
-                        child: CupertinoTextFormFieldRow(
-                          cursorColor: Theme.of(context).colorScheme.secondary,
-                          style: Theme.of(context).textTheme.labelLarge,
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
-                          initialValue: _initValues['fuelType'].toString(),
-                          placeholder: 'Enter fuel type used',
-                          placeholderStyle:
-                              Theme.of(context).textTheme.headlineMedium,
-                          textInputAction: TextInputAction.next,
-                          onFieldSubmitted: (_) {
-                            FocusScope.of(context).requestFocus(_dateFocusNode);
-                          },
-                          onSaved: (value) {
-                            _fc = FuelConsumption(
-                                //id: 'ongoing', // to set the id different of 'id' -> means _fc already exists
-                                id: _fc.id,
-                                fuelType: value!,
-                                date: _fc.date,
-                                price: _fc.price,
-                                pricePerLitter: _fc.pricePerLitter,
-                                volume: _fc.volume,
-                                dashKm: _fc.dashKm,
-                                kmRidden: _fc.kmRidden,
-                                bikeId: _fc.bikeId);
-                          },
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter some text';
-                            }
-                            return null;
-                          },
-                        ),
+                      MyCupertinoFormRow(
+                        isText: true,
+                        _fc,
+                        _bikeData,
+                        (value) {
+                          _fc = FuelConsumption(
+                              //id: 'ongoing', // to set the id different of 'id' -> means _fc already exists
+                              id: _fc.id,
+                              fuelType: value!,
+                              date: _fc.date,
+                              price: _fc.price,
+                              pricePerLitter: _fc.pricePerLitter,
+                              volume: _fc.volume,
+                              dashKm: _fc.dashKm,
+                              kmRidden: _fc.kmRidden,
+                              bikeId: _fc.bikeId);
+                        },
+                        fieldName: 'Fuel Type',
+                        focusNode: _dateFocusNode,
+                        initialValue: _initValues['fuelType'].toString(),
+                        placeHolder: 'Enter fuel type used',
+                        validatorText: 'Enter a valid text',
+                        currentBike: currentBike,
+                        trigger: (_) {
+                          FocusScope.of(context).requestFocus(_dateFocusNode);
+                        },
                       ),
                       CustomDatePicker(
                           ctx: context,
@@ -218,142 +209,98 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
                           dateTime: _dateTime,
                           initValues: _initValues,
                           editing: _editing),
-                      CupertinoFormRow(
-                        prefix: Text(
-                          'Price',
-                          style: Theme.of(context).textTheme.labelLarge,
-                        ),
-                        child: CupertinoTextFormFieldRow(
-                          cursorColor: Theme.of(context).colorScheme.secondary,
-                          style: Theme.of(context).textTheme.labelLarge,
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
-                          initialValue: _initValues['price'].toString(),
-                          placeholder: 'Enter price',
-                          placeholderStyle:
-                              Theme.of(context).textTheme.headlineMedium,
-                          textInputAction: TextInputAction.next,
-                          focusNode: _priceFocusNode,
-                          onFieldSubmitted: (_) {
-                            FocusScope.of(context)
-                                .requestFocus(_volumeFocusNode);
-                          },
-                          onSaved: (value) {
-                            _fc = FuelConsumption(
-                                //id: 'ongoing', // to set the id different of 'id' -> means _fc already exists
-                                id: _fc.id,
-                                fuelType: _fc.fuelType,
-                                date: _fc.date,
-                                price: double.parse(value!),
-                                pricePerLitter: _fc.pricePerLitter,
-                                volume: _fc.volume,
-                                dashKm: _fc.dashKm,
-                                kmRidden: _fc.kmRidden,
-                                bikeId: _fc.bikeId);
-                          },
-                          validator: (value) {
-                            if (value?.isEmpty == true) {
-                              return 'Please enter an amount';
-                            }
-                            if (double.tryParse(value!) == null) {
-                              return 'Please enter a valid price';
-                            }
-                            return null;
-                          },
-                        ),
+                      MyCupertinoFormRow(
+                        isText: false,
+                        _fc,
+                        _bikeData,
+                        (value) {
+                          _fc = FuelConsumption(
+                              //id: 'ongoing', // to set the id different of 'id' -> means _fc already exists
+                              id: _fc.id,
+                              fuelType: _fc.fuelType,
+                              date: _fc.date,
+                              price: double.parse(value!),
+                              pricePerLitter: _fc.pricePerLitter,
+                              volume: _fc.volume,
+                              dashKm: _fc.dashKm,
+                              kmRidden: _fc.kmRidden,
+                              bikeId: _fc.bikeId);
+                        },
+                        fieldName: 'Price',
+                        focusNode: _priceFocusNode,
+                        initialValue: _initValues['price'].toString(),
+                        placeHolder: 'Enter the price',
+                        validatorText: 'Enter a valid price',
+                        currentBike: currentBike,
+                        trigger: (_) {
+                          FocusScope.of(context).requestFocus(_volumeFocusNode);
+                        },
                       ),
-                      CupertinoFormRow(
-                        prefix: Text(
-                          'Volume',
-                          style: Theme.of(context).textTheme.labelLarge,
-                        ),
-                        child: CupertinoTextFormFieldRow(
-                          cursorColor: Theme.of(context).colorScheme.secondary,
-                          style: Theme.of(context).textTheme.labelLarge,
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
-                          initialValue: _initValues['volume'].toString(),
-                          placeholder: 'Enter volume',
-                          placeholderStyle:
-                              Theme.of(context).textTheme.headlineMedium,
-                          textInputAction: TextInputAction.next,
-                          onFieldSubmitted: (_) {
-                            FocusScope.of(context).requestFocus(_dashFocusNode);
-                          },
-                          onSaved: (value) {
-                            _fc = FuelConsumption(
-                                //id: 'ongoing', // to set the id different of 'id' -> means _fc already exists
-                                id: _fc.id,
-                                fuelType: _fc.fuelType,
-                                date: _fc.date,
-                                price: _fc.price,
-                                pricePerLitter: _fc.pricePerLitter,
-                                volume: double.parse(value!),
-                                dashKm: _fc.dashKm,
-                                kmRidden: _fc.kmRidden,
-                                bikeId: _fc.bikeId);
-                          },
-                          validator: (value) {
-                            if (value?.isEmpty == true) {
-                              return 'Please enter an amount';
-                            }
-                            if (double.tryParse(value!) == null) {
-                              return 'Please enter a valid volume amount';
-                            }
-                            return null;
-                          },
-                        ),
+                      MyCupertinoFormRow(
+                        isText: false,
+                        _fc,
+                        _bikeData,
+                        (value) {
+                          _fc = FuelConsumption(
+                              //id: 'ongoing', // to set the id different of 'id' -> means _fc already exists
+                              id: _fc.id,
+                              fuelType: _fc.fuelType,
+                              date: _fc.date,
+                              price: _fc.price,
+                              pricePerLitter: _fc.pricePerLitter,
+                              volume: double.parse(value!),
+                              dashKm: _fc.dashKm,
+                              kmRidden: _fc.kmRidden,
+                              bikeId: _fc.bikeId);
+                        },
+                        fieldName: 'Volume',
+                        focusNode: _volumeFocusNode,
+                        initialValue: _initValues['volume'].toString(),
+                        placeHolder: 'Enter the volume',
+                        validatorText: 'Enter a valid amount',
+                        currentBike: currentBike,
+                        trigger: (_) {
+                          FocusScope.of(context).requestFocus(_dashFocusNode);
+                        },
                       ),
-                      CupertinoFormRow(
-                        prefix: Text(
-                          'KM',
-                          style: Theme.of(context).textTheme.labelLarge,
-                        ),
-                        child: CupertinoTextFormFieldRow(
-                          cursorColor: Theme.of(context).colorScheme.secondary,
-                          style: Theme.of(context).textTheme.labelLarge,
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
-                          initialValue: _initValues['dashKm'].toString(),
-                          placeholder: 'Enter dashboard km',
-                          placeholderStyle:
-                              Theme.of(context).textTheme.headlineMedium,
-                          textInputAction: TextInputAction.next,
-                          onFieldSubmitted: (_) {
-                            _saveForm();
-                          },
-                          onSaved: (value) {
-                            _fc = FuelConsumption(
-                                //id: 'ongoing', // to set the id different of 'id' -> means _fc already exists
-                                id: _fc.id,
-                                fuelType: _fc.fuelType,
-                                date: _fc.date,
-                                price: _fc.price,
-                                pricePerLitter: _fc.price / _fc.volume,
-                                volume: _fc.volume,
-                                dashKm: double.parse(value!),
-                                kmRidden: double.parse(value) -
-                                    currentBike.totalKmRidden,
-                                bikeId: currentBike.id);
-                            _bikeData = BikeData(
-                                id: currentBike.id,
-                                isSelected: currentBike.isSelected,
-                                model: currentBike.model,
-                                costs: currentBike.costs + _fc.price,
-                                riddenWithLastRefill:
-                                    _fc.dashKm - currentBike.totalKmRidden,
-                                totalKmRidden: _fc.dashKm,
-                                riddenSincePurchased:
-                                    currentBike.riddenSincePurchased +
-                                        _fc.kmRidden);
-                          },
-                          validator: (value) {
-                            if (value?.isEmpty == true) {
-                              return 'Please enter an amount';
-                            }
-                            if (double.tryParse(value!) == null) {
-                              return 'Please enter a valid KM metric';
-                            }
-                            return null;
-                          },
-                        ),
+                      MyCupertinoFormRow(
+                        isText: false,
+                        _fc,
+                        _bikeData,
+                        (value) {
+                          _fc = FuelConsumption(
+                              //id: 'ongoing', // to set the id different of 'id' -> means _fc already exists
+                              id: _fc.id,
+                              fuelType: _fc.fuelType,
+                              date: _fc.date,
+                              price: _fc.price,
+                              pricePerLitter: _fc.price / _fc.volume,
+                              volume: _fc.volume,
+                              dashKm: double.parse(value!),
+                              kmRidden: double.parse(value) -
+                                  currentBike.totalKmRidden,
+                              bikeId: currentBike.id);
+                          _bikeData = BikeData(
+                              id: currentBike.id,
+                              isSelected: currentBike.isSelected,
+                              model: currentBike.model,
+                              costs: currentBike.costs + _fc.price,
+                              riddenWithLastRefill:
+                                  _fc.dashKm - currentBike.totalKmRidden,
+                              totalKmRidden: _fc.dashKm,
+                              riddenSincePurchased:
+                                  currentBike.riddenSincePurchased +
+                                      _fc.kmRidden);
+                        },
+                        currentBike: currentBike,
+                        fieldName: 'KM',
+                        focusNode: _dashFocusNode,
+                        initialValue: _initValues['dashKm'].toString(),
+                        placeHolder: 'Enter dashboard km',
+                        validatorText: 'Please enter a valid Km metric',
+                        trigger: (_) {
+                          _saveForm();
+                        },
                       )
                     ]),
                 Container(
@@ -369,5 +316,62 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
               ],
             ),
           );
+  }
+}
+
+class MyCupertinoFormRow extends StatelessWidget {
+  MyCupertinoFormRow(this.fc, this.bikeData, this.onSaved,
+      {required this.isText,
+      required this.fieldName,
+      required this.focusNode,
+      required this.initialValue,
+      required this.placeHolder,
+      required this.validatorText,
+      required this.currentBike,
+      required this.trigger});
+
+  final bool isText;
+  final String fieldName;
+  final FocusNode focusNode;
+  final String initialValue;
+  final String placeHolder;
+  final Function(String)? trigger;
+  final Function(String?)? onSaved;
+  FuelConsumption fc;
+  BikeData bikeData;
+  final String validatorText;
+  final BikeData currentBike;
+
+  @override
+  Widget build(BuildContext context) {
+    return CupertinoFormRow(
+      prefix: Text(
+        fieldName,
+        style: Theme.of(context).textTheme.labelLarge,
+      ),
+      child: CupertinoTextFormFieldRow(
+        cursorColor: Theme.of(context).colorScheme.secondary,
+        style: Theme.of(context).textTheme.labelLarge,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
+        initialValue: initialValue,
+        placeholder: placeHolder,
+        placeholderStyle: Theme.of(context).textTheme.headlineMedium,
+        textInputAction: TextInputAction.next,
+        focusNode: focusNode,
+        onFieldSubmitted: trigger,
+        onSaved: onSaved,
+        validator: (value) {
+          if (value?.isEmpty == true) {
+            return 'Please enter an amount';
+          }
+          if (!isText) {
+            if (double.tryParse(value!) == null) {
+              return validatorText;
+            }
+            return null;
+          }
+        },
+      ),
+    );
   }
 }
