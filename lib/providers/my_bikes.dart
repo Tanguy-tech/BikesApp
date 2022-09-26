@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_final_fields
 import 'package:flutter/material.dart';
 import 'package:motobox/providers/bike_data.dart';
-import 'package:motobox/providers/fuel_consumption.dart';
 import 'dart:convert';
 import '../models/http_exception.dart';
 import 'package:http/http.dart' as http;

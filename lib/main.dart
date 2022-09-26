@@ -1,15 +1,16 @@
+import 'dart:ffi';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:motobox/providers/my_bikes.dart';
 import 'package:motobox/providers/fuel_consumptions.dart';
 import 'package:motobox/providers/invoices.dart';
 import 'package:motobox/providers/theme_provider.dart';
-import 'package:motobox/screens/brands_screen.dart';
 import 'package:motobox/screens/expenses_screen.dart';
 import 'package:motobox/screens/my_bike/my_bike_screen.dart';
-import 'package:motobox/screens/profile_screen.dart';
 import 'package:motobox/widgets/app_widgets/dropup_button.dart';
 import 'package:motobox/widgets/app_widgets/my_bottom_app_bar.dart';
+import 'package:motobox/widgets/fuel_consumptions_widgets/fuel_consumption_form.dart';
 import 'package:motobox/widgets/routes.dart';
 import 'package:provider/provider.dart';
 import 'widgets/app_widgets/main_drawer.dart';
@@ -80,6 +81,8 @@ class _MyAppState extends State<MyApp> {
                 endDrawerEnableOpenDragGesture: true,
                 drawer: const MainDrawer(),
                 appBar: CupertinoNavigationBar(
+                  border: const Border(
+                      bottom: BorderSide(color: Colors.transparent)),
                   backgroundColor:
                       Theme.of(context).appBarTheme.backgroundColor,
                   leading: Builder(
@@ -102,7 +105,7 @@ class _MyAppState extends State<MyApp> {
                     child: CupertinoSwitch(
                         activeColor:
                             Theme.of(context).appBarTheme.foregroundColor,
-                        trackColor: Theme.of(context).colorScheme.background,
+                        trackColor: Theme.of(context).colorScheme.secondary,
                         onChanged: (value) => theme.toogleTheme(context),
                         value: theme.sw),
                   ),

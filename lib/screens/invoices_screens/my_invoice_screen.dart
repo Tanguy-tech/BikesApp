@@ -19,6 +19,7 @@ class InvoiceScreen extends StatelessWidget {
       drawer: const MainDrawer(),
       endDrawerEnableOpenDragGesture: true,
       appBar: CupertinoNavigationBar(
+        border: const Border(bottom: BorderSide(color: Colors.transparent)),
         backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
         leading: Builder(
           builder: (context) {

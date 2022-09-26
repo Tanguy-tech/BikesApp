@@ -2,8 +2,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:motobox/providers/bike_data.dart';
-import 'package:motobox/providers/my_bikes.dart';
 import '../models/http_exception.dart';
 import 'fuel_consumption.dart';
 import 'package:http/http.dart' as http;
@@ -108,7 +106,7 @@ class FuelConsumptions with ChangeNotifier {
         rethrow;
       }
     } else {
-      print('...');
+      // print('...');
     }
   }
 

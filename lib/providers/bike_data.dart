@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:motobox/providers/fuel_consumption.dart';
 
 class BikeData with ChangeNotifier {
   final String id;

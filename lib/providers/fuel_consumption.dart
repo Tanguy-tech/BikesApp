@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 
-import 'bike_data.dart';
-
 class FuelConsumption with ChangeNotifier {
   final String id;
   final String fuelType;

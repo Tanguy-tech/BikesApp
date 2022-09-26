@@ -20,13 +20,12 @@ class BikeDataItem extends StatelessWidget {
       height: 150,
       width: constraints.maxWidth,
       decoration: BoxDecoration(
-        border: Border.all(
-            color: Theme.of(context).colorScheme.secondary.withAlpha(30)),
+        border: Border.all(color: Theme.of(context).colorScheme.background),
         color: Theme.of(context).colorScheme.background,
         borderRadius: const BorderRadius.all(Radius.circular(10)),
       ),
       child: Padding(
-        padding: const EdgeInsets.only(top: 15, left: 25, right: 10),
+        padding: const EdgeInsets.only(top: 15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -36,8 +35,13 @@ class BikeDataItem extends StatelessWidget {
                 BikeDataField(
                     "Total costs : ${bike.costs.toStringAsFixed(2)}€"),
                 Container(
-                    padding: const EdgeInsets.only(top: 10),
-                    child: Text(bike.model)),
+                    padding: const EdgeInsets.only(top: 10, right: 15),
+                    child: Text(
+                      bike.model,
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Theme.of(context).colorScheme.tertiary),
+                    )),
               ],
             ),
             BikeDataField(

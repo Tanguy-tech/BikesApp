@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
-import '../../providers/theme_provider.dart';
+import 'package:motobox/widgets/app_widgets/dropup_button.dart';
 
 class MyBottomAppBar extends StatelessWidget {
   final int index;
@@ -12,32 +10,34 @@ class MyBottomAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Provider.of<AppTheme>(context);
     return BottomAppBar(
       notchMargin: 5,
-      color: theme.myTheme.bottomNavigationBarTheme.backgroundColor,
+      color: Theme.of(context).bottomNavigationBarTheme.backgroundColor,
       shape: const AutomaticNotchedShape(
           RoundedRectangleBorder(), StadiumBorder(side: BorderSide())),
       elevation: 0,
       child: BottomNavigationBar(
-          backgroundColor: theme
-              .myTheme.bottomNavigationBarTheme.backgroundColor
+          backgroundColor: Theme.of(context)
+              .bottomNavigationBarTheme
+              .backgroundColor
               ?.withAlpha(0),
           elevation: 0,
           selectedItemColor:
-              theme.myTheme.bottomNavigationBarTheme.selectedItemColor,
+              Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
           unselectedItemColor:
-              theme.myTheme.bottomNavigationBarTheme.unselectedItemColor,
+              Theme.of(context).bottomNavigationBarTheme.unselectedItemColor,
           currentIndex: index,
           //type: BottomNavigationBarType.shifting,
           onTap: selectedPage,
           items: [
             BottomNavigationBarItem(
-                backgroundColor: theme.myTheme.appBarTheme.backgroundColor,
+                backgroundColor:
+                    Theme.of(context).bottomNavigationBarTheme.backgroundColor,
                 icon: const Icon(Icons.motorcycle),
                 label: pages[0]["title"] as String),
             BottomNavigationBarItem(
-                backgroundColor: theme.myTheme.appBarTheme.backgroundColor,
+                backgroundColor:
+                    Theme.of(context).bottomNavigationBarTheme.backgroundColor,
                 icon: const Icon(Icons.sell),
                 label: pages[1]["title"] as String)
           ]),

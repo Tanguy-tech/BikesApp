@@ -37,15 +37,19 @@ dependencies:
   shared_preferences:
   date_format:
   intl:
-  flutter_launcher_icons: "^0.10.0"
+  flutter_launcher_icons: ^0.10.0
   fluttertoast: ^8.0.9
   cool_dropdown: ^1.4.2
   http: ^0.13.5
   swipeable_tile:
-
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.2
+  cupertino_icons: ^1.0.5
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icon/icon.png"
 
 dev_dependencies:
   flutter_test:
@@ -73,6 +77,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - assets/icon/icon.png
     - assets/brand_logos/BMW.png
     - assets/brand_logos/Ducati.png
     - assets/brand_logos/Harley.png

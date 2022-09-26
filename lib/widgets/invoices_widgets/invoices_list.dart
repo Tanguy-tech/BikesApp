@@ -57,6 +57,7 @@ class _InvoicesListState extends State<InvoicesList> {
             onRefresh: () => _refreshData(context),
             child: widget.isPreview
                 ? ListView.builder(
+                    padding: const EdgeInsets.only(left: 10),
                     itemCount: invoices.length,
                     itemBuilder: (context, i) => ChangeNotifierProvider.value(
                       value: invoices[i],
@@ -68,6 +69,7 @@ class _InvoicesListState extends State<InvoicesList> {
                     children: [
                       const InvoiceSummary(),
                       ListView.builder(
+                        padding: const EdgeInsets.only(left: 10),
                         shrinkWrap: true,
                         itemCount: invoices.length,
                         itemBuilder: (context, i) =>

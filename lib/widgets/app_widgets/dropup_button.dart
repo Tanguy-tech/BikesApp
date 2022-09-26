@@ -67,10 +67,10 @@ class DropUpButton extends StatelessWidget {
       //       begin: Alignment.topCenter,
       //       end: Alignment.bottomCenter,
       //     )),
-      width: 100,
+      width: 80,
       height: 40,
       child: CupertinoButton(
-        color: Theme.of(context).colorScheme.secondary,
+        color: Theme.of(context).colorScheme.tertiary,
         padding: const EdgeInsets.all(0),
         borderRadius: BorderRadius.circular(30.0),
         onPressed: () => showCupertinoModalPopup(
