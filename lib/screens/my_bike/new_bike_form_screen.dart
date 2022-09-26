@@ -26,7 +26,8 @@ class NewBikeFormScreen extends StatelessWidget {
             'Add a new bike',
             style: Theme.of(context).appBarTheme.titleTextStyle,
           ),
-          backgroundColor: Theme.of(context).appBarTheme.backgroundColor),
+          // backgroundColor: Theme.of(context).appBarTheme.backgroundColor),
+          backgroundColor: Colors.transparent),
       body: const NewBikeForm(),
     );
   }

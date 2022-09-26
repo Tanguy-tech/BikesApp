@@ -16,17 +16,19 @@ class InvoiceFormScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: theme.myTheme.colorScheme.background,
       appBar: CupertinoNavigationBar(
-          padding: const EdgeInsetsDirectional.all(0),
-          leading: CupertinoNavigationBarBackButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              color: Theme.of(context).appBarTheme.titleTextStyle?.color),
-          middle: Text(
-            'Add an invoice',
-            style: Theme.of(context).appBarTheme.titleTextStyle,
-          ),
-          backgroundColor: Theme.of(context).appBarTheme.backgroundColor),
+        padding: const EdgeInsetsDirectional.all(0),
+        leading: CupertinoNavigationBarBackButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            color: Theme.of(context).appBarTheme.titleTextStyle?.color),
+        middle: Text(
+          'Add an invoice',
+          style: Theme.of(context).appBarTheme.titleTextStyle,
+        ),
+        // backgroundColor: Theme.of(context).appBarTheme.backgroundColor),
+        backgroundColor: Colors.transparent,
+      ),
       body: const InvoiceForm(),
     );
   }

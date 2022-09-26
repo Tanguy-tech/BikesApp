@@ -18,7 +18,8 @@ class MyProfileScreen extends StatelessWidget {
       endDrawerEnableOpenDragGesture: true,
       appBar: CupertinoNavigationBar(
         border: const Border(bottom: BorderSide(color: Colors.transparent)),
-        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+        // backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+        backgroundColor: Colors.transparent,
         leading: Builder(
           builder: (context) {
             return CupertinoButton(
