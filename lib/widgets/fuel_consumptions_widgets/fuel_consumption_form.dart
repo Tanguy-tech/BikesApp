@@ -177,7 +177,7 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
                       CupertinoFormRow(
                         prefix: Text(
                           'Fuel type',
-                          style: Theme.of(context).textTheme.headlineMedium,
+                          style: Theme.of(context).textTheme.labelLarge,
                         ),
                         child: CupertinoTextFormFieldRow(
                           cursorColor: Theme.of(context).colorScheme.secondary,
@@ -185,6 +185,8 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           initialValue: _initValues['fuelType'].toString(),
                           placeholder: 'Enter fuel type used',
+                          placeholderStyle:
+                              Theme.of(context).textTheme.headlineMedium,
                           textInputAction: TextInputAction.next,
                           onFieldSubmitted: (_) {
                             FocusScope.of(context).requestFocus(_dateFocusNode);
@@ -219,7 +221,7 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
                       CupertinoFormRow(
                         prefix: Text(
                           'Price',
-                          style: Theme.of(context).textTheme.headlineMedium,
+                          style: Theme.of(context).textTheme.labelLarge,
                         ),
                         child: CupertinoTextFormFieldRow(
                           cursorColor: Theme.of(context).colorScheme.secondary,
@@ -227,6 +229,8 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           initialValue: _initValues['price'].toString(),
                           placeholder: 'Enter price',
+                          placeholderStyle:
+                              Theme.of(context).textTheme.headlineMedium,
                           textInputAction: TextInputAction.next,
                           focusNode: _priceFocusNode,
                           onFieldSubmitted: (_) {
@@ -260,7 +264,7 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
                       CupertinoFormRow(
                         prefix: Text(
                           'Volume',
-                          style: Theme.of(context).textTheme.headlineMedium,
+                          style: Theme.of(context).textTheme.labelLarge,
                         ),
                         child: CupertinoTextFormFieldRow(
                           cursorColor: Theme.of(context).colorScheme.secondary,
@@ -268,6 +272,8 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           initialValue: _initValues['volume'].toString(),
                           placeholder: 'Enter volume',
+                          placeholderStyle:
+                              Theme.of(context).textTheme.headlineMedium,
                           textInputAction: TextInputAction.next,
                           onFieldSubmitted: (_) {
                             FocusScope.of(context).requestFocus(_dashFocusNode);
@@ -299,7 +305,7 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
                       CupertinoFormRow(
                         prefix: Text(
                           'KM',
-                          style: Theme.of(context).textTheme.headlineMedium,
+                          style: Theme.of(context).textTheme.labelLarge,
                         ),
                         child: CupertinoTextFormFieldRow(
                           cursorColor: Theme.of(context).colorScheme.secondary,
@@ -307,6 +313,8 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           initialValue: _initValues['dashKm'].toString(),
                           placeholder: 'Enter dashboard km',
+                          placeholderStyle:
+                              Theme.of(context).textTheme.headlineMedium,
                           textInputAction: TextInputAction.next,
                           onFieldSubmitted: (_) {
                             _saveForm();
@@ -352,7 +360,7 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
                   margin: const EdgeInsets.all(8),
                   width: double.infinity,
                   child: CupertinoButton(
-                      color: Theme.of(context).colorScheme.secondary,
+                      color: Theme.of(context).colorScheme.tertiary,
                       onPressed: _saveForm,
                       child: Text('Submit',
                           style: TextStyle(

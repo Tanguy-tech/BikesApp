@@ -161,7 +161,7 @@ AppBarTheme myDarkAppBarTheme() {
 /* DARK BOTTOM NAV BAR */
 BottomNavigationBarThemeData myDarkBottomNavBarTheme() {
   return BottomNavigationBarThemeData(
-      backgroundColor: CupertinoColors.black,
+      backgroundColor: CupertinoColors.systemGrey6.darkHighContrastColor,
       selectedItemColor: CupertinoColors.systemGrey5,
       unselectedItemColor: CupertinoColors.systemGrey2.darkColor);
 }

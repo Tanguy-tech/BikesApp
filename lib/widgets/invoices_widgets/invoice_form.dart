@@ -154,7 +154,7 @@ class _InvoiceFormState extends State<InvoiceForm> {
                         CupertinoFormRow(
                           prefix: Text(
                             'Title',
-                            style: Theme.of(context).textTheme.headlineMedium,
+                            style: Theme.of(context).textTheme.labelLarge,
                           ),
                           child: CupertinoTextFormFieldRow(
                             cursorColor:
@@ -164,6 +164,8 @@ class _InvoiceFormState extends State<InvoiceForm> {
                                 AutovalidateMode.onUserInteraction,
                             initialValue: _initValues['title'].toString(),
                             placeholder: 'Enter a title / invoice content',
+                            placeholderStyle:
+                                Theme.of(context).textTheme.headlineMedium,
                             textInputAction: TextInputAction.next,
                             onFieldSubmitted: (_) {
                               FocusScope.of(context)
@@ -195,7 +197,7 @@ class _InvoiceFormState extends State<InvoiceForm> {
                         CupertinoFormRow(
                           prefix: Text(
                             'Price',
-                            style: Theme.of(context).textTheme.headlineMedium,
+                            style: Theme.of(context).textTheme.labelLarge,
                           ),
                           child: CupertinoTextFormFieldRow(
                             cursorColor:
@@ -205,6 +207,8 @@ class _InvoiceFormState extends State<InvoiceForm> {
                                 AutovalidateMode.onUserInteraction,
                             initialValue: _initValues['price'].toString(),
                             placeholder: 'Enter price',
+                            placeholderStyle:
+                                Theme.of(context).textTheme.headlineMedium,
                             textInputAction: TextInputAction.next,
                             focusNode: _priceFocusNode,
                             onFieldSubmitted: (_) {
@@ -235,7 +239,7 @@ class _InvoiceFormState extends State<InvoiceForm> {
                     margin: const EdgeInsets.all(8),
                     width: double.infinity,
                     child: CupertinoButton(
-                        color: Theme.of(context).colorScheme.secondary,
+                        color: Theme.of(context).colorScheme.tertiary,
                         onPressed: _saveForm,
                         child: Text('Submit',
                             style: TextStyle(
