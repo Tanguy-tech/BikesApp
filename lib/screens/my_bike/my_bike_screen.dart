@@ -1,9 +1,44 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:image_cropper/image_cropper.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:motobox/widgets/bike_widgets/bike_data_container.dart';
 
-class MyBikeScreen extends StatelessWidget {
+class MyBikeScreen extends StatefulWidget {
   static const routeName = '/my_bike';
   const MyBikeScreen({Key? key}) : super(key: key);
+
+  @override
+  State<MyBikeScreen> createState() => _MyBikeScreenState();
+}
+
+class _MyBikeScreenState extends State<MyBikeScreen> {
+  File? _imageFile;
+
+  Future _pickImage(ImageSource source) async {
+    try {
+      final image = await ImagePicker().pickImage(source: source);
+      if (image == null) return;
+      File? img = File(image.path);
+      img = await _cropImage(img);
+      // File? img = File(image);
+      setState(() {
+        _imageFile = img;
+        Navigator.of(context).pop();
+      });
+    } on PlatformException catch (e) {
+      print(e);
+      Navigator.of(context).pop();
+    }
+  }
+
+  Future<File?> _cropImage(File imageFile) async {
+    CroppedFile? cropedImage =
+        await ImageCropper().cropImage(sourcePath: imageFile.path);
+    if (cropedImage == null) return null;
+    return File(cropedImage.path);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +61,17 @@ class MyBikeScreen extends StatelessWidget {
               Text('HERE GOES THE FILTERS MAINTENANCE DATA'),
               SizedBox(height: 20),
               Text('HERE GOES OTHERS MAINTENANCE DATA'),
+              SizedBox(height: 20),
+              SizedBox(height: 20),
+              // FloatingActionButton(onPressed: () {
+              //   _pickImage(ImageSource.gallery);
+              // }),
+              // const SizedBox(height: 20),
+              // Container(
+              //   child: _imageFile == null
+              //       ? const Text('NO IMAGES YET')
+              //       : Image.file(_imageFile!),
+              // ),
             ],
           );
         }));

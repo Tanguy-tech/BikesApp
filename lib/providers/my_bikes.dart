@@ -6,6 +6,10 @@ import '../models/http_exception.dart';
 import 'package:http/http.dart' as http;
 
 class MyBikes with ChangeNotifier {
+  late String? authToken;
+
+  MyBikes(this.authToken, this._myBikes);
+
   List<BikeData> _myBikes = [];
 
   List<BikeData> get bikes {
@@ -18,7 +22,7 @@ class MyBikes with ChangeNotifier {
 
   Future<void> fetchAndSetBikes() async {
     final url = Uri.parse(
-        'https://motobox-eedda-default-rtdb.europe-west1.firebasedatabase.app/my_bikes.json');
+        'https://motobox-eedda-default-rtdb.europe-west1.firebasedatabase.app/my_bikes.json?auth=$authToken');
     try {
       final response = await http.get(url);
       final extractedData = json.decode(response.body) as Map<String, dynamic>;
@@ -52,7 +56,7 @@ class MyBikes with ChangeNotifier {
 
   Future<void> setAsFavorite(BikeData bike) async {
     final url = Uri.parse(
-        'https://motobox-eedda-default-rtdb.europe-west1.firebasedatabase.app/my_bikes.json');
+        'https://motobox-eedda-default-rtdb.europe-west1.firebasedatabase.app/my_bikes.json?auth=$authToken');
     try {
       final response = await http.get(url);
       final extractedData = json.decode(response.body) as Map<String, dynamic>;
@@ -95,7 +99,7 @@ class MyBikes with ChangeNotifier {
 
   Future<void> addBike(BikeData bike) async {
     final url = Uri.parse(
-        'https://motobox-eedda-default-rtdb.europe-west1.firebasedatabase.app/my_bikes.json');
+        'https://motobox-eedda-default-rtdb.europe-west1.firebasedatabase.app/my_bikes.json?auth=$authToken');
     try {
       final response = await http.post(url,
           body: json.encode({
@@ -129,7 +133,7 @@ class MyBikes with ChangeNotifier {
     final bikeDataIndex = _myBikes.indexWhere((fc) => newBike.id == id);
     if (bikeDataIndex >= 0) {
       final url = Uri.parse(
-          'https://motobox-eedda-default-rtdb.europe-west1.firebasedatabase.app/my_bikes/$id.json');
+          'https://motobox-eedda-default-rtdb.europe-west1.firebasedatabase.app/my_bikes/$id.json?auth=$authToken');
       try {
         await http.patch(url,
             body: json.encode({
@@ -153,7 +157,7 @@ class MyBikes with ChangeNotifier {
 
   Future<void> deleteBike(String id) async {
     final url = Uri.parse(
-        'https://motobox-eedda-default-rtdb.europe-west1.firebasedatabase.app/my_bikes/$id.json');
+        'https://motobox-eedda-default-rtdb.europe-west1.firebasedatabase.app/my_bikes/$id.json?auth=$authToken');
     final existingBDIndex = _myBikes.indexWhere((fc) => fc.id == id);
     BikeData? existingBD = _myBikes[existingBDIndex];
     _myBikes.removeAt(existingBDIndex);

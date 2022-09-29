@@ -138,7 +138,7 @@ class _FuelConsumptionFormState extends State<FuelConsumptionForm> {
       _isLoading = false;
     });
     Navigator.of(context).pop(); // esapce form
-    Navigator.of(context).pop(); // escape dropup menu
+    //Navigator.of(context).pop(); // escape dropup menu
   }
 
   @override

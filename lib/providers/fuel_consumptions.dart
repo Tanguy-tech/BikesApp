@@ -7,6 +7,10 @@ import 'fuel_consumption.dart';
 import 'package:http/http.dart' as http;
 
 class FuelConsumptions with ChangeNotifier {
+  late final String? authToken;
+
+  FuelConsumptions(this.authToken, this._fuelConsumptions);
+
   List<FuelConsumption> _fuelConsumptions = [];
 
   List<FuelConsumption> get consumptions {
@@ -19,7 +23,7 @@ class FuelConsumptions with ChangeNotifier {
 
   Future<void> fetchAndSetFuelConsumptions() async {
     final url = Uri.parse(
-        'https://motobox-eedda-default-rtdb.europe-west1.firebasedatabase.app/fuel_consumptions.json');
+        'https://motobox-eedda-default-rtdb.europe-west1.firebasedatabase.app/fuel_consumptions.json?auth=$authToken');
     try {
       final response = await http.get(url);
       final extractedData = json.decode(response.body) as Map<String, dynamic>;
@@ -51,7 +55,7 @@ class FuelConsumptions with ChangeNotifier {
 
   Future<void> addFuelConsumption(FuelConsumption fc) async {
     final url = Uri.parse(
-        'https://motobox-eedda-default-rtdb.europe-west1.firebasedatabase.app/fuel_consumptions.json');
+        'https://motobox-eedda-default-rtdb.europe-west1.firebasedatabase.app/fuel_consumptions.json?auth=$authToken');
     try {
       final response = await http.post(url,
           body: json.encode({
@@ -88,7 +92,7 @@ class FuelConsumptions with ChangeNotifier {
         _fuelConsumptions.indexWhere((fc) => newFc.id == id);
     if (fuelConsumptionIndex >= 0) {
       final url = Uri.parse(
-          'https://motobox-eedda-default-rtdb.europe-west1.firebasedatabase.app/fuel_consumptions/$id.json');
+          'https://motobox-eedda-default-rtdb.europe-west1.firebasedatabase.app/fuel_consumptions/$id.json?auth=$authToken');
       try {
         await http.patch(url,
             body: json.encode({
@@ -106,13 +110,13 @@ class FuelConsumptions with ChangeNotifier {
         rethrow;
       }
     } else {
-      // print('...');
+      print('UPDATED FC..');
     }
   }
 
   Future<void> deleteFuelConsumption(String id) async {
     final url = Uri.parse(
-        'https://motobox-eedda-default-rtdb.europe-west1.firebasedatabase.app/fuel_consumptions/$id.json');
+        'https://motobox-eedda-default-rtdb.europe-west1.firebasedatabase.app/fuel_consumptions/$id.json?auth=$authToken');
     final existingFcIndex = _fuelConsumptions.indexWhere((fc) => fc.id == id);
     FuelConsumption? existingFc = _fuelConsumptions[existingFcIndex];
     _fuelConsumptions.removeAt(existingFcIndex);
