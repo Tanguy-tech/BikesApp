@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_cropper/image_cropper.dart';
@@ -40,29 +41,18 @@ class _MyBikeScreenState extends State<MyBikeScreen> {
     return File(cropedImage.path);
   }
 
+  final Stream<QuerySnapshot> _usersStream =
+      FirebaseFirestore.instance.collection('users').snapshots();
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
         return LayoutBuilder(builder: ((context, constraints) {
           return Column(
-            children: const [
-              BikeMainInfo(),
-              SizedBox(height: 20),
-              Text(
-                'HEY THIS IS MY BIKE SCREEN!\nhere wil go the follow up of all maintenance and everything the bike i chose the display if i have more than one',
-                textAlign: TextAlign.center,
-              ),
-              SizedBox(height: 20),
-              Text('HERE GOES THE CHAIN MAINTENANCE DATA'),
-              SizedBox(height: 20),
-              Text('HERE GOES THE OIL MAINTENANCE DATA'),
-              SizedBox(height: 20),
-              Text('HERE GOES THE FILTERS MAINTENANCE DATA'),
-              SizedBox(height: 20),
-              Text('HERE GOES OTHERS MAINTENANCE DATA'),
-              SizedBox(height: 20),
-              SizedBox(height: 20),
+            children: [
+              const BikeMainInfo(),
+              const SizedBox(height: 20),
               // FloatingActionButton(onPressed: () {
               //   _pickImage(ImageSource.gallery);
               // }),
@@ -72,6 +62,33 @@ class _MyBikeScreenState extends State<MyBikeScreen> {
               //       ? const Text('NO IMAGES YET')
               //       : Image.file(_imageFile!),
               // ),
+              StreamBuilder<QuerySnapshot>(
+                stream: _usersStream,
+                builder: (BuildContext context,
+                    AsyncSnapshot<QuerySnapshot> snapshot) {
+                  if (snapshot.hasError) {
+                    return const Text('Something went wrong');
+                  }
+
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Text("Loading");
+                  }
+
+                  return ListView(
+                    children: snapshot.data!.docs
+                        .map((DocumentSnapshot document) {
+                          Map<String, dynamic> data =
+                              document.data()! as Map<String, dynamic>;
+                          return ListTile(
+                            title: Text(data['name']),
+                            subtitle: Text(data['last_name']),
+                          );
+                        })
+                        .toList()
+                        .cast(),
+                  );
+                },
+              ),
             ],
           );
         }));

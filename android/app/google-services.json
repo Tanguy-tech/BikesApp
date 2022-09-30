@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "189280957769",
+    "project_id": "motobox-firestore",
+    "storage_bucket": "motobox-firestore.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:189280957769:android:4ee27fe52d4ae60e499698",
+        "android_client_info": {
+          "package_name": "com.example.meals_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "189280957769-orbkigt60nqq5ufdo8f1bpkfp29385sc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZ7KibMTtuFzqZ11iwVnGIXitH-PlmoGI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "189280957769-orbkigt60nqq5ufdo8f1bpkfp29385sc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

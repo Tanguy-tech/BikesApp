@@ -1,6 +1,4 @@
-import 'dart:ffi';
-
-import 'package:flutter/cupertino.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:motobox/providers/auth.dart';
 import 'package:motobox/providers/my_bikes.dart';
@@ -8,19 +6,17 @@ import 'package:motobox/providers/fuel_consumptions.dart';
 import 'package:motobox/providers/invoices.dart';
 import 'package:motobox/providers/theme_provider.dart';
 import 'package:motobox/screens/auth_screen.dart';
-import 'package:motobox/screens/expenses_screen.dart';
 import 'package:motobox/screens/home_screen.dart';
-import 'package:motobox/screens/my_bike/my_bike_screen.dart';
-import 'package:motobox/widgets/app_widgets/dropup_button.dart';
-import 'package:motobox/widgets/app_widgets/my_bottom_app_bar.dart';
-import 'package:motobox/widgets/fuel_consumptions_widgets/fuel_consumption_form.dart';
 import 'package:motobox/widgets/routes.dart';
 import 'package:provider/provider.dart';
-import 'widgets/app_widgets/main_drawer.dart';
 
-//part 'my_file.gform.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(ChangeNotifierProvider<AppTheme>(
     create: (_) => AppTheme(),
     child: const MyApp(),
